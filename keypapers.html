@@ -142,7 +142,7 @@
           tags = tags.slice(0, -1);
           $.ajax({
             method: "POST",
-            url: "prb.php",
+            url: "http://yfaat.ch.huji.ac.il/mark/prb.php",
             data: {keys: tags, orand: orand, journals: journals }
           }).done(function(html){
               $("#list").html(html);
