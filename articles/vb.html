@@ -173,7 +173,7 @@
 
 		<h1 class='special'>VB structures and Catalan numbers</h1>
 
-The Valence Bond (VB) theory is a theory that describes chemical bonds in molecules. It is an alternative description to the 
+The Valence Bond (VB) describes chemical bonds in molecules. It is an alternative description to the 
 familiar Molecular orbital (MO) theory. The main difference between the two being that in VB theory the valence electrons participating in a covalent bond are thought to be localized on their atoms and the bonding is described as the overlapping of the 
 electrons on different atoms. In MO theory on the other hand the electrons are described as delocalized over the molecule.
 In MO theory new orbitals are formed as linear combinations of the atomic orbitals leading to bonding and anti-bonding orbitals.
@@ -209,12 +209,12 @@ from 1 to n and pick a random point $i$ other than 1 and connect that point with
 similar problems with less points. The first half has $i-2$ points which will be connected to each other following the same rules, 
 and the second half has $n-i$ points. For this choice of point $i$ there are $a_{i-2}a_{n-i}$ "structures".
 Summing over the possible choices of $i$ We therefore get the following recurrence relation: $a_n=\sum\limits_{i=1}^{n/2} a_{2i-2}a_{n-2i}$,
-where the use of $2i$ causes the i to jump in increments of 2, from $2$ to $n$. The jumps by 2 is necessary in order to prevent isolated points.. <br>
+where the use of $2i$ causes the i to jump in increments of 2, from $2$ to $n$. The jumps by 2 is necessary in order to prevent isolated points. <br>
 
 This recurrence relation gives the Catalan series with $a_n=C_{n/2}$.
 The first Catalan numbers for $n=0,1,2,3,4,5,6,....$ are $1, 1, 2, 5, 14, 42, 132,...$
 These can be calculated using the explicit formula: $C(n)=\frac{1}{n+1}\binom{2n}{n}$. <br><br>
-The Catalan numbers appear again and again in various counting problem. One such problem which turns out to be relevant
+The Catalan numbers appear again and again in various counting problems. One such problem which turns out to be relevant
 to the second part of our problem, namely drawing the structures. This problem is that of arranging $2n$ parentheses consisting 
 of $n$ parentheses of each type in legal ways. The number of such arrangements turns out to be equal to $C(n)$.
 For example for n=6, the possible legal "words" are ((())), (()()), (()(), ()(()), ()()(). This one-to-one correspondence
