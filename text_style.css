@@ -12,6 +12,6 @@ body{
     line-height: 1.4;
 }
 
-subtitle{
+span.subtitle{
     font-weight: bold;
 }
