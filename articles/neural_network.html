@@ -169,14 +169,13 @@
     </p>
     <p>
     The human brain is composed of billions of interconnected neurons - brain cells, forming the neural network of the brain. The neurons communicate with each other though electrical pulses, governed by known Chemical and physical laws, governing the brain, and that's it, there is no extra magic, this seemingly basic framework, is capable of making us intelligent, being able to learn, think, and create. 
-    In trying to create a machine that can learn in a similar way, a good starting point would be to see what the brain does and try to imitate it. A single neuron cell has a body which govern the activity of the cell, Dendrites which receive signals from other neurons, and Axons which transmit signals to other neurons through junctions called synapses.<br>
-    A simple abstraction of the above, would be a computational unit, called a perceptron which receives some input from multiple sources, sums the inputs with some specific weights for each input signifying their relative importance for the neurons output. This summation then goes through some activation function which determines the output of the neuron based on its input.
-    We can then imagine multiple layers of such artificial neurons interconnected, with the activation of one layer of neurons influencing the activation of the next, forming an artificial neural network.
-
-
-    Remarkabley, for a non-linear 
-    </p>
+    In trying to create a machine that can learn in a similar way, a good starting point would be to see what the brain does and try to imitate it. A single neuron cell has a body which govern the activity of the cell, Dendrites which receive signals from other neurons, and Axons which transmit signals to other neurons through junctions called synapses.
     <p>
+    A simple abstraction of the above, would be a computational unit, called a perceptron which receives some input from multiple sources, sums the inputs with some specific weights for each input, and perhaps an overall bias as well. This summation then goes through some activation function which determines the output of the neuron based on its input, which serves as the input for other neurons.
+    We can imagine multiple layers of such artificial neurons interconnected, with the activation of one layer of neurons influencing the activation of the next, forming an artificial neural network.
+    Remarkably, using a non-linear activation function makes such a deep (more than two layers) neural network a "universal function approximater", i.e. it can approximate any function from the inputs to the output by appropriately tuning it's weights.
+    </p>
+  
 
 
 </div>
