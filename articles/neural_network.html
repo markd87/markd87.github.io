@@ -194,8 +194,12 @@
     In principle one can compute the derivatives numerically, however this is computationally highly inefficient. Luckily there is an analytical method to find the gradients called backpropagation.
     </p>
     <p>
-    <span class='subtitle'>Backpropagation</span>
+    <span class='subtitle'>Feed-forward and Back-propagation</span>
     <br>
+    Forward propagation in contrast to back propagation means propagating the inputs through the network until we reach the output. 
+
+    Backpropagation is pretty much the opposite, but with derivatives. In order to know how a given weight influences the output, the gradient of the output with respect to a given weight, one therefore needs to go backwards from the input, and chain together the derivatives of the intermediate outputs from each layer. Also known as the chain rule.
+
 
     </p>
 
