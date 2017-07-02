@@ -15,6 +15,7 @@ body{
 span.subtitle{
     font-weight: bold;
     font-size: 32px;
+    margin-bottom: 5px;
 }
 
 div.figure{
