@@ -182,6 +182,12 @@
     We can imagine multiple layers of such artificial neurons interconnected, with the activation of one layer of neurons influencing the activation of the next, forming an artificial neural network.
     Remarkably, using a non-linear activation function makes such a deep (more than two layers) neural network a "universal function approximater", i.e. it can approximate any function from the inputs to the output by appropriately tuning it's weights.
     </p>
+    <p>
+    The question is then, how does a neural network learn? At this point this question becomes a problem in optimization. A network's output for a given input is uniquely determined by its set of weights and biases, forming a multidimensional space with the different parameters as its axis. Given the desired output of the network, we have some loss or cost function which determines how far is the network from outputting the desired value. Therefore the task of learning is reduces to the task of minimizing this loss function. A method to do just that is called gradient descent, which as the name implies, one finds the gradient of the loss function with respect to the different parameters, which gives the direction in which the loss function increases, therefore one needs to descend in the opposite direction dictated by the gradient. 
+
+
+    
+    </p>
   
 
 
