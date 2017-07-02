@@ -16,3 +16,8 @@ span.subtitle{
     font-weight: bold;
     font-size: 32px;
 }
+
+div.figure{
+    text-align: center;
+    margin:20px;
+}
