@@ -213,19 +213,19 @@
 
     \[
     \begin{split}
-    z_{hidden}=W_{hidden}\cdot X_{input}+b_{hidden}, \quad (n_{hidden}\times n_{data})
+    &z_{hidden}=W_{hidden}\cdot X_{input}+b_{hidden}, \quad (n_{hidden}\times n_{data})
     \\
-    a_{hidden}=f(z_{hidden}), 
+    &a_{hidden}=f(z_{hidden}), 
     \\
-    z_{out} = W_{output}\cdot a_{hidden}+b_{output}, \quad (n_{output}\times n_{data})
+    &z_{out} = W_{output}\cdot a_{hidden}+b_{output}, \quad (n_{output}\times n_{data})
     \\
-    y_{out} = f(z_{out}), \quad (n_{output}\times n_{data}).
+    &y_{out} = f(z_{out}), \quad (n_{output}\times n_{data}).
     \end{split}
     \]
 
     The output given by $f_(z_{out})$ is then a matrix with a column for each input data point. In parenthesis I state the output dimensions in each step.
     <br>
-    (* note that the activation function for the output layer can be chosen differently in principle, in particular for classification problems with multiple classes, one uses the soft-max activation $\frac{e^{z_{out}}}{\sum_{c} {e_{z_c}}}$ in the output layer, where the summation is over the classes).
+    (* note that the activation function for the output layer can be chosen differently in principle, in particular for classification problems with multiple classes, one uses the soft-max activation $\frac{e^{z_{out}}}{\sum_{c} {e^{z_c}}}$ in the output layer, where the summation is over the classes).
 
     </p>
     <br>
