@@ -192,10 +192,10 @@
 </p>
 <p>
     A method to do just that is called gradient descent, which as the name implies, one finds the gradient of the loss function with respect to the different parameters, which gives the direction in which the loss function increases, therefore one needs to descend in the opposite direction dictated by the gradient, until it reaches close to the minimum of the loss function, at which point the gradient becomes close to zero and learning stops. One might then wonder what guarantees finding the minimum and not ending up in local minimum giving bad parameters. Remarkably, the high dimensionality of most learning tasks comes to the rescue. whereas in two or three dimensions, local minimas are quite common, once the number of dimensions increases rapidly, it becomes more unlikely to come across such local minimum, because that would require simultaneously all the partial derivatives of the loss function with respect to all parameters to be zero, therefore it is more likely that there will always be at least one direction in which one can go so as to keep minimizing the loss function until one gets a satisfactory training accuracy. Note that in principle, given infinite time the network could potentially learn the training set perfectly, however this results in over-fitting, which means that the network will not generalize well to previously unseen data.
-    In principle one can compute the derivatives numerically, however this is computationally highly inefficient. Luckily there is an analytical method to find the gradients called backpropagation.
+    In principle one can compute the gradients numerically, however this is computationally highly inefficient. Luckily there is an analytical method to find the gradients called backpropagation. But first I demonstrate how to obtain the output from a neural network by forward propagation, which will help in deriving the backpropagation method for learning using gradient descent.
     </p>
     <p>
-    <span class='subtitle'>Feed-forward and Back-propagation</span>
+    <span class='subtitle'>Forward propagation</span>
     <br>
     Forward propagation means propagating the inputs through the network until we reach the output. 
 
@@ -228,8 +228,9 @@
     </p>
     <br>
 
+    <span class='subtitle'>Backpropagation</span>
     <p>
-    Backpropagation is in a sense the opposite, but with derivatives. In order to know how a given weight influences the output, the gradient of the output with respect to a given weight, one therefore needs to go backwards from the input, and chain together the derivatives of the intermediate outputs from each layer. Also known as the chain rule.
+    Backpropagation is in a sense the opposite of forward propagation, but with derivatives. In order to know how a given weight influences the output, the gradient of the output with respect to a given weight, one therefore needs to go backwards from the input, and chain together the derivatives of the intermediate outputs from each layer. Also known as the chain rule.
 
 
     </p>
