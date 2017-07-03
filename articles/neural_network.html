@@ -176,7 +176,7 @@
 
     <span class='subtitle'>Artificial neuron</span>
     <br>
-    A simple abstraction of the above, would be a computational unit, called a perceptron which receives some input from multiple sources, sums the inputs with some specific weights for each input, and perhaps an overall bias as well. This summation then goes through some activation function which determines the output of the neuron based on its input, which serves as the input for other neurons.
+    A simple abstraction of the above, would be a computational unit which receives some input from multiple sources, sums the inputs with some specific weights for each input, and perhaps an overall bias as well. This summation then goes through some activation function which determines the output of the neuron based on its input, which serves as the input for other neurons.
     <br>
     <div class='figure'>
       <img src='images/perceptron2.png'>
@@ -203,7 +203,20 @@
       <img src='images/nn.png' />
     </div>
 
-    Given an input of size $n_{input}\times n_{data}$, a hidden layer with $n_{hidden}$ nodes, and $n_{output}$ nodes.
+    To demonstrate the feed-forward network, we consider a network with one hidden layer (the smallest possible deep neural network).
+    Denoting the input as a matrix of size $n_{input}\times n_{data}$ where we have $n_{data}$ points in a given batch where each data point is a vector of $n_{input}$ elements. Next we have a hidden layer with $n_{hidden}$ nodes. The hidden layer is connected to the inputs with a weight matrix of size $n_{hidden}\times n_{input}$ and we have additionally a bias vector ${\bf b}_{hidden}$ of size $n_{hidden}$.<br>
+    Finally, we have an output layer with $n_{output}$ nodes, which can denote either different classes in a supervised classification problem, or real values in a regression type problem. The output layer is similarly connected to the hidden layer with a weight matrix $W_{output}$ of size $n_{output}\times n_{hidden}$, and a bias vector $b_{output}$ for the output nodes of size.
+
+    \[
+    z_{hidden}=W_{hidden}\cdot X_{input}+b_{hidden}\quad,
+    \\
+    a_{hidden}=f(z_{hidden})
+    \\
+    z_{out}
+    \]
+
+    The forward propagation through the network is then given by a combination of dot products between weight matrices and input matrices with added biases, followed by non-linear activation function acting on them.
+
     </p>
     <br>
 
