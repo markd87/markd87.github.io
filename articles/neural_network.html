@@ -216,12 +216,13 @@
     \\
     &a_{hidden}=f(z_{hidden}), 
     \\
-    z_{out} = W_{output}\cdot a_{hidden}+b_{output}, \quad (n_{output}\times n_{data})
+    &z_{out} = W_{output}\cdot a_{hidden}+b_{output}, \quad (n_{output}\times n_{data})
     \\
-    y_{out} = g(z_{out})
+    &y_{out} = f(z_{out}), \quad (n_{output}\times n_{data}).
     \]
 
-    The forward propagation through the network is then given by a combination of dot products between weight matrices and input matrices with added biases, followed by non-linear activation function acting on them.
+    The output given by $g_(z_{out})$ is then a matrix with a column for each input data point. 
+    (note that the activation function for the output layer can be chosen differently in principle, in particular for classification problems with multiple classes, one uses the soft-max activation in the output layer).
 
     </p>
     <br>
