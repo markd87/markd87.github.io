@@ -222,7 +222,7 @@
     \]
 
     The output given by $g_(z_{out})$ is then a matrix with a column for each input data point. 
-    (note that the activation function for the output layer can be chosen differently in principle, in particular for classification problems with multiple classes, one uses the soft-max activation in the output layer).
+    (note that the activation function for the output layer can be chosen differently in principle, in particular for classification problems with multiple classes, one uses the soft-max activation $\frac{e^{z_{out}}}{\sum_{c} {e_{z_c}}}$ in the output layer, where the summation is over the classes).
 
     </p>
     <br>
