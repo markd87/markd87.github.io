@@ -233,7 +233,23 @@
 
     <span class='subtitle'>Backpropagation</span>
     <p>
-    Backpropagation is in a sense the opposite of forward propagation, but with derivatives. In order to know how a given weight influences the output, the gradient of the output with respect to a given weight, one therefore needs to go backwards from the input, and chain together the derivatives of the intermediate outputs from each layer. Also known as the chain rule.
+    In order to know how a given weight influences the output, which is given by the gradient of the output with respect to a given weight, one therefore needs to go backwards from the output, and chain together the derivatives of the intermediate outputs from each layer. Also known as the chain rule. We start with a loss function $L(X,W,b)$ which is a function of the input, the weights and biases. The gradient descent minimization process updates the parameters at each learning step according to,
+    \[
+    \begin{split}
+        &W:= W -\eta \nabla_{W}L(X,W,b)
+        \\
+        &b:= b - \eta \nabla_{b}L(X,W,b)
+    \end{split}
+    \]
+    where $\eta$ is the learning rate. When doing a mini-batch gradient descent, the "real" gradient is essentially approximated by the gradient of the "mini"-loss function.
+    <br>
+    To obtain the gradients we imploy the chain rule,
+    \[
+
+    
+    \]
+
+
 
 
     </p>
