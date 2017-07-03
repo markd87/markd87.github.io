@@ -203,6 +203,8 @@
       <img src='images/nn.png' />
     </div>
 
+    (a function I wrote for generating images of neural network graphs with given number of layers and nodes can be found <a href='https://github.com/markd87/markd87.github.io/blob/master/articles/nn_graph.ipynb' target="_blank">here</a>).
+    <br>
     To demonstrate the feed-forward network, we consider a network with one hidden layer (the smallest possible deep neural network).
     Denoting the input as a matrix of size $n_{input}\times n_{data}$ where we have $n_{data}$ points in a given batch where each data point is a vector of $n_{input}$ elements. Next we have a hidden layer with $n_{hidden}$ nodes. The hidden layer is connected to the inputs with a weight matrix of size $n_{hidden}\times n_{input}$ and we have additionally a bias vector ${\bf b}_{hidden}$ of size $n_{hidden}$.<br>
     Finally, we have an output layer with $n_{output}$ nodes, which can denote either different classes in a supervised classification problem, or real values in a regression type problem. The output layer is similarly connected to the hidden layer with a weight matrix $W_{output}$ of size $n_{output}\times n_{hidden}$, and a bias vector $b_{output}$ for the output nodes of size.
