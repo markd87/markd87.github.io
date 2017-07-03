@@ -212,6 +212,7 @@
     Finally, we have an output layer with $n_{output}$ nodes, which can denote either different classes in a supervised classification problem, or real values in a regression type problem. The output layer is similarly connected to the hidden layer with a weight matrix $W_{output}$ of size $n_{output}\times n_{hidden}$, and a bias vector ${\bf b}_{output}$ for the output nodes of size.
 
     \[
+    \begin{split}
     &z_{hidden}=W_{hidden}\cdot X_{input}+b_{hidden}, \quad (n_{hidden}\times n_{data})
     \\
     &a_{hidden}=f(z_{hidden}), 
@@ -219,6 +220,7 @@
     &z_{out} = W_{output}\cdot a_{hidden}+b_{output}, \quad (n_{output}\times n_{data})
     \\
     &y_{out} = f(z_{out}), \quad (n_{output}\times n_{data}).
+    \end{split}
     \]
 
     The output given by $g_(z_{out})$ is then a matrix with a column for each input data point. 
