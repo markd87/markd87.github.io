@@ -212,18 +212,18 @@
     <br>
     To demonstrate the feed-forward network, we consider a network with one hidden layer (the smallest possible deep neural network). We also use vectorized form for the equations in order to simplify notation and allow for efficient implementation.<br>
     The input layer is column vector of size $n_{input}$,
-    next we have a hidden layer with $n_{hidden}$ nodes. The hidden layer is connected to the inputs with a weight matrix $W_{hidden}$ of size $n_{hidden}\times n_{input}$, such that $W_{ij}$ is the weight connecting input node $i$ to hidden note $j$. Additionally we have a bias vector ${\bf b}_{hidden}$ of size $n_{hidden}$ for the hidden layer.<br>
-    Finally, we have an output layer with $n_{output}$ nodes, which can denote either different classes in a supervised classification problem, or real values in a regression type problem. The output layer is similarly connected to the hidden layer with a weight matrix $W_{output}$ of size $n_{output}\times n_{hidden}$, and a bias vector ${\bf b}_{output}$ for the output nodes of size.
+    next we have a hidden layer with $n_{hidden}$ nodes. The hidden layer is connected to the inputs with a weight matrix $W_{hidden}$ of size $n_{h}\times n_{input}$, such that $W_{ij}$ is the weight connecting input node $i$ to hidden note $j$. Additionally we have a bias vector ${\bf b}_{h}$ of size $n_{h}$ for the hidden layer.<br>
+    Finally, we have an output layer with $n_{output}$ nodes, which can denote either different classes in a supervised classification problem, or real values in a regression type problem. The output layer is similarly connected to the hidden layer with a weight matrix $W_{o}$ of size $n_{o}\times n_{h}$, and a bias vector ${\bf b}_{o}$ for the output nodes of size.
 
     \[
     \begin{split}
-    &z_{hidden}=W_{hidden}\cdot X_{input}+b_{hidden}, \quad (n_{hidden})
+    &z_{h}=W_{h}\cdot X_{input}+b_{h}, \quad (n_{h})
     \\
-    &a_{hidden}=f(z_{hidden}), 
+    &a_{h}=f(z_{hidden}), 
     \\
-    &z_{out} = W_{output}\cdot a_{hidden}+b_{output}, \quad (n_{output})
+    &z_{o} = W_{o}\cdot a_{h}+b_{o}, \quad (n_{o})
     \\
-    &a_{out} = f(z_{out}), \quad (n_{output}).
+    &a_{o} = f(z_{o}), \quad (n_{o}).
     \end{split}
     \]
 
@@ -249,15 +249,15 @@
     To obtain the gradients we employ the chain rule,
     \[
     \begin{split}
-      &\frac{\partial L}{\partial W^{output}_{ij}} = \frac{\partial L}{\partial a^{output}_i} \frac{\partial a^{output}_i}{\partial z^{output}_i}\frac{\partial z^{output}_i}{\partial W^{output}_{ij}} = \nabla_{a_{output}} L \times f'(z_{output}) \cdot a_{hidden}^T,
+      &\frac{\partial L}{\partial W^{o}_{ij}} = \frac{\partial L}{\partial a^{o}_i} \frac{\partial a^{o}_i}{\partial z^{o}_i}\frac{\partial z^{o}_i}{\partial W^{o}_{ij}} = \nabla_{a_{o}} L \times f'(z_{o}) \cdot a_{h}^T,
       \\
-      &\frac{\partial L}{\partial b_{output}}=\nabla_{a_{output}} L \times f'(z_{output}) \cdot a_{hidden}^T,
+      &\frac{\partial L}{\partial b_{o}}=\nabla_{a_{o}} L \times f'(z_{o}) \cdot a_{h}^T,
       \\
-      &\frac{\partial L}{\partial W^{hidden}_{ij}} = \frac{\partial L}{\partial a^{output}_k} \frac{\partial a^{output}_k}{\partial z^{output}_k}\frac{\partial z^{output}_k}{\partial a_i^{hidden}}\frac{\partial a_i^{hidden}}{\partial z_i^{hidden}}\frac{\partial z_i^{hidden}}{\partial W_{ij}^{hidden}}=
-      (\nabla_{a_{output}} L\times f'(z_{output}))\cdot W^T_{output} f'(z_{hidden})\cdot
-      x^T
+      &\frac{\partial L}{\partial W^{h}_{ij}} = \frac{\partial L}{\partial a^{o}_k} \frac{\partial a^{o}_k}{\partial z^{o}_k}\frac{\partial z^{o}_k}{\partial a_i^{h}}\frac{\partial a_i^{h}}{\partial z_i^{h}}\frac{\partial z_i^{h}}{\partial W_{ij}^{h}}=
+      (\nabla_{a_{o}} L\times f'(z_{o}))\cdot W^T_{o} f'(z_{h})\cdot
+      x^T,
       \\
-      &\frac{\partial L}{\partial b_{hidden}}=(\nabla_{a_{output}} L\times f'(z_{output}))\cdot W^T_{output} f'(z_{hidden}),
+      &\frac{\partial L}{\partial b_{h}}=(\nabla_{a_{o}} L\times f'(z_{o}))\cdot W^T_{o} f'(z_{h}).
     \end{split}
     \]
 
