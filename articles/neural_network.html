@@ -281,15 +281,8 @@
 
 A simple but historically important example of using an artificial neural network, is the XOR function, which takes two binary inputs, and outputs zero for (0,0),(1,1) and 1 for (1,0),(0,1). As the two classes (1 or 0) cannot be linearly separated, one needs to use a neural network with a hidden layer. The full ipython notebook can be found <a href=''>here</a>.
 
-<pre class="brush: python">
-   plt.scatter([0,1],[0,1],s=1000,marker='o',label='0')
-plt.scatter([0,1],[1,0],s=1000,marker='X',label='1')
-plt.legend(loc=(1.1,0.37),fontsize = 'xx-large',labelspacing=1.5)
-plt.title('XOR function')
-plt.xlim([-0.1,1.1])
-plt.ylim([-0.1,1.1]);
-plt.tight_layout()
-</pre>
+
+<embed src='xor.html'>
 
 
 
