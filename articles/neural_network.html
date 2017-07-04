@@ -212,14 +212,14 @@
     <br>
     To demonstrate the feed-forward network, we consider a network with one hidden layer (the smallest possible deep neural network). We also use vectorized form for the equations in order to simplify notation and allow for efficient implementation.<br>
     The input layer is column vector of size $n_{input}$,
-    next we have a hidden layer with $n_{hidden}$ nodes. The hidden layer is connected to the inputs with a weight matrix $W_{h}$ of size $n_{h}\times n_{input}$, such that $W^{h}_{ij}$ is the weight connecting input node $i$ to hidden note $j$. Additionally we have a bias vector ${\bf b}_{h}$ of size $n_{h}$ for the hidden layer.<br>
+    next we have a hidden layer with $n_{h}$ nodes. The hidden layer is connected to the inputs with a weight matrix $W_{h}$ of size $n_{h}\times n_{input}$, such that $W^{h}_{ij}$ is the weight connecting input node $i$ to hidden note $j$. Additionally we have a bias vector ${\bf b}_{h}$ of size $n_{h}$ for the hidden layer.<br>
     Finally, we have an output layer with $n_{output}$ nodes, which can denote either different classes in a supervised classification problem, or real values in a regression type problem. The output layer is similarly connected to the hidden layer with a weight matrix $W_{o}$ of size $n_{o}\times n_{h}$, and a bias vector ${\bf b}_{o}$ for the output nodes of size.
 
     \[
     \begin{split}
     &z_{h}=W_{h}\cdot X_{input}+b_{h}, \quad (n_{h})
     \\
-    &a_{h}=f(z_{hidden}), 
+    &a_{h}=f(z_{h}), 
     \\
     &z_{o} = W_{o}\cdot a_{h}+b_{o}, \quad (n_{o})
     \\
