@@ -256,8 +256,6 @@
       &\frac{\partial L}{\partial W^{hidden}_{ij}} = \frac{\partial L}{\partial a^{output}_k} \frac{\partial a^{output}_k}{\partial z^{output}_k}\frac{\partial z^{output}_k}{\partial a_i^{hidden}}\frac{\partial a_i^{hidden}}{\partial z_i^{hidden}}\frac{\partial z_i^{hidden}}{\partial W_{ij}^{hidden}}=
       (\nabla_{a_{output}} L\times f'(z_{output}))\cdot W^T_{output} f'(z_{hidden})\cdot
       x^T
-      \\
-      &\frac{\partial L}{\partial b_{hidden}} = 
     \end{split}
     \]
 
