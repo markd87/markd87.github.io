@@ -233,7 +233,7 @@
 
     <span class='subtitle'>Backpropagation</span>
     <p>
-    In order to know how a given weight influences the output, which is given by the gradient of the output with respect to a given weight, one therefore needs to go backwards from the output, and chain together the derivatives of the intermediate outputs from each layer. Also known as the chain rule. We start with a loss function $L(X,W,b)$ which is a function of the input, the weights and biases. The gradient descent minimization process updates the parameters at each learning step according to,
+    In order to know how a given weight influences the output, which is given by the gradient of the output with respect to a given weight, one therefore needs to go backwards from the output, and chain together the derivatives of the intermediate outputs from each layer. Also known as the chain rule. We start with a loss function $L(W,b)$ which is a function of the weights and biases. The gradient descent minimization process updates the parameters at each learning step according to,
     \[
     \begin{split}
         &W:= W -\eta \nabla_{W}L(X,W,b)
@@ -246,6 +246,7 @@
     To obtain the gradients we employ the chain rule,
     \[
       \frac{\partial L}{\partial W_{ij}}
+
 
     \]
 
