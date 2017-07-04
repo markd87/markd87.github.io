@@ -249,9 +249,9 @@
     To obtain the gradients we employ the chain rule,
     \[
     \begin{split}
-      \frac{\partial L}{\partial W^{output}_{ij}} = \frac{\partial L}{\partial a^{output}_i} \frac{\partial a^{output}_i}{\partial z^{output}_i}\frac{\partial z^{output}_i}{\partial W^{output}_{ij}} = \nabla_{a^{output}} L \times f'(z_{output}) \cdot a_{hidden}^T
+      &\frac{\partial L}{\partial W^{output}_{ij}} = \frac{\partial L}{\partial a^{output}_i} \frac{\partial a^{output}_i}{\partial z^{output}_i}\frac{\partial z^{output}_i}{\partial W^{output}_{ij}} = \nabla_{a^{output}} L \times f'(z_{output}) \cdot a_{hidden}^T
       \\
-      \frac{\partial L}{\partial W^{hidden}_{ij}} = \frac{\partial L}{\partial a^{output}_k} \frac{\partial a^{output}_k}{\partial z^{output}_k}\frac{\partial z^{output}_k}{\partial a_i^{hidden}}\frac{\partial a_i^{hidden}}{\partial z_i^{hidden}}\frac{\partial z_i^{hidden}}{\partial W_{ij}^{hidden}}=
+      &\frac{\partial L}{\partial W^{hidden}_{ij}} = \frac{\partial L}{\partial a^{output}_k} \frac{\partial a^{output}_k}{\partial z^{output}_k}\frac{\partial z^{output}_k}{\partial a_i^{hidden}}\frac{\partial a_i^{hidden}}{\partial z_i^{hidden}}\frac{\partial z_i^{hidden}}{\partial W_{ij}^{hidden}}=
       (\nabla_{a^{output}}\times f'(z_{output}))\cdot W^T_{output} f'(z_{hidden})\cdot
       x^T
     \end{split}
