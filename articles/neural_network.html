@@ -207,24 +207,23 @@
     <br>
     <br>
     To demonstrate the feed-forward network, we consider a network with one hidden layer (the smallest possible deep neural network). We also use vectorized form for the equations in order to simplify notation and allow for efficient implementation.<br>
-    Denoting the input as a matrix of size $n_{input}\times n_{data}$ where we have $n_{data}$ points in a given batch (mini-batch) where each data point is a vector of $n_{input}$ elements. The limit of a single data point is called stochastic gradient descent which means we update the parameters for each data point in the training set which can be noisy but fast, whereas the limit of a very big batch of data means that we have a better approximations to the true gradient of the loss function but requires more operations. (a stack exchange <a href='https://stats.stackexchange.com/questions/49528/batch-gradient-descent-versus-stochastic-gradient-descent' target="_blank">answer</a> on pros and cons of the two limits.)<br>
-
-    Next we have a hidden layer with $n_{hidden}$ nodes. The hidden layer is connected to the inputs with a weight matrix $W_{hidden}$ of size $n_{hidden}\times n_{input}$, such that $W_{ij}$ is the weight connecting input node $i$ to hidden note $j$. Additionally we have a bias vector ${\bf b}_{hidden}$ of size $n_{hidden}$ for the hidden layer.<br>
+    The input layer is column vector of size $n_{input}$,
+    next we have a hidden layer with $n_{hidden}$ nodes. The hidden layer is connected to the inputs with a weight matrix $W_{hidden}$ of size $n_{hidden}\times n_{input}$, such that $W_{ij}$ is the weight connecting input node $i$ to hidden note $j$. Additionally we have a bias vector ${\bf b}_{hidden}$ of size $n_{hidden}$ for the hidden layer.<br>
     Finally, we have an output layer with $n_{output}$ nodes, which can denote either different classes in a supervised classification problem, or real values in a regression type problem. The output layer is similarly connected to the hidden layer with a weight matrix $W_{output}$ of size $n_{output}\times n_{hidden}$, and a bias vector ${\bf b}_{output}$ for the output nodes of size.
 
     \[
     \begin{split}
-    &z_{hidden}=W_{hidden}\cdot X_{input}+b_{hidden}, \quad (n_{hidden}\times n_{data})
+    &z_{hidden}=W_{hidden}\cdot X_{input}+b_{hidden}, \quad (n_{hidden})
     \\
     &a_{hidden}=f(z_{hidden}), 
     \\
-    &z_{out} = W_{output}\cdot a_{hidden}+b_{output}, \quad (n_{output}\times n_{data})
+    &z_{out} = W_{output}\cdot a_{hidden}+b_{output}, \quad (n_{output})
     \\
-    &a_{out} = f(z_{out}), \quad (n_{output}\times n_{data}).
+    &a_{out} = f(z_{out}), \quad (n_{output}).
     \end{split}
     \]
 
-    The output given by $f(z_{out})$ is then a matrix with a column for each input data point. In parenthesis I state the output dimensions in each step.
+    In parenthesis I give the output dimensions in each step.
     <br>
     (* note that the activation function for the output layer can be chosen differently in principle, in particular for classification problems with multiple classes, one uses the soft-max activation $\frac{e^{z_{out}}}{\sum_{c} {e^{z_c}}}$ in the output layer, where the summation is over all the classes in the classification problem).
 
@@ -236,9 +235,9 @@
     In order to know how a given weight influences the output, which is given by the gradient of the output with respect to a given weight, one therefore needs to go backwards from the output, and chain together the derivatives of the intermediate outputs from each layer. Also known as the chain rule. We start with a loss function $L(W,b)$ which is a function of the weights and biases. The gradient descent minimization process updates the parameters at each learning step according to,
     \[
     \begin{split}
-        &W:= W -\eta \nabla_{W}L(X,W,b)
+        &W:= W -\eta \nabla_{W}L(W,b)
         \\
-        &b:= b - \eta \nabla_{b}L(X,W,b)
+        &b:= b - \eta \nabla_{b}L(W,b)
     \end{split}
     \]
     where $\eta$ is the learning rate. When doing a mini-batch gradient descent, the "real" gradient is essentially approximated by the gradient of the partial loss function.
@@ -250,7 +249,8 @@
 
     \]
 
-
+     Using a single data point for updating the weights is known as stochastic gradient descent, due the noisier but faster nature of the updates, alternatively there is batch or mini-batch gradient descent, where the input contains several data points forming an input matrix of size $n_{input}\times n_{data}$, which is closer to the true gradient of the loss but can is more expensive computationally.
+    (a stack exchange <a href='https://stats.stackexchange.com/questions/49528/batch-gradient-descent-versus-stochastic-gradient-descent' target="_blank">answer</a> on pros and cons of the two limits.)<br>
 
 
     </p>
