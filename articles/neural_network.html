@@ -250,7 +250,7 @@
     \[
       \frac{\partial L}{\partial W^{output}_{ij}} = \frac{\partial L}{\partial a^{output}_i} \frac{\partial a^{output}_i}{\partial z^{output}_i}\frac{\partial z^{output}_i}{\partial W^{output}_{ij}} = \nabla_{a} L \times f'(z_{output}) \cdot a_{hidden}^T
       \\
-      \frac{\partial L}{\partial W^{hidden}_{ij}} = \frac{\partial L}{\partial a_i} \frac{\partial a^{output}_i}{\partial z^{output}_i}\frac{\partial z_i}{\partial a_j^{hidden}}\frac{\partial a_j^{hidden}}{\partial z_j^{hidden}}\frac{\partial z_j^{hidden}}{\partial W_{ij}^{hidden}}
+      \frac{\partial L}{\partial W^{hidden}_{ij}} = \frac{\partial L}{\partial a_i} \frac{\partial a^{output}_i}{\partial z^{output}_i}\frac{\partial z^{output}_i}{\partial a_j^{hidden}}\frac{\partial a_j^{hidden}}{\partial z_j^{hidden}}\frac{\partial z_j^{hidden}}{\partial W_{ij}^{hidden}}
     \]
 
      Using a single data point for updating the weights is known as stochastic gradient descent, due the noisier but faster nature of the updates, alternatively there is batch or mini-batch gradient descent, where the input contains several data points forming an input matrix of size $n_{input}\times n_{data}$, which is closer to the true gradient of the loss but can is more expensive computationally.
