@@ -261,12 +261,18 @@
     \end{split}
     \]
 
-     Using a single data point for updating the weights is known as stochastic gradient descent, due the noisier but faster nature of the updates, alternatively there is batch or mini-batch gradient descent, where the input contains several data points forming an input matrix of size $n_{input}\times n_{data}$, which is closer to the true gradient of the loss but is more expensive computationally.
+     Using a single data point for updating the weights is known as stochastic gradient descent, due to the noisier but faster nature of the updates, alternatively there is batch or mini-batch gradient descent, where the input contains several data points forming an input matrix of size $n_{input}\times n_{data}$, which is closer to the true gradient of the loss but is more expensive computationally.
     (a stack exchange <a href='https://stats.stackexchange.com/questions/49528/batch-gradient-descent-versus-stochastic-gradient-descent' target="_blank">answer</a> on pros and cons of the two limits.)<br>
 
-
+    <br> the two common loss functions for regression and classification tasks are the mean square error and the cross entropy given for a single sample by,
+    \[
+      L=\frac{1}{2} (y- a_o)^2
+      \\
+      L=-\sum_j^{classes} y_j \log(a^o_j)
+    \]
     </p>
 
+    where $y$ denotes the true value.
 
 
 </div>
