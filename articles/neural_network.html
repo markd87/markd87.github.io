@@ -27,8 +27,12 @@
 
 </script>
 
-<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="images/nn_favicon.ico" type="image/x-icon">
 <link rel="icon" href="images/nn_favicon.ico" type="image/x-icon">
+
+<link rel="stylesheet" href="/path/to/styles/default.css">
+<script src="/path/to/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 
     <style>
 
@@ -281,7 +285,19 @@
 
 A simple but historically important example of using an artificial neural network, is the XOR function, which takes two binary inputs, and outputs zero for (0,0),(1,1) and 1 for (1,0),(0,1). As the two classes (1 or 0) cannot be linearly separated, one needs to use a neural network with a hidden layer. The full ipython notebook can be found <a href='https://github.com/markd87/markd87.github.io/blob/master/articles/xor.ipynb' target="_blank">here</a>.
 
+<pre><code class="python">
+plt.scatter([0,1],[0,1],s=1000,marker='o',label='0')
+plt.scatter([0,1],[1,0],s=1000,marker='X',label='1')
+plt.legend(loc=(1.1,0.37),fontsize = 'xx-large',labelspacing=1.5)
+plt.title('XOR function')
+plt.xlim([-0.1,1.1])
+plt.ylim([-0.1,1.1]);
+plt.tight_layout()
+</code></pre>
 
+<div class='figure'>
+<img src='images/xor.png'>
+</div>
 
 </div>
 
