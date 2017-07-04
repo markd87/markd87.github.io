@@ -248,7 +248,7 @@
     <br>
     To obtain the gradients we employ the chain rule,
     \[
-      \frac{\partial L}{\partial W^{output}_{ij}} = \frac{\partial L}{\partial a_i} \frac{\partial a^{output}_i}{\partial z^{output}_i}\frac{\partial z^{output}_i}{\partial W^{output}_{ij}} = \nabla_{a} L \times f'(z_{output}) \cdot a_{hidden}^T
+      \frac{\partial L}{\partial W^{output}_{ij}} = \frac{\partial L}{\partial a^{output}_i} \frac{\partial a^{output}_i}{\partial z^{output}_i}\frac{\partial z^{output}_i}{\partial W^{output}_{ij}} = \nabla_{a} L \times f'(z_{output}) \cdot a_{hidden}^T
       \\
       \frac{\partial L}{\partial W^{hidden}_{ij}} = \frac{\partial L}{\partial a_i} \frac{\partial a^{output}_i}{\partial z^{output}_i}\frac{\partial z_i}{\partial a_j^{hidden}}\frac{\partial a_j^{hidden}}{\partial z_j^{hidden}}\frac{\partial z_j^{hidden}}{\partial W_{ij}^{hidden}}
     \]
