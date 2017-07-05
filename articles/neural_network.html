@@ -298,7 +298,11 @@
     \]
     which converts the outputs into a probability distribution. In that case the cross entropy cost is given by 
     \[
-    L_C = -\sum\limits_j^{classes} y_j\log(a^o_j)
+    L_c = -\sum\limits_j^{classes} y_j\log(a^o_j),
+    \]
+    and the gradients are given by a similar form,
+    \[
+    \frac{\partial L_c}{\partial a^o_j}\frac{\partial a^o_j}{z^o_i}=a_o^i-y_i
     \]
 
     <br>
