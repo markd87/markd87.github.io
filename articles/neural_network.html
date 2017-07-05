@@ -192,7 +192,7 @@
     </div>
     <br>
     We can imagine multiple layers of such artificial neurons interconnected, with the activation of one layer of neurons influencing the activation of the next, forming an artificial neural network.
-    Remarkably, using a non-linear activation function makes such a deep (more than two layers) neural network a "universal function approximater", i.e. it can approximate any function from the inputs to the output by appropriately tuning it's weights.
+    Remarkably, using a non-linear activation function makes such a deep (more than two layers) neural network a "universal function approximater", i.e. it can approximate any function from the inputs to the output by appropriately tuning its weights.
     </p>
     <p>
     <span class='subtitle'>Learning</span>
@@ -269,15 +269,18 @@
      Using a single data point for updating the weights is known as stochastic gradient descent, due to the noisier but faster nature of the updates, alternatively there is batch or mini-batch gradient descent, where the input contains several data points forming an input matrix of size $n_{input}\times n_{data}$, which is closer to the true gradient of the loss but is more expensive computationally.
     (a stack exchange <a href='https://stats.stackexchange.com/questions/49528/batch-gradient-descent-versus-stochastic-gradient-descent' target="_blank">answer</a> on pros and cons of the two limits.)<br>
 
-    <br> the two common loss functions for regression and classification tasks are the mean square error and the cross entropy given for a single sample by,
+    <br> Two common loss functions for regression and classification tasks are the mean square error and the cross entropy given for a single sample by,
     \[
       L=\frac{1}{2} (y- a_o)^2
       \\
-      L=-\sum_j^{classes} y_j \log(a^o_j)
+      L=-\sum_j^{classes}[y_j \log(a^o_j)+(1-y_j)\log(1-a_j^o)
     \]
     </p>
 
-    where $y$ denotes the true value. A few common non-linear activation functions are the sigmoid, tanh, and relu. Note from the backpropagation equations that the learning depends on the derivatives of the activation functions. Below I show the activations functions and their derivatives.
+    where $y$ denotes the true value, and $a_o$ the network's output. 
+    
+
+    A few common non-linear activation functions are the sigmoid, tanh, and relu. Note from the backpropagation equations that the learning depends on the derivatives of the activation functions. Below I show the activations functions and their derivatives.
 <br>
   <div class='figure'>
     <img src='images/activations.png' width='60%'>
