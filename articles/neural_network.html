@@ -271,14 +271,20 @@
 
     <br> Two common loss functions for regression and classification tasks are the mean square error and the cross entropy given for a single sample by,
     \[
-      L=\frac{1}{2} (y- a_o)^2
+      L_2=\frac{1}{2} (y- a_o)^2
       \\
-      L=-\sum_j^{classes}[y_j \log(a^o_j)+(1-y_j)\log(1-a_j^o)
+      L_c=-\sum_j^{classes}[y_j \log(a^o_j)+(1-y_j)\log(1-a_j^o)
     \]
     </p>
 
     where $y$ denotes the true value, and $a_o$ the network's output. 
-    
+
+    The backpropagation requires the gradients of the cost function with respect to the weights and biases. In particular we need the derivative with respect to the output,
+    \[
+      & \frac{\partial L_2}{\partial a_o}\frac{\partial a_o}{\partial z_o} = (y-a_o)f'(z_o)
+    \]
+
+    <br>
 
     A few common non-linear activation functions are the sigmoid, tanh, and relu. Note from the backpropagation equations that the learning depends on the derivatives of the activation functions. Below I show the activations functions and their derivatives.
 <br>
