@@ -496,8 +496,147 @@ Below are some examples from the MNIST dataset,
 <div class='figure'>
   <img src='images/digits.png' width='40%'>
 </div>
-
+The ipython notebook with the code can be found <a href=''>here></a>.
 </p>
+
+The neural network class with the soft max layer and the cross entropy cost function is given below. Additionally to control overfitting we include a regularization term, which aims at keeping the weights values small.
+\[
+L_2 = \frac{\mu}{2n}\sum_W W^2 
+\]
+such that the modification to the gradient of the weights is simply $\farc{1}{n}\mu W$.
+<pre>
+<code class='python'>
+class neural_network:
+    
+    def __init__(self,ni,nh,no,activation,lr,ll):
+        self.ni = ni
+        self.nh = nh
+        self.no = no
+        self.lr = lr
+        self.activation = activation
+        self.reg = ll
+        
+        np.random.seed(0)
+        self.wh = np.random.normal(0, 1, (self.nh, self.ni))/np.sqrt(ni)
+        self.bh=np.zeros((self.nh,1))
+        self.wo = np.random.normal(0, 1, (self.no, self.nh))/np.sqrt(nh)
+        self.bo=np.zeros((self.no,1))
+        
+        if activation=='sigmoid':
+            self.nonlin= lambda x: 1/(1+np.exp(-x))
+            self.dnonlin= lambda x: 1/(1+np.exp(-x))*(1-1/(1+np.exp(-x)))
+        elif activation=='tanh':
+            self.nonlin= lambda x: np.tanh(x)
+            self.dnonlin= lambda x: 1/np.cosh(x)**2
+        else:
+            self.nonlin=lambda x: np.maximum(x, 0, x)
+            self.dnonlin=lambda x: np.ones(x.shape)*(x>0)
+        
+        pass
+
+    def loss(self,y,pred):
+        return np.sum(np.nan_to_num(-y*np.log(pred)))+self.reg/2*(np.sum(self.wh[:]**2)+np.sum(self.wo[:]**2))
+
+    @staticmethod
+    def softmax(z):
+        sm=np.sum(np.exp(z))
+        return np.exp(z)/sm
+    
+    def predict(self,x):
+        x=np.array(x,ndmin=2).T
+        a1=self.nonlin(np.dot(self.wh,x)+self.bh)
+        a2=np.dot(self.wo,a1)+self.bo
+        o2=self.softmax(a2)
+        return o2
+
+    
+    def score(self,X,y):
+        score_lst=[]
+        for i in range(y.shape[1]):
+            pred=np.argmax(self.predict(X[:,i]))
+            yv=np.argmax(y[:,i])
+            score_lst.append(np.int(pred==yv))
+
+        print('accuracy: ', np.sum(score_lst)/len(score_lst))        
+        # return list of scores
+        return score_lst
+
+    def train(self,X,y):
+
+        #train using the whole training sample
+        batch_size = 1 #X.shape[1]
+    
+        #number of times to go over the training data
+        epochs=200
+
+        loss_lst=[]
+        print('training network with ' + self.activation + ' activation:')
+        for i in range(epochs):
+            ls=0
+            m=0  
+            gradwh=0
+            gradwo=0
+            gradbh=0
+            gradbo=0
+            
+            for (xi,yi) in zip(X.T,y.T):    
+                m+=1
+                xi=np.array(xi,ndmin=2).T
+                yi=np.array(yi,ndmin=2).T
+                #input into hidden layer
+                zh=np.dot(self.wh,xi)+self.bh
+                #hidden layer activations
+                ah=self.nonlin(zh)
+                #input into output layer
+                zo=np.dot(self.wo,ah)+self.bo
+                #output layer
+            
+                #ao=self.nonlin(zo)        
+                ao=self.softmax(zo)
+
+                #output layer error - difference with true label y
+                err=(ao-yi)
+            
+                ls+=(self.loss(yi,ao))
+                
+                delo = err
+                
+                delh=(self.wo.T.dot(delo))*self.dnonlin(zh)
+
+                gradwh+=np.dot(delh,xi.T)
+                gradwo+=np.dot(delo,ah.T)
+                gradbh+=delh
+                gradbo+=delo
+                
+                minibatch=10
+                if m%minibatch==0:
+                    #weights update
+                    self.wh-=self.lr*(gradwh)/minibatch+self.lr*self.reg*self.wh
+                    self.wo-=self.lr*(gradwo)/minibatch+self.lr*self.reg*self.wo
+
+                    #biases update
+                    self.bh-=self.lr*gradbh/minibatch
+                    self.bo-=self.lr*gradbo/minibatch
+                    
+                    gradwh=0
+                    gradwo=0
+                    gradbh=0
+                    gradbo=0
+            
+            loss_lst.append(ls)
+            if (i%10==0):
+                print('epoch: ',i,', loss: ',ls)
+
+        plt.plot(loss_lst) 
+        plt.show()
+        
+        pass
+</code>
+</pre>
+
+
+
+
 </div>
 
 
