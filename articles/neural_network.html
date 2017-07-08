@@ -633,8 +633,66 @@ class neural_network:
         pass
 </code>
 </pre>
+I create an instance of the neural network class, with $784$ input nodes representing the $28\times 28$ pixels in the grayscale image of a digit. $100$ hidden layer nodes, and $10$ output nodes for the $10$ digits. I use ReLU activation, $0.1$ learning rate and $0.002$ regularization parameter.
+I split the traininig set consisting of 20000 samples into 18000 training samples and 2000 validation samples, which allow to tune the hyperparameters such as the learning rate, regularization etc.
+The model is then tested on a test set with 10000 samples.
+I then train the network for $200$ epochs and minibatch of size $10$. 
+<pre>
+<code class='python'>
+nn1=neural_network(784,100,10,'relu',0.1,0.002)
 
+</code>
+</pre>
+<br>
+<pre>
+training network with relu activation:
+epoch:  0 , loss:  9408.25257833
+epoch:  10 , loss:  4440.39945997
+epoch:  20 , loss:  4333.96701063
+epoch:  30 , loss:  4277.59876745
+epoch:  40 , loss:  4244.73716297
+epoch:  50 , loss:  4234.4720515
+epoch:  60 , loss:  4224.44056598
+epoch:  70 , loss:  4213.89872276
+epoch:  80 , loss:  4206.53568999
+epoch:  90 , loss:  4195.75618751
+epoch:  100 , loss:  4192.46048788
+epoch:  110 , loss:  4193.168517
+epoch:  120 , loss:  4183.1714839
+epoch:  130 , loss:  4178.7188555
+epoch:  140 , loss:  4177.35391609
+epoch:  150 , loss:  4173.00837802
+epoch:  160 , loss:  4175.69934598
+epoch:  170 , loss:  4172.88872587
+epoch:  180 , loss:  4177.35118544
+epoch:  190 , loss:  4173.31381838
+</pre>
+The loss as a function of epoch number
+<div class="figure">
+<img src='loss.png'>
+</div>
 
+<pre>
+<code class='python'>
+print('train set:') 
+train_score=nn1.score(x_train,y_train)
+print('validation set:') 
+val_score=nn1.score(x_val,y_val)
+print('test set:') 
+test_score=nn1.score(x_test,y_test)
+</code>
+</pre>
+
+<pre>
+train set:
+accuracy:  0.983166666667
+validation set:
+accuracy:  0.963
+test set:
+accuracy:  0.9649
+</pre>
+
+We get a test set accuracy of 96.5%.
 
 
 </div>
