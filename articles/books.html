@@ -131,8 +131,12 @@
       }
 
       .book{
-        padding:15px;
-    
+        padding:10px;
+        width:200px;
+        height:270px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+  
       }
 
       .book_image{
@@ -141,6 +145,15 @@
 
       .larger_book_image{
         width:150px;
+      }
+
+      .book_title{
+        font-size:13pt;
+      }
+
+      .book_author{
+        font-size: 10pt;
+        color:#999;
       }
 
 
@@ -192,7 +205,9 @@
       <img src='https://images-na.ssl-images-amazon.com/images/I/41vmxhss49L._SX328_BO1,204,203,200_.jpg' class='book_image'>
       </a>
       <br>
-            <span>The Catcher in the Rye</span> 
+      <span class='book_author'>J. D. Salinger</span> 
+      <br>
+            <span class='book_title'>The Catcher in the Rye</span> 
 
       </div>
     </div>
@@ -202,7 +217,8 @@
       <a href=''>
       <img src='https://images-na.ssl-images-amazon.com/images/I/51d772-HprL._SX305_BO1,204,203,200_.jpg' class='book_image'>
       </a><br>
-            <span>1984 - George Orwell</span> 
+      <span class='book_author'>George Orwell</span> <br>
+            <span class='book_title'>1984</span> 
 
       </div>
     </div>
@@ -212,7 +228,8 @@
       <a href=''>
       <img src='https://images-na.ssl-images-amazon.com/images/I/51jO1DdOeWL._SX329_BO1,204,203,200_.jpg' class='book_image'>
       </a><br>
-            <span>The Alchemist -  Paulo Coelho</span> 
+      <span class='book_author'>Paulo Coelho</span> <br>
+            <span class='book_title'>The Alchemist</span> 
 
       </div>
     </div>
@@ -224,7 +241,8 @@
       <a href=''>
       <img src='https://images.gr-assets.com/books/1348214063l/11910905.jpg' class='book_image'>
       </a><br>
-            <span>The Charisma Myth - Olivia Fox Cabane</span> 
+      <span class='book_author'>Olivia Fox Cabane</span> <br>
+            <span class='book_title'>The Charisma Myth</span> 
 
       </div>
     </div>
@@ -238,7 +256,8 @@
       <a href=''>
       <img src='https://images.gr-assets.com/books/1414347376l/18050143.jpg'  class='book_image'>
       </a><br>
-            <span>Zero to One - Peter Thiel</span> 
+      <span class='book_author'>Peter Thiel</span> <br>
+            <span class='book_title'>Zero to One</span> 
 
       </div>
     </div>
@@ -248,7 +267,8 @@
       <a href=''>
       <img src='https://images.gr-assets.com/books/1265401884l/9717.jpg' class='book_image'>
       </a><br>
-            <span>The Unbearable Lightness of Being - Milan Kundera</span> 
+      <span class='book_author'>Milan Kundera</span> <br>
+            <span class='book_title'>The Unbearable Lightness of Being</span> 
 
       </div>
     </div>
@@ -258,7 +278,8 @@
       <a href=''>
       <img src='https://images.gr-assets.com/books/1388373561l/587906.jpg' class='book_image'>
       </a><br>
-            <span>Deep Simplicity: Bringing Order to Chaos and Complexity - John Gribbin</span> 
+      <span class='book_author'>John Gribbin</span> <br>
+            <span class='book_title'>Deep Simplicity</span> 
 
       </div>
     </div>
@@ -268,7 +289,8 @@
       <a href=''>
       <img src='https://images.gr-assets.com/books/1445791421l/27161964.jpg' class='book_image'>
       </a><br>
-            <span>Gratitude - Oliver Sacks</span> 
+      <span class='book_author'>Oliver Sacks</span> <br>
+            <span class='book_title'>Gratitude</span> 
 
       </div>
     </div>
@@ -284,9 +306,24 @@
       <a href=''>
       <img src='https://images.gr-assets.com/books/1391026083l/28815.jpg' class='book_image'>
       </a><br>
-      <span>Influence: The Psychology of Persuasion - Robert B. Cialdini </span> 
+      <span class='book_author'>Robert B. Cialdini</span> 
+      <br>
+      <span class='book_title'>Influence </span> 
       </div>
       
+    </div>
+
+            <div class='col-md-3'>
+      <div class='book'>
+      <a href=''>
+      <img src='https://images.gr-assets.com/books/1431287319l/117047.jpg' class='book_image'>
+      </a>
+      <br>
+      <span class='book_author'>Richard Dawkins</span>
+      <br>
+      <span class='book_title'>The Blind Watchmaker</span> 
+
+      </div>
     </div>
 
   </div>
@@ -303,7 +340,7 @@
 $(document).ready(function(){
 
 $("img.book_image").mouseover(function(){
-  $(this).css("width","120px");
+  $(this).css("width","110px");
 });
 
 $("img.book_image").mouseout(function(){
