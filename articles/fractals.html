@@ -169,19 +169,40 @@
 
 		<h1 class='special'>Fractals</h1>
 
+Fractals are unique mathematical objects with interesting properties and supprising menifistations in nature.
+Fractals are obtained by usually a simple rule that is repeated recursively, leading to intricate structures with infinitley detailed self-similar patterens which repeat themselves on all scales. This intricate pattern might suggest an infinite amount of information is required to describe such an object, however the power of the fractal's complexity is in the simplicity of it's generating rule together with the feedback or recursive application of this rule.
+
+Fractas are also tightly related to chaos theory, and they naturally appear in systems on the edge of chaos, such as in tubulent flow, and population growth described by the logistic equation.
+
+Fractals (or near fractals) having self-similar features are also pervasive in living systems, examples of which are the surface of the brain, the lungs surface, arteries and veins, in which the fractal nature is crucial for their functionality.
+
+The infinitley intricate structuer of fractals lead to a curious geometrical property related to their dimension which can be non integer, i.e. somewhere between a point and a line, or between a line and a square or between a square and a cube.
+
+Below I show a few of the common toy fractals all having a simple rule which was recursively applied.
+The code used to generate these fractals can be found <a href=''>here</a>.
+
+
 <div class='row text-center'>
   <h3>Cantor set</h3>
+
+      The Cantor set, named after the mathematician Georg Cantor is obtained by recursively removing the central third of a line. This then leads in the limit of infinite recursions to a set of infinitiley many points with length zero.
       <img src='fractals/cantor.gif' class='gif'>
 <br>
 <h3>Koch fractal</h3>
+
+      The Koch fractal is obtained by replacing the central third of a line by an equilateral triangle. When starting with a triangle we get the Koch flake.
       <img src='fractals/koch.gif' class='gif'>
-<br>
+
 <h3>Koch flake</h3>
       <img src='fractals/koch_flake.gif' class='gif'>
 <br>
+
+      The Sierpinski triangle is obtained by drawing a trinalge between the central points of the sides of a triangle.
 <h3>Sierpsinski triangle</h3>
       <img src='fractals/sierpinski.gif' class='gif'>
 <br>
+
+      The tree fractal is obtained by drawing two branches from each line at a fixed angle to the line and reducing the size of consecutive branches by a constant factor.
 <h3>Tree fractal</h3>
       <img src='fractals/tree.gif' class='gif'>
 
