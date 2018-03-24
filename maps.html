@@ -102,7 +102,7 @@
         query="https://maps.googleapis.com/maps/api/geocode/json?address="+pointA+"&key=AIzaSyA7jmoZkvN3wdrstkZ6WoWFG84Mk2bbwuA";
 
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', query, true);
+        xhr.open('GET', query, false);
         xhr.send();
          
         var latlong;
