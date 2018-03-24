@@ -109,7 +109,7 @@
  
         inputtext.addEventListener('input', function (evt){
           pointA=this.value;
-          alert(pointA);
+          //alert(pointA);
           query="https://maps.googleapis.com/maps/api/geocode/json?address="+pointA+"&key=AIzaSyA7jmoZkvN3wdrstkZ6WoWFG84Mk2bbwuA";
           calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB);
         });
@@ -128,7 +128,7 @@
               origin: pointA,
               destination: pointB,
               travelMode: google.maps.TravelMode.TRANSIT,
-              transitoptions: {
+              transitOptions: {
                 arrivalTime: new Date('2018-30-04T08:25:00')
               }
             }, function(response, status) {
