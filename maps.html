@@ -101,25 +101,8 @@
 
         query="https://maps.googleapis.com/maps/api/geocode/json?address="+pointA+"&key=AIzaSyA7jmoZkvN3wdrstkZ6WoWFG84Mk2bbwuA";
 
-        var latlong;
-         
-        var retval=function(returned_val){
-          latlong=returned_val;
-        }
-
-        get_lat_long(query,retval)
-
-        console.log(latlong)
-       
-
-        var panorama = new google.maps.StreetViewPanorama(
-        document.getElementById('pano'), {
-              position: latlong,
-              pov: {
-                heading: 34,
-                pitch: 10
-              }
-            });
+        get_lat_long(query)
+ 
 
         map.setStreetView(panorama);
 
@@ -155,7 +138,16 @@
                 //console.log(response.results)
                 //console.log(response.results[0].geometry.location);
                 latlong=response.results[0].geometry.location;
-                callback.apply(this,[latlong])
+                       var panorama = new google.maps.StreetViewPanorama(
+                    document.getElementById('pano'), {
+                     position: latlong,
+                     pov: {
+                heading: 34,
+                pitch: 10
+              }
+            });
+
+  
             }
 
           return latlong;
