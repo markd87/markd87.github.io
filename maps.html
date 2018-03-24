@@ -125,12 +125,13 @@
 
 
       function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB) {
+          var t=new Date('2018-26-03T08:30:00')
             directionsService.route({
               origin: pointA,
               destination: pointB,
               travelMode: google.maps.TravelMode.TRANSIT,
               transitOptions: {
-                arrivalTime: new Date('2018-30-04T08:25:00')
+                arrivalTime: t
               }
             }, function(response, status) {
               if (status == google.maps.DirectionsStatus.OK) {
