@@ -104,7 +104,7 @@
 
           query="https://maps.googleapis.com/maps/api/geocode/json?address="+pointB+"&key=AIzaSyA7jmoZkvN3wdrstkZ6WoWFG84Mk2bbwuA";
  
-              get_lat_long(query,map);
+          get_lat_long(query,map);
 
  
         inputtext.addEventListener('input', function (evt){
@@ -112,6 +112,7 @@
           //alert(pointA);
           query="https://maps.googleapis.com/maps/api/geocode/json?address="+pointA+"&key=AIzaSyA7jmoZkvN3wdrstkZ6WoWFG84Mk2bbwuA";
           calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB);
+          get_lat_long(query,map)
         });
 
         var directionsService = new google.maps.DirectionsService;
@@ -176,12 +177,6 @@
 
         
         //var pointA="pinner grove, London"  
-
-
-
-
-//geocoding
-//AIzaSyA7jmoZkvN3wdrstkZ6WoWFG84Mk2bbwuA
       </script>
 
 
