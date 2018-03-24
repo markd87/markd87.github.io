@@ -65,8 +65,9 @@
 
 
         <script>
-          
-        var dest="10 Furnival St, London"
+        
+        var pointA="British museum"  
+        var pointB="10 Furnival St, London"
       
 
         function initMap() {
@@ -77,7 +78,27 @@
           zoom: 9,
           center: {lat: 51.517395, lng:-0.110571}
         });
-        //directionsDisplay.setMap(map);
+
+        directionsService = new google.maps.DirectionsService,
+        directionsDisplay = new google.maps.DirectionsRenderer
+        directionsDisplay.setMap(map);
+
+
+        calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB);
+      }
+
+      function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB) {
+            directionsService.route({
+              origin: pointA,
+              destination: pointB,
+              travelMode: google.maps.TravelMode.TRANSIT
+            }, function(response, status) {
+              if (status == google.maps.DirectionsStatus.OK) {
+                directionsDisplay.setDirections(response);
+              } else {
+                window.alert('Directions request failed due to ' + status);
+              }
+            });
       }
 
       </script>
