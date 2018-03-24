@@ -101,6 +101,8 @@
 
         var latlongA=get_lat_long("https://maps.googleapis.com/maps/api/geocode/json?address="+pointA+"&key=AIzaSyA7jmoZkvN3wdrstkZ6WoWFG84Mk2bbwuA");
 
+        console.log(latlongA);
+
           var panorama = new google.maps.StreetViewPanorama(
             document.getElementById('pano'), {
               position: latlongA,
