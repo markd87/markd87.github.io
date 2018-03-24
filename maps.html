@@ -142,6 +142,7 @@
             }, function(response, status) {
               if (status == google.maps.DirectionsStatus.OK) {
                 directionsDisplay.setDirections(response);
+                console.log(response);
                 //alert(response.routes[0][1]);
               } else {
                 //window.alert('Directions request failed due to ' + status);
