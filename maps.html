@@ -101,11 +101,7 @@
 
         query="https://maps.googleapis.com/maps/api/geocode/json?address="+pointA+"&key=AIzaSyA7jmoZkvN3wdrstkZ6WoWFG84Mk2bbwuA";
 
-        get_lat_long(query)
- 
-
-        map.setStreetView(panorama);
-
+        get_lat_long(query);
 
         }
 
@@ -146,7 +142,8 @@
                               pitch: 10
                             }
                           });
-                  }
+                    map.setStreetView(panorama);
+                }
             }
       }
 
