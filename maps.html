@@ -138,12 +138,12 @@
                 console.log(latlong);
                 var panorama = new google.maps.StreetViewPanorama(
                       document.getElementById('pano'), {
-                            position: latlong,
-                            pov: {
-                              heading: 34,
-                              pitch: 10,
-                              zoom: 4
-                            }
+                            position: latlong
+                            // pov: {
+                            //   heading: 34,
+                            //   pitch: 10,
+                            //   zoom: 4
+                            // }
                           });
                 map.setStreetView(panorama);
              }
