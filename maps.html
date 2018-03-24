@@ -94,7 +94,7 @@
 
         inputtext.addEventListener('input', function (evt){
           pointA=this.value;
-        }
+        });
 
         directionsService = new google.maps.DirectionsService,
         directionsDisplay = new google.maps.DirectionsRenderer
@@ -112,7 +112,7 @@
 
         get_lat_long(query,map);
 
-        });
+
 
         //var pointA="pinner grove, London"  
         var pointB="10 Furnival St, London"
