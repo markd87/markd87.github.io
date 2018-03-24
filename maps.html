@@ -138,6 +138,7 @@
          
         xhr.onreadystatechange = processRequest;
 
+        var latlong;
 
         function processRequest(e) {
              if (xhr.readyState == 4) {
@@ -146,9 +147,9 @@
                 console.log(response.results[0].geometry.location);
                 var latlong=response.results[0].geometry.location;
             }
-          return latlong;
         }
 
+        return latlong;
       }
 
 
