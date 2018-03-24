@@ -129,13 +129,12 @@
         xhr.open('GET', query, true);
         xhr.send();
          
-        var latlong;
         xhr.onreadystatechange = function () {
              if (xhr.readyState == 4) {
                 var response = JSON.parse(xhr.responseText);
                 //console.log(response.results)
                 //console.log(response.results[0].geometry.location);
-                latlong=response.results[0].geometry.location;
+                var latlong=response.results[0].geometry.location;
                 var panorama = new google.maps.StreetViewPanorama(
                       document.getElementById('pano'), {
                             position: latlong,
