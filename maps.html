@@ -90,15 +90,13 @@
       
 
     function initMap() {
-        //var directionsService = new google.maps.DirectionsService;
-        //var directionsDisplay = new google.maps.DirectionsRenderer;
 
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 9,
           center: {lat: 51.517395, lng:-0.110571}
         });
 
-        }
+      }
 
 
       function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB) {
@@ -163,18 +161,20 @@
         });
 
         var directionsService = new google.maps.DirectionsService;
-        ar directionsDisplay = new google.maps.DirectionsRenderer;
+        var directionsDisplay = new google.maps.DirectionsRenderer;
 
         directionsDisplay.setMap(map);
         directionsDisplay.setPanel(document.getElementById('right-panel'));
 
 
-        calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB);
 
         if (pointA=='') {
           query="https://maps.googleapis.com/maps/api/geocode/json?address="+pointB+"&key=AIzaSyA7jmoZkvN3wdrstkZ6WoWFG84Mk2bbwuA";
         } else {
           query="https://maps.googleapis.com/maps/api/geocode/json?address="+pointA+"&key=AIzaSyA7jmoZkvN3wdrstkZ6WoWFG84Mk2bbwuA";
+
+          calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB);
+
         }
 
         get_lat_long(query,map);
