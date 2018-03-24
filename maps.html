@@ -99,17 +99,17 @@
         calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB);
 
 
-        latlong=get_lat_long("https://maps.googleapis.com/maps/api/geocode/json?address="+pointA+"&key=AIzaSyA7jmoZkvN3wdrstkZ6WoWFG84Mk2bbwuA");
+        latlongA=get_lat_long("https://maps.googleapis.com/maps/api/geocode/json?address="+pointA+"&key=AIzaSyA7jmoZkvN3wdrstkZ6WoWFG84Mk2bbwuA");
 
-        //   var panorama = new google.maps.StreetViewPanorama(
-        //     document.getElementById('pano'), {
-        //       position: pointA,
-        //       pov: {
-        //         heading: 34,
-        //         pitch: 10
-        //       }
-        //     });
-        // map.setStreetView(panorama);
+          var panorama = new google.maps.StreetViewPanorama(
+            document.getElementById('pano'), {
+              position: latlongA,
+              pov: {
+                heading: 34,
+                pitch: 10
+              }
+            });
+        map.setStreetView(panorama);
 
 
         }
@@ -142,9 +142,11 @@
         function processRequest(e) {
              if (xhr.readyState == 4) {
                 var response = JSON.parse(xhr.responseText);
-                console.log(response.results)
+                //console.log(response.results)
                 console.log(response.results[0].geometry.location);
+                var latlong=response.results[0].geometry.location;
             }
+          retun latlong
         }
 
       }
