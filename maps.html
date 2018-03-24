@@ -146,7 +146,13 @@
               } else {
                 //window.alert('Directions request failed due to ' + status);
               }
+
+              var elem = document.querySelector('div.adp-warnbox');
+              elem.parentNode.removeChild(elem);
+
             });
+
+
       }
 
 
