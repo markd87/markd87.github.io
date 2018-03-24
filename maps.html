@@ -85,22 +85,22 @@
 
 
       function initialize() {
-        var fenway = {lat: 42.345573, lng: -71.098326};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: fenway,
-          zoom: 14
-        });
-        var panorama = new google.maps.StreetViewPanorama(
-            document.getElementById('pano'), {
-              position: fenway,
-              pov: {
-                heading: 34,
-                pitch: 10,
-                zoom:1
-              }
-            });
-        map.setStreetView(panorama);
+          const streetView = new google.maps.StreetViewPanorama(
+                document.getElementById('game-map'), {
+                  position: {
+                    lat: 37.869,
+                    lng: -122.255
+                  },
+                  pov: {
+                    heading: 45,
+                    pitch: 0
+                  },
+                  disableDefaultUI: true,
+                  scrollwheel: false
+                });
       }
+
+      //initialize();
       
 
     function initMap() {
