@@ -95,7 +95,7 @@
             }, function(response, status) {
               if (status == google.maps.DirectionsStatus.OK) {
                 directionsDisplay.setDirections(response);
-                alert(response)
+                alert(response);
               } else {
                 window.alert('Directions request failed due to ' + status);
               }
