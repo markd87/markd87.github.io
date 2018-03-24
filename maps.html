@@ -85,7 +85,7 @@
 
 
         calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB);
-      }
+        }
 
       function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB) {
             directionsService.route({
@@ -95,6 +95,7 @@
             }, function(response, status) {
               if (status == google.maps.DirectionsStatus.OK) {
                 directionsDisplay.setDirections(response);
+                alert(response)
               } else {
                 window.alert('Directions request failed due to ' + status);
               }
