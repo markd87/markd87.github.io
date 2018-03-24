@@ -104,22 +104,12 @@
         var latlong;
          
         var retval=function(returned_val){
-          val=returned_val;
-          latlong=val;
+          latlong=returned_val;
         }
 
         get_lat_long(query,retval)
 
         console.log(latlong)
-
-          var panorama = new google.maps.StreetViewPanorama(
-            document.getElementById('pano'), {
-              position: latlong,
-              pov: {
-                heading: 34,
-                pitch: 10
-              }
-            });
         map.setStreetView(panorama);
 
 
