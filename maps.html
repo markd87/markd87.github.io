@@ -157,16 +157,19 @@
                 //console.log(response.results[0].geometry.location);
                 var latlong=response.results[0].geometry.location;
                 console.log(latlong);
-                var panorama = new google.maps.StreetViewPanorama(
+
+
+                const panorama = new google.maps.StreetViewPanorama(
                       document.getElementById('pano'), {
                             position: latlong,
                             pov: {
                               heading: 34,
-                              pitch: 10,
-                              zoom:4
-                            }
+                              pitch: 0
+                            },
+                              disableDefaultUI: true,
+                              scrollwheel: false
                           });
-                map.setStreetView(panorama);
+                //map.setStreetView(panorama);
              }
          }
         }
@@ -183,13 +186,13 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
 
-    <!--<script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuUSRrxYdfoqSVgRR_CUD1QUnHZUrCAWg&callback=initMap">
-    </script>-->
-
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuUSRrxYdfoqSVgRR_CUD1QUnHZUrCAWg&callback=initialize">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuUSRrxYdfoqSVgRR_CUD1QUnHZUrCAWg&callback=initMap">
     </script>
+
+    <!--<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuUSRrxYdfoqSVgRR_CUD1QUnHZUrCAWg&callback=initialize">
+    </script>-->
 
 
   </body>
