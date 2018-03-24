@@ -102,18 +102,18 @@
         query="https://maps.googleapis.com/maps/api/geocode/json?address="+pointA+"&key=AIzaSyA7jmoZkvN3wdrstkZ6WoWFG84Mk2bbwuA";
 
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', query, false);
+        xhr.open('GET', query, true);
         xhr.send();
-         
+
         var latlong;
-        xhr.onreadystatechange = function () {
-             if (xhr.readyState == 4) {
-                var response = JSON.parse(xhr.responseText);
-                //console.log(response.results)
-                //console.log(response.results[0].geometry.location);
-                latlong=response.results[0].geometry.location;
-            }
+         
+        var retval=function(returned_val){
+          val=returned_val;
+          latlong=val;
         }
+
+        get_lat_long(query,retval)
+        
 
         console.log(latlong)
 
@@ -146,7 +146,7 @@
       }
 
 
-      function get_lat_long(query){
+      function get_lat_long(query,callback){
         //alert(query)
         var xhr = new XMLHttpRequest();
         xhr.open('GET', query, true);
@@ -159,6 +159,7 @@
                 //console.log(response.results)
                 //console.log(response.results[0].geometry.location);
                 latlong=response.results[0].geometry.location;
+                callback.apply(this,[latlong])
             }
 
           return latlong;
