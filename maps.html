@@ -128,7 +128,10 @@
 
 
       function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB) {
-          var t=new Date('2018-26-03T08:30:00')
+          var t=new Date('2018-26-03T08:30:00');
+
+          console.log(t);
+
             directionsService.route({
               origin: pointA,
               destination: pointB,
