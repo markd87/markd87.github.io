@@ -135,6 +135,7 @@
                 //console.log(response.results)
                 //console.log(response.results[0].geometry.location);
                 var latlong=response.results[0].geometry.location;
+                console.log(latlong);
                 var panorama = new google.maps.StreetViewPanorama(
                       document.getElementById('pano'), {
                             position: latlong,
