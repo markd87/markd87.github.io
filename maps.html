@@ -99,8 +99,22 @@
         calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB);
 
 
-        var latlongA=get_lat_long("https://maps.googleapis.com/maps/api/geocode/json?address="+pointA+"&key=AIzaSyA7jmoZkvN3wdrstkZ6WoWFG84Mk2bbwuA");
+        query="https://maps.googleapis.com/maps/api/geocode/json?address="+pointA+"&key=AIzaSyA7jmoZkvN3wdrstkZ6WoWFG84Mk2bbwuA";
 
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', query, true);
+        xhr.send();
+         
+        var latlong;
+        xhr.onreadystatechange = function () {
+             if (xhr.readyState == 4) {
+                var response = JSON.parse(xhr.responseText);
+                //console.log(response.results)
+                //console.log(response.results[0].geometry.location);
+                latlong=response.results[0].geometry.location;
+            }
+        }
+        
         console.log(latlongA);
 
           var panorama = new google.maps.StreetViewPanorama(
@@ -147,7 +161,7 @@
                 latlong=response.results[0].geometry.location;
             }
 
-          return latlong
+          return latlong;
 
         }
       }
