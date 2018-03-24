@@ -101,9 +101,11 @@
 
         query="https://maps.googleapis.com/maps/api/geocode/json?address="+pointA+"&key=AIzaSyA7jmoZkvN3wdrstkZ6WoWFG84Mk2bbwuA";
 
-        get_lat_long(query);
+        get_lat_long(query,map);
 
         }
+
+
 
       function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB) {
             directionsService.route({
@@ -121,7 +123,7 @@
       }
 
 
-      function get_lat_long(query){
+      function get_lat_long(query,map){
         //alert(query)
         var xhr = new XMLHttpRequest();
         xhr.open('GET', query, true);
@@ -134,7 +136,7 @@
                 //console.log(response.results)
                 //console.log(response.results[0].geometry.location);
                 latlong=response.results[0].geometry.location;
-                       var panorama = new google.maps.StreetViewPanorama(
+                var panorama = new google.maps.StreetViewPanorama(
                       document.getElementById('pano'), {
                             position: latlong,
                             pov: {
@@ -142,10 +144,10 @@
                               pitch: 10
                             }
                           });
-                    map.setStreetView(panorama);
-                }
-            }
-      }
+                map.setStreetView(panorama);
+             }
+         }
+        }
 
 
 //geocoding
