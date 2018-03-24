@@ -114,12 +114,10 @@
                 latlong=response.results[0].geometry.location;
             }
         }
-        
-        console.log(latlongA);
 
           var panorama = new google.maps.StreetViewPanorama(
             document.getElementById('pano'), {
-              position: latlongA,
+              position: latlong,
               pov: {
                 heading: 34,
                 pitch: 10
