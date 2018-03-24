@@ -101,10 +101,6 @@
 
         query="https://maps.googleapis.com/maps/api/geocode/json?address="+pointA+"&key=AIzaSyA7jmoZkvN3wdrstkZ6WoWFG84Mk2bbwuA";
 
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', query, true);
-        xhr.send();
-
         var latlong;
          
         var retval=function(returned_val){
@@ -113,7 +109,6 @@
         }
 
         get_lat_long(query,retval)
-        
 
         console.log(latlong)
 
