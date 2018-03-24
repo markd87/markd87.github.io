@@ -139,21 +139,15 @@
                 //console.log(response.results[0].geometry.location);
                 latlong=response.results[0].geometry.location;
                        var panorama = new google.maps.StreetViewPanorama(
-                    document.getElementById('pano'), {
-                     position: latlong,
-                     pov: {
-                heading: 34,
-                pitch: 10
-              }
-            });
-
-  
-            }
-
-          return latlong;
-
-        }
-      }
+                      document.getElementById('pano'), {
+                            position: latlong,
+                            pov: {
+                              heading: 34,
+                              pitch: 10
+                            }
+                          });
+                  }
+            }
 
 
 //geocoding
