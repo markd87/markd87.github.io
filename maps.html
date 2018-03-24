@@ -47,14 +47,18 @@
 
     #map {
         height: 400px;
-        width: 500px;
+        width: 68%;
         margin:0 auto;
         margin-top:20px;
       }
 
+    #pano{
+
+    }
+
        #right-panel {
           float: right;
-          width: 300px;
+          width: 30%;
         }      
 
     </style>
@@ -70,6 +74,7 @@
 
     <div id="right-panel"></div>
 
+    <div id='pano'></div>
 
         <script>
         
@@ -91,8 +96,20 @@
         directionsDisplay.setMap(map);
         directionsDisplay.setPanel(document.getElementById('right-panel'));
 
-
         calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB);
+
+
+          var panorama = new google.maps.StreetViewPanorama(
+            document.getElementById('pano'), {
+              position: pointA,
+              pov: {
+                heading: 34,
+                pitch: 10
+              }
+            });
+        map.setStreetView(panorama);
+
+
         }
 
       function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB) {
