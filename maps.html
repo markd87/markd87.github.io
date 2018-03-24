@@ -72,6 +72,13 @@
 
     <h1 style='text-align:center;'>London to rent</h1>
 
+<div id="input" style="
+    text-align: center;
+    margin-top: 10px;
+">
+<input type="text" id="origin" placeholder='Enter address here' style="width: 400px;">
+</div>
+
     <div id="map">
     </div>
 
@@ -81,27 +88,32 @@
 
       <script>
       
+        var inputtext=document.getElementById('origin');
 
-        var pointA="pinner grove, London"  
+        var pointA;
+
+        inputtext.addEventListener('input', function (evt){
+          pointA=this.value;
+        }
+
+        //var pointA="pinner grove, London"  
         var pointB="10 Furnival St, London"
 
-
-
-      function initialize() {
-          const streetView = new google.maps.StreetViewPanorama(
-                document.getElementById('map'), {
-                  position: {
-                    lat: 37.869,
-                    lng: -122.255
-                  },
-                  pov: {
-                    heading: 45,
-                    pitch: 0
-                  },
-                  disableDefaultUI: true,
-                  scrollwheel: false
-                });
-      }
+      // function initialize() {
+      //     const streetView = new google.maps.StreetViewPanorama(
+      //           document.getElementById('map'), {
+      //             position: {
+      //               lat: 37.869,
+      //               lng: -122.255
+      //             },
+      //             pov: {
+      //               heading: 45,
+      //               pitch: 0
+      //             },
+      //             disableDefaultUI: true,
+      //             scrollwheel: false
+      //           });
+      // }
 
       //initialize();
       
@@ -120,8 +132,8 @@
         directionsDisplay.setMap(map);
         directionsDisplay.setPanel(document.getElementById('right-panel'));
 
-        calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB);
 
+        calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB);
 
         query="https://maps.googleapis.com/maps/api/geocode/json?address="+pointA+"&key=AIzaSyA7jmoZkvN3wdrstkZ6WoWFG84Mk2bbwuA";
 
@@ -135,7 +147,10 @@
             directionsService.route({
               origin: pointA,
               destination: pointB,
-              travelMode: google.maps.TravelMode.TRANSIT
+              travelMode: google.maps.TravelMode.TRANSIT,
+              transitoptions: {
+                arrivalTime: new Date('2018-30-04T08:25:00')
+              }
             }, function(response, status) {
               if (status == google.maps.DirectionsStatus.OK) {
                 directionsDisplay.setDirections(response);
