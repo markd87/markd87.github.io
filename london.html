@@ -47,19 +47,19 @@
 
     #map {
         height: 400px;
-        width: 75%;
-        float:left;
+        #width: 75%;
+        #float:left;
         margin-top:20px;
       }
 
        #right-panel {
-          float: right;
-          width: 24%;
+          #float: right;
+          #width: 24%;
           margin-top:16px;
         }      
 
       #pano{
-        width: 75%;
+        #width: 75%;
         margin-top: 10px;
         height: 400px;
       }
@@ -84,13 +84,18 @@
 
 </div>
 
+  
+  <div class="row">
+      <div class="col-sm-3">
     <div id="map">
     </div>
+</div>
 
+  <div class='col-sm-3'>
     <div id="right-panel"></div>
+</div>
 
-    <div id="pano">a</div>
-
+  <div class='col-sm-3'>
 
     <div id='budget'>
       <h2>Budget</h2>
@@ -99,6 +104,15 @@
       <input type='text' id='commute' placeholder='Enter daily commuting cost' /><br/>
       <span>Left per month: </span><span id='money'></span>
     </div>
+</div>
+
+    <div class='col-sm-3'>
+        <div id="pano"> </div>
+    </div>
+
+</div>
+
+
 
       <script>
         
@@ -109,7 +123,7 @@
           if (rent>0){
             var comm_cost=parseInt(this.value);
             var left = Math.round(32000/12-rent-comm_cost*5*4);
-            if (comm_cost>0){
+            if (comm_cost>=0){
               document.getElementById('money').innerHTML=left.toString()+'£';
             }
           }
