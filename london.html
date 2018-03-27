@@ -115,11 +115,11 @@
 
         comm.addEventListener('input', function (e){
           var rent_val=parseInt(rent.value);
-          if (rent_val>0){
-            var comm_cost=parseFloat(this.value);
-            var left = Math.round(32000/12-rent-comm_cost*5*4);
-            if (comm_cost>=0){
-              document.getElementById('money').innerHTML=left.toString()+'£';
+          if (rent_val>=0){
+            var comm_val=parseFloat(this.value);
+            var left = Math.round(32000/12-rent_val-comm_val*5*4);
+            if (comm_val>=0){
+              document.getElementById('money').innerHTML=left.toString()+' £';
             }
           }
         });
@@ -127,11 +127,11 @@
 
         rent.addEventListener('input', function (e){
           var comm_val=parseFloat(comm.value);
-          if (comm_val>0){
+          if (comm_val>=0){
             var rent_val=parseInt(this.value);
-            var left = Math.round(32000/12-rent-comm_cost*5*4);
-            if (comm_cost>=0){
-              document.getElementById('money').innerHTML=left.toString()+'£';
+            var left = Math.round(32000/12-rent_val-comm_val*5*4);
+            if (rent_val>=0){
+              document.getElementById('money').innerHTML=left.toString()+' £';
             }
           }
         });
