@@ -110,11 +110,25 @@
       <script>
         
         var comm=document.getElementById('commute');
+        var rent=document.getElementById('rent');
+
 
         comm.addEventListener('input', function (e){
-          var rent=parseInt(document.getElementById('rent').value);
-          if (rent>0){
+          var rent_val=parseInt(rent.value);
+          if (rent_Val>0){
             var comm_cost=parseFloat(this.value);
+            var left = Math.round(32000/12-rent-comm_cost*5*4);
+            if (comm_cost>=0){
+              document.getElementById('money').innerHTML=left.toString()+'£';
+            }
+          }
+        });
+
+
+        rent.addEventListener('input', function (e){
+          var comm_val=parseFloat(comm.value);
+          if (comm_val>0){
+            var rent_val=parseInt(this.value);
             var left = Math.round(32000/12-rent-comm_cost*5*4);
             if (comm_cost>=0){
               document.getElementById('money').innerHTML=left.toString()+'£';
