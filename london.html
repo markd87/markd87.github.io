@@ -95,12 +95,24 @@
     <div id='budget'>
       <h2>Budget</h2>
 
-      <input type='text' placeholder='Eneter rent pcm' /><br/>
-      <input type='text' placeholder='Eneter rent pcm' /><br/>
+      <input type='text' id='rent' placeholder='Enter rent pcm' /><br/>
+      <input type='text' id='commute' placeholder='Enter daily commuting cost' /><br/>
       <span>Left per month: </span><span id='money'></span>
     </div>
 
       <script>
+        
+        var comm=document.getElementById('commute');
+
+        comm.addEventListener('input', function (e){
+          var rent=document.getElementById('rent');
+          if (parseInt(rent.value)>0){
+            var comm_cost=this.value;
+            var left = 32000/12-rent-comm_cost*5*4;
+            document.getElementById('money').innerHTML(left+'£');
+          }
+        });
+
 
     function initMap() {
 
