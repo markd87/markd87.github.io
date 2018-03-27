@@ -109,7 +109,9 @@
           if (rent>0){
             var comm_cost=parseInt(this.value);
             var left = Math.round(32000/12-rent-comm_cost*5*4);
-            document.getElementById('money').innerHTML=left.toString()+'£';
+            if (comm_cost>0){
+              document.getElementById('money').innerHTML=left.toString()+'£';
+            }
           }
         });
 
