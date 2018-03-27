@@ -105,9 +105,9 @@
         var comm=document.getElementById('commute');
 
         comm.addEventListener('input', function (e){
-          var rent=document.getElementById('rent');
+          var rent=parseInt(document.getElementById('rent'));
           if (parseInt(rent.value)>0){
-            var comm_cost=this.value;
+            var comm_cost=parseInt(this.value);
             var left = 32000/12-rent-comm_cost*5*4;
             document.getElementById('money').innerHTML=left+'£';
           }
