@@ -106,7 +106,7 @@
 
         comm.addEventListener('input', function (e){
           var rent=parseInt(document.getElementById('rent').value);
-          if (rent.value)>0{
+          if (rent.value>0){
             var comm_cost=parseInt(this.value);
             var left = 32000/12-rent-comm_cost*5*4;
             document.getElementById('money').innerHTML=left.toString()+'£';
