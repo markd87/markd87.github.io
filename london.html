@@ -98,8 +98,9 @@
 
 
     <div id='budget'>
-      <h2>Budget</h2>
-
+      <h2>Budget</h2><br>
+      <h3 style='color:#ccc'>£32,000  gross income, £25,040 net wage</h3>
+      <br>
       <label for='rent'>Rent:</label>
       <input type='text' id='rent' placeholder='Enter rent pcm' /><br/>
       <label for='commute'>Commute cost:</label>
@@ -117,9 +118,9 @@
           var rent_val=parseInt(rent.value);
           if (rent_val>=0){
             var comm_val=parseFloat(this.value);
-            var left = Math.round(32000/12-rent_val-comm_val*5*4);
+            var left = Math.round(25040/12-rent_val-comm_val*5*4);
             if (comm_val>=0){
-              document.getElementById('money').innerHTML=left.toString()+' £';
+              document.getElementById('money').innerHTML='£'+left.toString();
             }
           }
         });
@@ -129,9 +130,9 @@
           var comm_val=parseFloat(comm.value);
           if (comm_val>=0){
             var rent_val=parseInt(this.value);
-            var left = Math.round(32000/12-rent_val-comm_val*5*4);
+            var left = Math.round(25040/12-rent_val-comm_val*5*4);
             if (rent_val>=0){
-              document.getElementById('money').innerHTML=left.toString()+' £';
+              document.getElementById('money').innerHTML='£'+left.toString();
             }
           }
         });
