@@ -257,16 +257,18 @@
         // When the user selects an address from the dropdown, populate the address
         // fields in the form.
 
-        autocomplete.addListener('place_changed', fillInAddress);
+        autocomplete.addListener('place_changed', function() {
+          var place =autocomplete.getPlace();
+
+          pointA=getElementById('origin').value;
+
+          //alert(pointA);
+          query="https://maps.googleapis.com/maps/api/geocode/json?address="+pointA+"&key=AIzaSyA7jmoZkvN3wdrstkZ6WoWFG84Mk2bbwuA";
+          calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB);
+          get_lat_long(query,map)
+        });
       }
 
-
-
-      function fillInAddress() {
-        // Get the place details from the autocomplete object.
-        var place = autocomplete.getPlace();
-
-      }
 
 
 
