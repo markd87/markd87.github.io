@@ -150,7 +150,7 @@
 
     var directionsService;
     var directionsDisplay;
-
+    var pointB="10 Furnival St, London";
 
     function initMap() {
 
@@ -162,7 +162,6 @@
         var inputtext=document.getElementById('origin');
 
         var pointA='';
-        var pointB="10 Furnival St, London";
 
 
           query="https://maps.googleapis.com/maps/api/geocode/json?address="+pointB+"&key=AIzaSyA7jmoZkvN3wdrstkZ6WoWFG84Mk2bbwuA";
@@ -265,7 +264,6 @@
           var place =autocomplete.getPlace();
 
           pointA=document.getElementById('origin').value;
-          alert(pointA);
 
           //alert(pointA);
           query="https://maps.googleapis.com/maps/api/geocode/json?address="+pointA+"&key=AIzaSyA7jmoZkvN3wdrstkZ6WoWFG84Mk2bbwuA";
