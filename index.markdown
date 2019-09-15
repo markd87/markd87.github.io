@@ -4,3 +4,8 @@
 
 layout: home
 ---
+
+Hi, I'm Mark, a Physicist turned Data Scientinst
+currently working as a Data Science Consultant for Amey Strategic 
+Consulting, improving the way people live, work and travel through data.
+I was Born in Russia, grew up in Israel, and currently (2019) living and working in London, UK.
