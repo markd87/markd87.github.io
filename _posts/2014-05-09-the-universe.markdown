@@ -25,7 +25,7 @@ The dynamics of the metric $$ g_{\mu \nu} $$ is determined by Einstein's field e
 G_{\mu \nu}+g_{\mu \nu}\Lambda=\frac{8\pi G}{c^4}T_{\mu \nu}
 \end{eqnarray}$$
 
-Focusing on the $ 00 $ component we can get the following equation by plugging the FRW metric:
+Focusing on the $$ 00 $$ component we can get the following equation by plugging the FRW metric:
 
 \$$\begin{eqnarray} 
 \frac{\dot a^2}{a^2}=\frac{8\pi G \rho}{3}-\frac{kc^2}{a^2}+\frac{\Lambda c^2}{3}

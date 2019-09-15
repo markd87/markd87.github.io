@@ -32,7 +32,7 @@ I came across this tweet showing a slide from a presentation by Prof. Roxanne Sp
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div>
 
-I find this list to be incredibly concise, deep, inspiring and useful to follow. Even more importantly I think these list is equally applicable to any research oriented field, profession or project worth pursuing in general.
+I find this list to be incredibly concise, deep, inspiring and useful to follow. Even more importantly I think this list is equally applicable to any research oriented field, profession or project worth pursuing in general.
 Although these points are much easier to write than to actually follow, they can still be used as a framework and constant reminder of what it takes to succeed and innovate. 
 
 Additionally, I think that these bullet points can be readily identified in the way other great individuals that have made important contributions lived or live their lives.
