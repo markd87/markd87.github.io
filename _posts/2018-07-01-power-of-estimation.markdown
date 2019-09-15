@@ -77,11 +77,11 @@ Therefore,
 The answer doesn't have to be unique, since we can take the constant to any power.
 We get
 
-\$$
+\$$\begin{eqnarray} 
 	a=-b,
 	d=5b,
 	c=-2b
-$$
+\end{eqnarray}$$
 	
 taking $$ b=1 $$, gives $$ a=-1 $$, $$ c=-2 $$, $$ d=5 $$ and the dimensionless parameter is:
 
