@@ -12,6 +12,7 @@ Using the data one can learn about his own Netflix vieweing patterns, the shows 
 
 Below is the Jupyter notebook I've created to explore this data set.
 
+
 ```python
 import pandas as pd
 import seaborn as sns
