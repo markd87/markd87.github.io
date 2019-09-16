@@ -1,0 +1,814 @@
+---
+layout: post
+title:  "Netflix"
+date:   2018-06-23 20:39:00 +0100
+categories: posts
+---
+
+Netflix provides for its users a complete list of their viewing history, through the settings page.
+Although the viewing history is only given with a day resolution it's still an interesting data set to explore.
+
+Using the data one can learn about his own Netflix vieweing patterns, the shows they've watched and when.
+
+Below is the Jupyter notebook I've created to explore this data set.
+
+```python
+import pandas as pd
+import seaborn as sns
+import numpy as np
+import datetime
+import matplotlib.pyplot as plt
+import calendar
+%matplotlib inline
+```
+
+
+```python
+netflix_df = pd.read_csv('NetflixViewingHistory.csv')
+```
+
+
+```python
+netflix_df.tail(10)
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Title</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>208</th>
+      <td>22 July</td>
+      <td>28/10/2018</td>
+    </tr>
+    <tr>
+      <th>209</th>
+      <td>Chef's Table: Volume 5: Cristina Martínez</td>
+      <td>28/10/2018</td>
+    </tr>
+    <tr>
+      <th>210</th>
+      <td>Louis Theroux: Collection: Louis and the Nazis</td>
+      <td>23/10/2018</td>
+    </tr>
+    <tr>
+      <th>211</th>
+      <td>You Laugh But It's True</td>
+      <td>23/10/2018</td>
+    </tr>
+    <tr>
+      <th>212</th>
+      <td>Peaky Blinders: Season 1: Episode 1</td>
+      <td>23/10/2018</td>
+    </tr>
+    <tr>
+      <th>213</th>
+      <td>Unacknowledged</td>
+      <td>23/10/2018</td>
+    </tr>
+    <tr>
+      <th>214</th>
+      <td>Louis Theroux: Collection: Louis and the Brothel</td>
+      <td>23/10/2018</td>
+    </tr>
+    <tr>
+      <th>215</th>
+      <td>Ozark: Season 1: My Dripping Sleep</td>
+      <td>20/10/2018</td>
+    </tr>
+    <tr>
+      <th>216</th>
+      <td>Ozark: Season 1: Blue Cat</td>
+      <td>20/10/2018</td>
+    </tr>
+    <tr>
+      <th>217</th>
+      <td>Ozark: Season 1: Sugarwood</td>
+      <td>18/10/2018</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+netflix_df.head()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Title</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Black Mirror: Season 5: Smithereens</td>
+      <td>08/06/2019</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Black Mirror: Season 5: Striking Vipers</td>
+      <td>08/06/2019</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Money Heist: Part 1: Episode 1</td>
+      <td>05/06/2019</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>The Great Gatsby</td>
+      <td>30/05/2019</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>WHAT / IF: Part I: Pilot</td>
+      <td>27/05/2019</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+netflix_df['Date']=pd.to_datetime(netflix_df['Date'])
+```
+
+
+```python
+netflix_df['week_day'] = netflix_df['Date'].apply(lambda x: x.weekday())
+netflix_df['week_day_name'] = netflix_df['Date'].apply(lambda x: x.weekday_name)
+
+netflix_df['week_day_name'] = pd.Categorical(netflix_df['week_day_name'], categories=
+    ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday', 'Sunday'],
+    ordered=True)
+```
+
+
+```python
+weekday_df=netflix_df.groupby('week_day_name').Title.agg(['count'])
+```
+
+
+```python
+weekday_df
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>count</th>
+    </tr>
+    <tr>
+      <th>week_day_name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Monday</th>
+      <td>22</td>
+    </tr>
+    <tr>
+      <th>Tuesday</th>
+      <td>21</td>
+    </tr>
+    <tr>
+      <th>Wednesday</th>
+      <td>27</td>
+    </tr>
+    <tr>
+      <th>Thursday</th>
+      <td>17</td>
+    </tr>
+    <tr>
+      <th>Friday</th>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>Saturday</th>
+      <td>46</td>
+    </tr>
+    <tr>
+      <th>Sunday</th>
+      <td>75</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+fig, ax = plt.subplots(figsize=(14,5))
+weekday_df.plot.bar(ax=ax, legend=False);
+plt.title('Netflix views by day of the week', fontsize=24);
+plt.xticks(size=16);
+plt.yticks(size=16);
+plt.ylabel('Views',fontsize=22);
+plt.xlabel('Week day',fontsize=22);
+```
+
+
+![png](/assets/netflix/output_8_0.png)
+
+
+
+```python
+netflix_df['month'] = netflix_df['Date'].apply(lambda x: x.month)
+netflix_df['month_name'] = netflix_df['month'].apply(lambda x: calendar.month_abbr[x])
+netflix_df['month_name'] = pd.Categorical(netflix_df['month_name'],categories=
+    ['Jan','Feb','Mar','Apr','May','Jun', 'Jul','Aug','Sep','Oct','Nov','Dec'],
+    ordered=True)
+```
+
+
+```python
+month_day_views = netflix_df.groupby(['week_day_name','month_name']).Title.agg('count').unstack().fillna(0)
+```
+
+
+```python
+month_day_views
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>month_name</th>
+      <th>Jan</th>
+      <th>Feb</th>
+      <th>Mar</th>
+      <th>Apr</th>
+      <th>May</th>
+      <th>Jun</th>
+      <th>Jul</th>
+      <th>Aug</th>
+      <th>Sep</th>
+      <th>Oct</th>
+      <th>Nov</th>
+      <th>Dec</th>
+    </tr>
+    <tr>
+      <th>week_day_name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Monday</th>
+      <td>0.0</td>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>5.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>Tuesday</th>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>7.0</td>
+      <td>6.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>Wednesday</th>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>8.0</td>
+      <td>1.0</td>
+      <td>4.0</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>5.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>Thursday</th>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>5.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>Friday</th>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>Saturday</th>
+      <td>10.0</td>
+      <td>7.0</td>
+      <td>9.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>7.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>Sunday</th>
+      <td>4.0</td>
+      <td>15.0</td>
+      <td>26.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>6.0</td>
+      <td>11.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+plt.figure(figsize=(14,6))
+sns.heatmap(month_day_views)
+plt.xticks(fontsize=16);
+plt.yticks(fontsize=16);
+plt.xlabel('Month',fontsize=18)
+plt.ylabel('Week Day', fontsize=18)
+plt.title('Views by week day and month', fontsize=22);
+```
+
+
+![png](/assets/netflix/output_12_0.png)
+
+
+
+```python
+netflix_df['show'] = netflix_df['Title'].apply(lambda x: x.split(':')[0])
+netflix_df['is_movie'] = netflix_df['Title'].apply(lambda x: ':' not in x)
+```
+
+
+```python
+show_views = netflix_df.groupby(['show','Date']).Title.agg('count').unstack()
+```
+
+
+```python
+# import matplotlib.dates as mdates
+```
+
+
+```python
+fig, ax = plt.subplots(figsize=(18,15));
+sns.heatmap(show_views, yticklabels=True,xticklabels=True, annot=True,cmap='Blues');#YlGnBu');
+ax.set_xticklabels(show_views.columns.strftime('%d-%m-%Y'));
+plt.xticks(rotation=-90);
+plt.ylabel('');
+```
+
+
+![png](/assets/netflix/output_16_0.png)
+
+
+
+```python
+series_counts = netflix_df[~netflix_df.is_movie].groupby('show').Title.agg(['count']).sort_values(by='count',ascending=False)
+```
+
+
+```python
+fig, ax = plt.subplots(figsize=(14,5));
+series_counts.plot.bar(ax=ax, legend=False);
+plt.xticks(fontsize=14);
+plt.yticks(fontsize=16);
+plt.ylabel("Times watched");
+plt.xlabel("")
+plt.title("Netflix series watched", fontsize=22);
+```
+
+
+![png](/assets/netflix/output_18_0.png)
+
+
+
+```python
+movies = netflix_df[netflix_df.is_movie]
+```
+
+
+```python
+movies
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Title</th>
+      <th>Date</th>
+      <th>week_day</th>
+      <th>week_day_name</th>
+      <th>month</th>
+      <th>month_name</th>
+      <th>show</th>
+      <th>is_movie</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>The Great Gatsby</td>
+      <td>2019-05-30</td>
+      <td>3</td>
+      <td>Thursday</td>
+      <td>5</td>
+      <td>May</td>
+      <td>The Great Gatsby</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Split</td>
+      <td>2019-04-20</td>
+      <td>5</td>
+      <td>Saturday</td>
+      <td>4</td>
+      <td>Apr</td>
+      <td>Split</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>The Boy in the Striped Pyjamas</td>
+      <td>2019-02-04</td>
+      <td>0</td>
+      <td>Monday</td>
+      <td>2</td>
+      <td>Feb</td>
+      <td>The Boy in the Striped Pyjamas</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>Abducted in Plain Sight</td>
+      <td>2019-03-17</td>
+      <td>6</td>
+      <td>Sunday</td>
+      <td>3</td>
+      <td>Mar</td>
+      <td>Abducted in Plain Sight</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>121</th>
+      <td>Lion</td>
+      <td>2019-02-14</td>
+      <td>3</td>
+      <td>Thursday</td>
+      <td>2</td>
+      <td>Feb</td>
+      <td>Lion</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>122</th>
+      <td>High Flying Bird</td>
+      <td>2019-10-02</td>
+      <td>2</td>
+      <td>Wednesday</td>
+      <td>10</td>
+      <td>Oct</td>
+      <td>High Flying Bird</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>166</th>
+      <td>Bird Box</td>
+      <td>2019-06-01</td>
+      <td>5</td>
+      <td>Saturday</td>
+      <td>6</td>
+      <td>Jun</td>
+      <td>Bird Box</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>180</th>
+      <td>The Art of Loving</td>
+      <td>2018-12-14</td>
+      <td>4</td>
+      <td>Friday</td>
+      <td>12</td>
+      <td>Dec</td>
+      <td>The Art of Loving</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>187</th>
+      <td>How It Ends</td>
+      <td>2018-02-12</td>
+      <td>0</td>
+      <td>Monday</td>
+      <td>2</td>
+      <td>Feb</td>
+      <td>How It Ends</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>190</th>
+      <td>Before We Go</td>
+      <td>2018-11-25</td>
+      <td>6</td>
+      <td>Sunday</td>
+      <td>11</td>
+      <td>Nov</td>
+      <td>Before We Go</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>193</th>
+      <td>Inside Russias Toughest Prison</td>
+      <td>2018-11-24</td>
+      <td>5</td>
+      <td>Saturday</td>
+      <td>11</td>
+      <td>Nov</td>
+      <td>Inside Russias Toughest Prison</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>194</th>
+      <td>The Hangover</td>
+      <td>2018-11-24</td>
+      <td>5</td>
+      <td>Saturday</td>
+      <td>11</td>
+      <td>Nov</td>
+      <td>The Hangover</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>195</th>
+      <td>Passengers</td>
+      <td>2018-11-24</td>
+      <td>5</td>
+      <td>Saturday</td>
+      <td>11</td>
+      <td>Nov</td>
+      <td>Passengers</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>196</th>
+      <td>The Girl on the Train</td>
+      <td>2018-11-24</td>
+      <td>5</td>
+      <td>Saturday</td>
+      <td>11</td>
+      <td>Nov</td>
+      <td>The Girl on the Train</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>197</th>
+      <td>Brain on Fire</td>
+      <td>2018-11-24</td>
+      <td>5</td>
+      <td>Saturday</td>
+      <td>11</td>
+      <td>Nov</td>
+      <td>Brain on Fire</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>200</th>
+      <td>The Notebook</td>
+      <td>2018-11-19</td>
+      <td>0</td>
+      <td>Monday</td>
+      <td>11</td>
+      <td>Nov</td>
+      <td>The Notebook</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>201</th>
+      <td>Operation Finale</td>
+      <td>2018-10-11</td>
+      <td>3</td>
+      <td>Thursday</td>
+      <td>10</td>
+      <td>Oct</td>
+      <td>Operation Finale</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>203</th>
+      <td>What the Health</td>
+      <td>2018-05-11</td>
+      <td>4</td>
+      <td>Friday</td>
+      <td>5</td>
+      <td>May</td>
+      <td>What the Health</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>205</th>
+      <td>Set It Up</td>
+      <td>2018-03-11</td>
+      <td>6</td>
+      <td>Sunday</td>
+      <td>3</td>
+      <td>Mar</td>
+      <td>Set It Up</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>206</th>
+      <td>22 July</td>
+      <td>2018-10-28</td>
+      <td>6</td>
+      <td>Sunday</td>
+      <td>10</td>
+      <td>Oct</td>
+      <td>22 July</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>209</th>
+      <td>You Laugh But It's True</td>
+      <td>2018-10-23</td>
+      <td>1</td>
+      <td>Tuesday</td>
+      <td>10</td>
+      <td>Oct</td>
+      <td>You Laugh But It's True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>211</th>
+      <td>Unacknowledged</td>
+      <td>2018-10-23</td>
+      <td>1</td>
+      <td>Tuesday</td>
+      <td>10</td>
+      <td>Oct</td>
+      <td>Unacknowledged</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
