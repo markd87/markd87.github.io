@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Valence bond structures and Catalan numbers"
-date:   2015-06-16 11:03:47 +0100
+date:   2015-06-16 11:00:00 +0100
 categories: posts
 ---
 
@@ -13,8 +13,7 @@ In VB theory one looks at all possible structures a molecule can have which incl
 All of these structures described by appropriate Slater determinants are superposed with some coefficients. By optimizing the coefficients of
 the different structures to minimize the energy one gets the full wave function of the electrons in the molecule which 
 describes the electron probability density in the molecule.
-<br>
-<br>
+
 A famous example of this is the Benzene molecule $${\rm C_6H_6}$$ consisting of 6 carbon atoms in a ring and 6 Hydrogen atoms bonded to them. In the Benzene case since carbon has 4 valence electrons one is used in the Hydrogen bond and two are used to bond
 with the neighboring C atoms. The remaining electron can bond with either one of the neighboring C atoms (2 Kekule structures)
 or with an opposite C atom (3 Dewar structures). Thus in total there are 5 possible covalent structures for the Benzene molecule
