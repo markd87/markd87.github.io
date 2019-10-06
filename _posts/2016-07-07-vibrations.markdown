@@ -50,12 +50,12 @@ x_2(t) = A_1 cos(\omega_0 t)-A_2 sin(\sqrt{3}\omega_0 t)
 $$
 
 We can therefore write any motion of the two masses in terms of these fundamental modes. To visualize the first mode in terms of the individual masses, we see that if we set $$A_2=0$$ removing the second mode we get $$x_1(t)=x_2(t)=A_1 cos(\omega_0 t)$$, implying that both masses move exactly in the same manner with the natural frequency. On the other hand if we set $$A_1=0$$ we get $$x_1=-x_2=A_2 sin(\sqrt{3}\omega_0 t)$$ implying that the masses move with the higher frequency but in opposite directions.
-Below are the two fundamental modes, in which both masses move with the same frequency and constant relative phase.
+<!-- Below are the two fundamental modes, in which both masses move with the same frequency and constant relative phase.
 
 <center>
 <img src='http://s12.postimg.org/gkc13wx2l/mode1.gif'/>  
 <img src='http://s2.postimg.org/ocl54uq49/mode2.gif'/>
-</center>
+</center> -->
 
 We can continue to 3,4,.. masses attached by springs and eventually we will reach the limit of continuum where the number of masses (atoms) is essentially $$N\rightarrow \infty$$ or %the spacings become $$\Delta x\rightarrow 0$$. 
 
