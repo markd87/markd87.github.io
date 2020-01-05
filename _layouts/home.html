@@ -24,6 +24,7 @@ layout: default
         {%- if site.show_excerpts -%}
           {{ post.excerpt }}
         {%- endif -%}
+        {{ post.content | strip_html | truncatewords: 25 }}
       </li>
       {%- endfor -%}
     </ul>
