@@ -21,7 +21,7 @@ There exist no solutions for $$x^n+y^n=z^n$$, for $$ n>2 $$.
 <br>
 
 I remember my first encounter with being amazed by numbers. It was a simple realization many arrive at, at a young age, i.e. take any integer number greater than 0 multiply by 9, the sum of the digits of the result is 9.
-This also gives an easy way to check if a number is divisible by 9.
+This also gives an easy way to check if a number is divisible by 9. For example, 27, 36, 81 etc.
 <br>
 Although this seems magical, the proof is simple:
 <br>
