@@ -1,0 +1,52 @@
+---
+layout: post
+title:  "Numbers"
+date:   2020-01-11 01:13:00 +0000
+categories: posts
+---
+
+Numbers are quite mysterious. 
+Even the simple notion of natural numbers (1,2,..), 
+used simply for counting has so many emerging 
+properties that have led to the field of Number Theory
+in Mathematics, with theorems that seem deceivingly simple,which can be written in a single line, understood by a child but take hundreds of pages of proofs or a proof has evaded the greatest mathematicians for centuries, such are the numbers, e.g. 
+<strong>Fermat's last theorem</strong>: 
+There exist no solutions for $$x^n+y^n=z^n$$, for $$ n>2 $$.
+<br>
+<strong>Goldbach's conjecture</strong>: Every integer greater than 2 can be expressed as the sum of two primes.
+<br>
+<strong>Collatz's conjecture</strong>: start with any number, if n is even divide by 2, if n is odd multiply by 3 and add 1, this process always stops at 1.
+<br>
+... etc.
+<br>
+
+I remember my first encounter with being amazed by numbers. It was a simple realization many arrive at, at a young age, i.e. take any integer number greater than 0 multiply by 9, the sum of the digits of the result is 9.
+This also gives an easy way to check if a number is divisible by 9.
+<br>
+Although this seems magical, the proof is simple:
+<br>
+<br>
+For a number $$N$$ to be divisible by 9 means 
+$$ N = 0 \mod 9 $$.
+We can write (for 2 digits and similarly for more)
+$$
+N = 10n+k
+$$
+taking modulus 9, we simplify by subtracting numbers divisible by 9 (i.e. 9, 99, etc. for a number with given number of digits giving
+$$
+0 = N \mod 9 = 10n+k \mod 9 = n+k \mod 9
+$$
+Therefore the sum of the digits is divisible by 9.
+If the sum is greater than 9 we repeat the process of summing the digits, and as the largest single digit number divisible by 9 is 9, the sum of the digits will be eventually $$9$$. 
+$$\blacksquare$$
+<br>
+<br>
+Following that, I thought if there are any other simple but non trivial examples like that for other numbers. I stumbled upon $$7$$. Take any number take the last digit multiply by 2 and subtract the remaining of the number, if that's divisible by 7, the number is also divisible by 7.
+For example, $$28 \rightarrow 2 - 8 \times 2 = 2-16 = -14 = 0$$, which is divisible by 7.
+I've arrived at the proof in a similar way,
+Assuming $$N$$ is divisible by 7 we get,
+$$
+0=N \mod 7 = 10n+k \mod 7 = 3n +k \mod 7 =
+6n+2k \mod 7 = 2k - n \mod 7. $$
+$$\blacksquare $$
+
