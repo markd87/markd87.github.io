@@ -28,11 +28,15 @@ in galaxies".
 Following the Master's degree, I decided to switch my interest to the field
 of condensed matter and Nanoscience. I wanted to experience life abroad as well so I started looking
 for PhD positions in various universities in Europe and USA. I was accepted to work 
-with Prof. Vladimir Fal'ko at Lancaster University, UK in September 2014. Following the 
+with Prof. Vladimir Falko at Lancaster University, UK in September 2014. Following the 
 first year we moved to the National Graphene Institute (NGI) at the University of Manchester. 
-There I had the great privilege to work alongside the two Nobel laureates Konstantin Novoselov 
+During my PhD I studied two-dimensional material for optoelectronic applications. These involved understanding the theory behind the electronic and optical properties of these materials, and how these can be applied in actual devices such as photo-detectors, transistors, light emitters etc.
+At the NGI I had the great privilege to work alongside the two Nobel laureates Konstantin Novoselov 
 and Andrei Geim, as well as other visiting theoreticians and experimentalists.
 
-On 14/03/2018 I successfully defended my PhD thesis. Following my PhD and academic life,
+On 14/03/2018 I successfully defended my PhD thesis. 
+My PhD Thesis titled "Optoelectronics of Two Dimensional Transision Metal Dichalcogenides" [PDF](assets/PhD_Thesis_final_MARK_DANOVICH.pdf).
+<br>
+Following my PhD and academic life,
 I decided to pursue a career in data science, and started working as a consultant at 
 Amey Strategic Consulting working on data science projects related to infrastructure in the UK.
