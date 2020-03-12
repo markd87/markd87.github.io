@@ -31,11 +31,11 @@ for PhD positions in various universities in Europe and USA. I was accepted to w
 with Prof. Vladimir Falko at Lancaster University, UK in September 2014. Following the 
 first year we moved to the National Graphene Institute (NGI) at the University of Manchester. 
 During my PhD I studied two-dimensional material for optoelectronic applications. These involved understanding the theory behind the electronic and optical properties of these materials, and how these can be applied in actual devices such as photo-detectors, transistors, light emitters etc.
-At the NGI I had the great privilege to work alongside the two Nobel laureates Konstantin Novoselov 
-and Andrei Geim, as well as other visiting theoreticians and experimentalists.
+At the NGI I had the great privilege to work alongside the two Nobel laureates Prof. Konstantin Novoselov 
+and Prof. Andrei Geim, as well as other visiting theoreticians and experimentalists.
 
 On 14/03/2018 I successfully defended my PhD thesis. 
-My [PhD Thesis](assets/PhD_Thesis_final_MARK_DANOVICH.pdf) titled "Optoelectronics of Two Dimensional Transision Metal Dichalcogenides" .
+My [PhD Thesis](../assets/PhD_Thesis_final_MARK_DANOVICH.pdf) titled "Optoelectronics of Two Dimensional Transision Metal Dichalcogenides" .
 <br>
 <br>
 Following my PhD and academic life,
