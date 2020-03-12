@@ -30,7 +30,7 @@ of condensed matter and Nanoscience. I wanted to experience life abroad as well 
 for PhD positions in various universities in Europe and USA. I was accepted to work 
 with Prof. Vladimir Falko at Lancaster University, UK in September 2014. Following the 
 first year we moved to the National Graphene Institute (NGI) at the University of Manchester. 
-During my PhD I studied two-dimensional material for optoelectronic applications. These involved understanding the theory behind the electronic and optical properties of these materials, and how these can be applied in actual devices such as photo-detectors, transistors, light emitters etc.
+During my PhD I studied two-dimensional materials for optoelectronic applications. This involved developing and understanding the theory behind the unique electronic and optical properties of these materials, and how these can be applied to actual devices such as photo-detectors, transistors, light emitters etc.
 At the NGI I had the great privilege to work alongside the two Nobel laureates Prof. Konstantin Novoselov 
 and Prof. Andrei Geim, as well as other visiting theoreticians and experimentalists.
 
