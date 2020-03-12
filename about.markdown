@@ -35,7 +35,8 @@ At the NGI I had the great privilege to work alongside the two Nobel laureates K
 and Andrei Geim, as well as other visiting theoreticians and experimentalists.
 
 On 14/03/2018 I successfully defended my PhD thesis. 
-My PhD Thesis titled "Optoelectronics of Two Dimensional Transision Metal Dichalcogenides" [PDF](assets/PhD_Thesis_final_MARK_DANOVICH.pdf).
+My [PhD Thesis](assets/PhD_Thesis_final_MARK_DANOVICH.pdf) titled "Optoelectronics of Two Dimensional Transision Metal Dichalcogenides" .
+<br>
 <br>
 Following my PhD and academic life,
 I decided to pursue a career in data science, and started working as a consultant at 
