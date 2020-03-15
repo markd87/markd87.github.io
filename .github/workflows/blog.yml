@@ -4,20 +4,18 @@ on: [push]
 jobs:
   build-site:
     runs-on: ubuntu-latest
-    steps:
     - name: Copy Repository Contents
       uses: actions/checkout@master
       with:
         persist-credentials: false
 
     - name: convert notebooks and word docs to posts
-      uses: ./_action_files
+      uses: fastai/fastpages@master
 
     - name: setup directories for Jekyll build
       run: |
         rm -rf _site
         sudo chmod -R 777 .
-
     - name: Jekyll build
       uses: docker://hamelsmu/fastpages-jekyll
       with:
@@ -29,7 +27,6 @@ jobs:
       run: |
         sudo chmod -R 777 _site/
         cp CNAME _site/ 2>/dev/null || :
-
     - name: Deploy
       if: github.event_name	== 'push'
       uses: peaceiris/actions-gh-pages@v3
