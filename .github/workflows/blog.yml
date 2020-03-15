@@ -4,6 +4,7 @@ on: [push]
 jobs:
   build-site:
     runs-on: ubuntu-latest
+    steps:
     - name: Copy Repository Contents
       uses: actions/checkout@master
       with:
