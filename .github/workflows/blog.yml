@@ -11,7 +11,7 @@ jobs:
       - name: Jekyll build
         uses: docker://jekyll/jekyll
         with:
-          args: jekyll build
+          args: jekyll build --trace
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
