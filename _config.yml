@@ -37,7 +37,7 @@ minima:
     github: markd87
 
 # Set this to true to get LaTeX math equation support
-use_math: 
+use_math: true
 
 # Build settings
 # Everything below here should be left alone. Modifications may break fastpages
