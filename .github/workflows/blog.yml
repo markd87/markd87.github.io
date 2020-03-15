@@ -12,6 +12,8 @@ jobs:
 
     - name: convert notebooks and word docs to posts
       uses: fastai/fastpages@master
+      with:
+        BOOL_SAVE_MARKDOWN: true
 
     - name: setup directories for Jekyll build
       run: |
