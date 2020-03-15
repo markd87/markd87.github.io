@@ -26,28 +26,37 @@ twitter_username: mmasaniad
 github_username:  markd87
 
 # Build settings
+# Everything below here should be left alone. Modifications may break fastpages
+future: true
 theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-gist
+  - jekyll-octicons
+  - jekyll-toc
+  - jekyll-twitter-plugin
+  - jekyll-relative-links
+  - jekyll-seo-tag
+  - jekyll-remote-theme
+  - jekyll-paginate
 
+# See https://jekyllrb.com/docs/pagination/
+# For pagination to work, you cannot have index.md at the root of your repo, instead you must rename this file to index.html
+paginate: 15
+paginate_path: /page:num/
+
+remote_theme: jekyll/minima
+
+titles_from_headings:
+  enabled:     true
+  strip_title: true
+  collections: true
+
+highlighter: rouge
 markdown: kramdown
-
-# Exclude from processing.
-# The following items will not be processed, by default.
-# Any item listed under the `exclude:` key here will be automatically added to
-# the internal "default list".
-#
-# Excluded items can be processed by explicitly listing the directories or
-# their entries' file path in the `include:` list.
-#
-# exclude:
-#   - .sass-cache/
-#   - .jekyll-cache/
-#   - gemfiles/
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules/
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+kramdown:
+  math_engine: katex
+  input: GFM
+  auto_ids: true
+  hard_wrap: false
+  syntax_highlighter: rouge
