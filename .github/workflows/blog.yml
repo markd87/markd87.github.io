@@ -1,3 +1,6 @@
+name: Build notebooks
+on: [push]
+
 jobs:
   build-site:
     runs-on: ubuntu-latest
