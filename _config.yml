@@ -25,6 +25,19 @@ description: >- # this means to ignore newlines until "baseurl:"
 twitter_username: mmasaniad
 github_username:  markd87
 
+# Github and twitter are optional:
+minima:
+  social_links:
+    twitter: mmasaniad
+    github:  markd87 
+# Set this to true to display the summary of your blog post under your title on the Home page.
+show_description: true
+# Set this to true to display tags on each post
+show_tags: true
+
+include:
+  - _pages
+
 # Build settings
 # Everything below here should be left alone. Modifications may break fastpages
 future: true
