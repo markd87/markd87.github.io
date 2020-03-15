@@ -13,9 +13,10 @@ jobs:
       #   with:
       #     args: jekyll build --trace
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        if: github.event_name == 'push'
-        with:
-          publish_branch: master
-          publish_dir: ./_site
+      # - name: Deploy
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   if: github.event_name == 'push'
+      #   with:
+      #     deploy_key: ${{ secrets.SSH_DEPLOY_KEY }}
+      #     publish_branch: master
+      #     publish_dir: ./_site
