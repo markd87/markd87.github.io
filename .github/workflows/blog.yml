@@ -33,5 +33,5 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       with:
         deploy_key: ${{ secrets.SSH_DEPLOY_KEY }}
-        PublishBranch: master
+        Publish_branch: master
         publish_dir: ./_site      
