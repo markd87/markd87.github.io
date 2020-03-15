@@ -16,8 +16,8 @@ jobs:
         uses: docker://faph/action-jekyll:1.5
 
       - name: Deploy
-          uses: peaceiris/actions-gh-pages@v3
-          if: github.event_name == 'push'
-          with:
-            deploy_key: ${{ secrets.SSH_DEPLOY_KEY }}
-            publish_dir: ./_site        
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.event_name == 'push'
+        with:
+          deploy_key: ${{ secrets.SSH_DEPLOY_KEY }}
+          publish_dir: ./_site        
