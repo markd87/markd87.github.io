@@ -16,17 +16,17 @@ gem "minima", "~> 2.5"
 # If you have any plugins, put them here!
 group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.12"
-  gem "kramdown"
-  gem "kramdown-math-katex"
-  gem "jekyll-gist"
-  gem "jekyll-octicons"
-  gem "jekyll-toc"
+  gem 'jekyll-octicons'
+  gem 'jekyll-remote-theme'
   gem "jekyll-twitter-plugin"
-  gem "jekyll-relative-links"
-  gem "jekyll-seo-tag"
-  gem "jekyll-remote-theme"
-  gem "jekyll-paginate"
+  gem 'jekyll-relative-links'
+  gem 'jekyll-seo-tag'
+  gem 'jekyll-toc'
+  gem 'jekyll-gist'
+  gem 'jekyll-paginate'
 end
+
+gem "kramdown-math-katex"
 
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem
 # and associated library.
@@ -38,3 +38,4 @@ end
 # Performance-booster for watching directories on Windows
 gem "wdm", "~> 0.1.1", :install_if => Gem.win_platform?
 
+gem "faraday", "< 1.0"
