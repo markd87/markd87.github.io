@@ -1,5 +1,10 @@
 name: Build notebooks
-on: [push]
+on: 
+  schedule:
+    - cron:  '0 */12 * * *'
+  push:
+    branches:
+      - master
 
 jobs:
   build-site:
