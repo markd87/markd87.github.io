@@ -24,6 +24,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   My personal website and blog. Life, Science, Programming and Data Science.
 twitter_username: mmasaniad
 github_username:  markd87
+github_repo: markd87.github.io
 
 # Set this to true to display the summary of your blog post under your title on the Home page.
 show_description: true
