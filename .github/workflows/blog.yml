@@ -1,4 +1,4 @@
-name: Build notebooks
+name: Build blog
 on: 
   schedule:
     - cron:  '0 */6 * * *'
