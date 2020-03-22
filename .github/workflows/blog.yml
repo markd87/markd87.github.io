@@ -15,6 +15,14 @@ jobs:
       with:
         persist-credentials: false
 
+    - name: save files
+      run: |
+        git config --global user.email "mark.danovich@gmail.com"
+        git config --global user.name "markd87"
+        git add _notebooks/
+        git commit -m 'saving notebooks'
+        git push -f
+
     - name: convert notebooks and word docs to posts
       uses: fastai/fastpages@master
 
