@@ -1,8 +1,7 @@
-name: Build blog
-on:
-  push:
-    branches:
-      - gh-pages
+name: Update notebooks
+on: 
+  schedule:
+    - cron:  '0 */1 * * *'
 
 jobs:
   build-site:
