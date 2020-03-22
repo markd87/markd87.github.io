@@ -1,7 +1,7 @@
 name: Build notebooks
 on: 
   schedule:
-    - cron:  '0 */12 * * *'
+    - cron:  '0 */6 * * *'
   push:
     branches:
       - gh-pages
