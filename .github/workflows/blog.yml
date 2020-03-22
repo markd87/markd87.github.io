@@ -15,6 +15,11 @@ jobs:
       with:
         persist-credentials: false
 
+    - name: Set up Python
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.6
+
     - name: run notebooks
       run: |
         pip install matplotlib pandas seaborn papermill ipykernel jupyter numpy
