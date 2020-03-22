@@ -31,7 +31,7 @@ jobs:
 
     - name: save files
       run: |
-        git config --global user.email "mark.danovich@gmail.com"
+        git config --global user.email "markd87@users.noreply.github.com"
         git config --global user.name "markd87"
         git add _notebooks/ 
         git add _posts/
