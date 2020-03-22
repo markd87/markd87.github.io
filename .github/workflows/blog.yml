@@ -15,15 +15,25 @@ jobs:
       with:
         persist-credentials: false
 
+    - name: run notebooks
+      if: github.event_name != 'push'
+      run: |
+        pip install matplotlib pandas seaborn papermill ipykernel jupyter folium plotly plotnine psutil pymc3 arviz xlrd altair jinja2
+        python3 -m ipykernel install --user --name python3
+        sudo chmod -R 777 .
+        cd _notebooks
+        ls *.ipynb
+        papermill --kernel python3 2020-03-21-covid19.ipynb 2020-03-21-covid19.ipynb
+
     - name: save files
       run: |
         git config --global user.email "mark.danovich@gmail.com"
         git config --global user.name "markd87"
-        git add _notebooks/
-        git commit -m 'saving notebooks'
+        git add _notebooks/ _posts/
+        git commit -m 'saving notebooks and posts'
         git push -f
 
-    - name: convert notebooks and word docs to posts
+    - name: convert notebooks to posts
       uses: fastai/fastpages@master
 
     - name: setup directories for Jekyll build
