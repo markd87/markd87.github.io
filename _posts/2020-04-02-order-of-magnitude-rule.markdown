@@ -6,9 +6,9 @@ categories: posts
 ---
 
 With the abundance of opportunities in this digital and data overflown age,
-an innovative and enturprunal mind may get lost quickly by choosing
+an innovative and entrepreneurial mind may get lost quickly by choosing
 the "wrong" path, leading to lost time and resources, the two most constrained
-and finite in the social world.
+and finite assets in the social world.
 
 A rule to follow on an individual or even a company level is the order of 
 magnitude (OOM) rule. 
