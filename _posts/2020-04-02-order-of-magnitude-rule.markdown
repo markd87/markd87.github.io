@@ -6,8 +6,8 @@ categories: posts
 ---
 
 With the abundance of opportunities in this digital and data overflown age,
-an innovative and entrepreneurial mind may get lost quickly by choosing
-the "wrong" path, leading to lost time and resources, the two most constrained
+an innovative and entrepreneurial mind may get quickly lost by choosing
+the "wrong" path, leading to lost time, energy and resources, the most constrained
 and finite assets in the social world.
 
 A rule to follow on an individual or even a company level is the order of 
@@ -16,9 +16,9 @@ If a product or an idea doesn't lead to at least an order of magnitude improveme
 in the current market, where the interpretation of the measure order of magnitude 
 depends on the context, the return from investment of time and resources to enter
 the market will not be worth it.
-There are four possibilities for the state of the market at the point of entry.
+There are three possibilities for the state of the market at the point of entry.
 
-1. The market is over populated with players, and consumers are overloaded with 
+1. The market is over populated with players and consumers are overloaded with 
 choice, potentially there is a monopoly in the market. 
 In this case, unless there is an OOM improvement, consumers will not 
 be tempted to change, simply from inertia, and the fierce competition with other players
