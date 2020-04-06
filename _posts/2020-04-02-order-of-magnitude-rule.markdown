@@ -16,6 +16,14 @@ If a product or an idea doesn't lead to at least an order of magnitude improveme
 in the current market, where the interpretation of the measure order of magnitude 
 depends on the context, the return from investment of time and resources to enter
 the market will not be worth it.
+
+Famous examples of OOM improvement include companies such as Google
+providing more than an OOM in search, Apple with mobile music players and mobile phones,
+Microsoft with personal computers and the Windows operating system, all led to a practical monopoly in their separate markets.
+An example of a market in which there hasn't been an OOM improvement in a while is 
+that of transistor (semiconducting devices used in CPUs and other electronic circuits) made of Silicon. Although other semiconducting materials have been shown to provide improvement, this wasn't substantial in both cost reduction and performance increase. Adding to that the prevalence and popularity of using Silicon resulted in its dominance.
+An in between case is that of EV vehicles. The monopoly of petrol powered cars and the long time it's been improved both vehicle wise and infrastructure wise, makes it significantly harder to make an OOM in the field, which is partly why EVs are still not a real competition to their petrol counterparts.
+
 There are three possibilities for the state of the market at the point of entry.
 
 1. The market is over populated with players and consumers are overloaded with 
@@ -32,7 +40,6 @@ exist yet, or you create the demand and need (not sure how, or if there is a pre
 
 3. The market is under populated and there is no need/demand,
 in this case it is easy to create a monopoly and an OOM, however it's pointless.
-
 
 Following the OOM rule allows to invest time and resources in a calculated way, 
 with a higher overall likelihood of success in the long term.
