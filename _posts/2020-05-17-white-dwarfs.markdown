@@ -8,7 +8,7 @@ categories: physics
 A white dwarf is the amusing name given to the last stage of the life of medium sized stars (<5 solar masses). 
 Stars are huge nuclear furnaces, where nuclear fusion (converting hydrogen nuclei to helium nuclei ) provides the energy, which is released as light and heat and provides sufficient pressure against the star's gravity. However, once the nuclear fusion fuel runs out, there is nothing else to hold the star. Or is there?
 
-The first white dwarf was discovered in 1862, Sirius B, the companion star in the Sirius binary system. At the time it was just another star, much smaller and less bright than Sirius A (the brightest star in the night sky), however once the star's radius (0.008 $R_{sun}$) and mass ($~1M_{sun}$) were calculated (from its Luminosity using Stefan-Boltzman Law and from its orbit around Sirius A), it was evident that it is no usual star, it's the mass of the sun tightly packed in a volume the size of the earth.
+The first white dwarf was discovered in 1862, Sirius B, the companion star in the Sirius binary system. At the time it was just another star, much smaller and less bright than Sirius A (the brightest star in the night sky), however once the star's radius (0.008 $R_{sun}$) and mass ($\sim 1M_{sun}$) were calculated (from its Luminosity using Stefan-Boltzman Law and from its orbit around Sirius A), it was evident that it is no usual star, it's the mass of the sun tightly packed in a volume the size of the earth.
 
 The reason I've decided to write about white dwarfs is because it's one of the best examples of quantum mechanics manifesting itself on the largest scales, scales where typically only gravity is relevant.
 
@@ -22,7 +22,7 @@ Assuming the star contains $N$ atoms with nuclear number A of protons and neutro
 
 The number of electrons from each atom is $Z$ giving the total number of electrons: $N_e = \frac{M}{m_p}\frac{Z}{A}.
 
-The energy of an electron in the gas is: $E\sim\frac{p^2}{m_e}$. From Heisenberg's uncertainty principle $\Delta x \Delta p \sim \hbar$, which means confining the electron in location $\Delta x ~ n_e^{-1/3}$, where $n_e \sim \frac{N_e}{R^3}$ is the number density of electrons, results in an increase in it's momentum, which is another way to understand the resulting pressure of the degenerate electron gas. Therefore, the electron kinetic energy of the electron gas can be written as 
+The energy of an electron in the gas is: $E\sim\frac{p^2}{m_e}$. From Heisenberg's uncertainty principle $\Delta x \Delta p \sim \hbar$, which means confining the electron in location $\Delta x \sim n_e^{-1/3}$, where $n_e \sim \frac{N_e}{R^3}$ is the number density of electrons, results in an increase in it's momentum, which is another way to understand the resulting pressure of the degenerate electron gas. Therefore, the electron kinetic energy of the electron gas can be written as 
 \begin{equation}
 E_{kin} \sim \frac{\hbar^2 N_e^{5/3}}{m_e R^2}.
 \end{equation}
@@ -38,5 +38,5 @@ Comparing the two energy scales (the idea of comparable energy scales in a syste
 \begin{equation}
 R\sim \left(\frac{\hbar c}{m c^2}\right)\left(\frac{\hbar c}{Gm_p^2}\right)\left(\frac{m_p}{M }\right)^{1/3}\left(\frac{Z}{A}\right)^{5/3}.
 \end{equation}
-Conveniently written in terms of dimensionless quantities, apart from the first term where the units are length. ($\hbar c $ has units of energy times length, personally I remember it as $197eV \cdot nm$ ).
+Conveniently written in terms of dimensionless quantities, apart from the first term where the units are length. ($\hbar c $ has units of energy times length, personally I remember it as $197 {\rm eV}\cdot{\rm nm}$ ).
 
