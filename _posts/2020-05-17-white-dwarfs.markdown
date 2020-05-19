@@ -18,9 +18,7 @@ This is where quantum mechanics comes in to play. The high density of white dwar
 
 This competition between classical gravity and the quantum Pauli's exclusion principle, will result in an equilibrium at a certain radius, which will determine the radius of the white dwarf. Here I'll obtain an expression for it using dimensional analysis.
 
-Assuming the star contains $N$ atoms with nuclear number A of protons and neutrons, i.e. $N=M/(Am_p)$.
-
-The number of electrons from each atom is $Z$ giving the total number of electrons: $N_e = \frac{M}{m_p}\frac{Z}{A}.
+Assuming the star contains $N$ atoms with nuclear number A of protons and neutrons, i.e. $N=M/(Am_p)$, the number of electrons from each atom is $Z$ giving the total number of electrons: $N_e = \frac{M}{m_p}\frac{Z}{A}$.
 
 The energy of an electron in the gas is: $E\sim\frac{p^2}{m_e}$. From Heisenberg's uncertainty principle $\Delta x \Delta p \sim \hbar$, which means confining the electron in location $\Delta x \sim n_e^{-1/3}$, where $n_e \sim \frac{N_e}{R^3}$ is the number density of electrons, results in an increase in it's momentum, which is another way to understand the resulting pressure of the degenerate electron gas. Therefore, the electron kinetic energy of the electron gas can be written as 
 \begin{equation}
