@@ -3,9 +3,7 @@ layout: default
 ---
 
 <div class="home">
-    <h1>Filed Under <small>#{{ page.tag }}</small></h1>
 
-    {% for post in site.categories[page.tag] %}
-    {% include post_preview.html %}
-    {% endfor %}
+    {{ content }}
+
 </div>
