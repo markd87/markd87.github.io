@@ -2,7 +2,7 @@
 layout: post
 title:  "White Dwarfs"
 date:   2020-05-17 20:00:00 +0100
-categories: [physics]
+description: Where relativity, quantum mechanics and gravity meet.
 ---
 
 A white dwarf is the amusing name given to the last stage of the life of medium sized stars (<5 solar masses). 
@@ -20,21 +20,57 @@ This competition between classical gravity and the quantum Pauli's exclusion pri
 
 Assuming the star contains $N$ atoms with nuclear number A of protons and neutrons, i.e. $N=M/(Am_p)$, the number of electrons from each atom is $Z$ giving the total number of electrons: $N_e = \frac{M}{m_p}\frac{Z}{A}$.
 
-The kinetic energy of an electron in the gas is: $E\sim\frac{p^2}{m_e}$. From Heisenberg's uncertainty principle $\Delta x \Delta p \sim \hbar$, which means confining the electron in location $\Delta x \sim n_e^{-1/3}$, where $n_e \sim \frac{N_e}{R^3}$ is the number density of electrons, results in an increase in its momentum, which is another way to understand the resulting pressure of the degenerate electron gas. Therefore, the electron kinetic energy of the electron gas can be written as 
-\begin{equation}
-E_{kin} \sim \frac{\hbar^2 N_e^{5/3}}{m_e R^2}.
-\end{equation}
-Inserting $N_e$,
-\begin{equation}
-E_{kin} \sim \frac{\hbar^2 M^{5/3}}{m_e m_p^{5/3} R^2}\left(\frac{Z}{A}\right)^{5/3}.
-\end{equation}
- The gravitational energy is given by,
-\begin{equation}
-E_g = \frac{GM^2}{R}.
-\end{equation}
-Comparing the two energy scales (the idea of comparable energy scales in a system is also known as equi-partition) gives the equilibrium white dwarf radius as a function of its mass,
-\begin{equation}
-R\sim \left(\frac{\hbar c}{m c^2}\right)\left(\frac{\hbar c}{Gm_p^2}\right)\left(\frac{m_p}{M }\right)^{1/3}\left(\frac{Z}{A}\right)^{5/3}.
-\end{equation}
-Conveniently written in terms of dimensionless quantities, apart from the first term where the units are length. ($\hbar c $ has units of energy times length, personally I remember it as $197 {\rm eV}\cdot{\rm nm}$ ).
+The kinetic energy of an electron in the gas is: $E\sim\frac{p^2}{m_e}$. From Heisenberg's uncertainty principle $\Delta x \Delta p \sim \hbar$, which means confining the electron in location $\Delta x \sim n_e^{-1/3}$, where $n_e \sim \frac{N_e}{R^3}$ is the number density of electrons, results in an increase in its momentum, which is another way to understand the resulting pressure of the degenerate electron gas. 
 
+
+Therefore, the electron kinetic energy of the electron gas can be written as 
+$$
+E_{kin} \sim \frac{\hbar^2 N_e^{5/3}}{m_e R^2}.
+$$
+Inserting $N_e$,
+$$
+E_{kin} \sim \frac{\hbar^2 M^{5/3}}{m_e m_p^{5/3} R^2}\left(\frac{Z}{A}\right)^{5/3}.
+$$
+ The gravitational energy is given by,
+$$
+E_g = \frac{GM^2}{R}.
+$$
+Comparing the two energy scales (the idea of comparable energy scales in a system is also known as equi-partition) gives the equilibrium white dwarf radius as a function of its mass,
+$$
+R\sim \left(\frac{\hbar c}{m_e c^2}\right)\left(\frac{\hbar c}{Gm_p^2}\right)\left(\frac{m_p}{M }\right)^{1/3}\left(\frac{Z}{A}\right)^{5/3}.
+$$
+Conveniently written in terms of dimensionless quantities, apart from the first term where the units are length. ($\hbar c $ has units of energy times length, equal to $\sim 200 {\rm eV}\cdot{\rm nm} = 200\times 10^{-12} {\rm eV}\cdot {\rm km}$ ).
+
+Further rearranging and expressing the star's mass in terms of the Sun's mass,
+$$
+R\sim \left(\frac{\hbar c}{m_e c^2}\right) \left( \frac{m_{Planck}}{m_p}\right)^2\left(\frac{Z}{A}\right)^{5/3}
+\left(\frac{m_p}{M_{Sun}} \right)^{1/3}
+\left(\frac{M}{M_{Sun}}\right)^{-1/3},
+$$
+where I also introduced Planck's mass, $m_{Planck} = \sqrt{\frac{\hbar c}{G}}$.
+Mentioning Planck's name in any constant, implies Quantum effects are present.
+
+Assuming Carbon for the interior of the star $Z=6, A=12$, 
+$$
+R\ [{\rm km}]\sim 2000 
+\left(\frac{M}{M_{Sun}}\right)^{-1/3}
+$$
+
+(A reminder that the earth's radius is $\sim 6,400 \ {\rm km}$)
+The surprising result being, the white dwarf's radius gets smaller as the mass increases. This suggests a limiting point, where something breaks down, and the radius cannot get any smaller while being sustained through the electron degeneracy pressure.
+
+As the mass increases and radius decreases, the electron density increases and correspondingly the electron kinetic energy increases. At some point, the electron becomes relativistic, meaning that its kinetic energy becomes comparable or larger than its rest energy, at which point the electron is effectively massless, as its kinetic energy is described by a photon's energy-momentum relation, $E_{kin}=pc$. The relativistic electron gas is then,
+$$
+E_{kin} \sim \frac{\hbar c M^{4/3}}{m_p^{4/3} R}\left(\frac{Z}{A}\right)^{4/3}.
+$$
+
+Equating it to the gravitational energy gives,
+
+$$
+M \sim 
+\frac{m_{Planck}^3}{m_p^2}
+\left(\frac{Z}{A}\right)^2.
+$$
+
+The mass is a constant independent of the radius.
+This limit for the mass of a white dwarf is known as the Chandrasekhar limit, named after [Subrahmanyan Chandrasekhar](https://en.wikipedia.org/wiki/Subrahmanyan_Chandrasekhar) who derived this limit in the 1930's and recieved a Nobel prize for it. As the result is a constant, the pre-factors are important, and the exact value is $\sim 1.4 \ M_{sun}$.
