@@ -84,3 +84,7 @@ $$
 
 The mass is a constant independent of the radius.
 This limit for the mass of a white dwarf is known as the Chandrasekhar limit, named after [Subrahmanyan Chandrasekhar](https://en.wikipedia.org/wiki/Subrahmanyan_Chandrasekhar) who derived this limit in the 1930's and received a Nobel prize for it. As the result is a constant, the pre-factors are important, and the exact value is $\sim 1.4 \ M_{sun}$.
+
+### Summary
+
+> When a star exhausts its fuel, the star contracts, increasing its density. The electrons get confined enough to become degenerate, at which point Pauli's Exclusion principle results in a pressure opposing gravity. When the mass is large enough, electrons become relativistic, resulting in a unique limiting mass.
