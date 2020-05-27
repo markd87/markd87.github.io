@@ -20,6 +20,8 @@ the market will not be worth it.
 Famous examples of OOM improvement include companies such as Google
 providing more than an OOM in search, Apple with mobile music players and mobile phones,
 Microsoft with personal computers and the Windows operating system, all led to a practical monopoly in their separate markets.
+Another example is that of SpaceX. The rocket industry hasn't changed much since the 1960's, dominated mainly by countries such as Russia, USA and china. Elon Musk (CEO) realized that to be competitive a significant reduction in the cost per rocket lunch needs to be achieved, which he has managed to achieve through an OOM (factor of 10) reduction in the cost through reusable rockets.
+
 An example of a market in which there hasn't been an OOM improvement in a while is 
 that of transistor (semiconducting devices used in CPUs and other electronic circuits) made of Silicon. Although other semiconducting materials have been shown to provide improvement, this wasn't substantial in both cost reduction and performance increase. Adding to that the prevalence and popularity of using Silicon resulted in its dominance.
 An in between case is that of EV vehicles. The monopoly of petrol powered cars and the long time it's been improved both vehicle wise and infrastructure wise, makes it significantly harder to make an OOM in the field, which is partly why EVs are still not a real competition to their petrol counterparts.
