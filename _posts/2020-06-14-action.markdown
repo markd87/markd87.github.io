@@ -1,0 +1,36 @@
+---
+layout: post
+title:  "The Action"
+date:   2020-06-14 23:07
+---
+
+
+The action is a fundamental quantity in Physics. Its origin is in classical
+mechanics, used as an alternative formulation of Newtonian mechanics, however
+entailed much deeper understanding of the underlying principles natures operates
+by.
+The action is defined in terms of another quantity called the Lagrangian which is
+oddly enough for a given system is defined as $\mathcal{L} = T-V$, with $T$ being 
+the kinetic energy and $V$ the potential energy. The action is defined for 
+a given trajectory of the system in time and space as the integral of the Lagrangian over
+the path in time.
+
+\begin{align}
+S = \int_{q_a}^{q_b} \mathcal{L(q,\dot{q},t)} dt 
+\end{align}
+
+The action is a functional (function of a function) of the Lagrangian, which can depend on general spatial coordinates $\{q\}$ and their time derivative $\{\dot{q}\}$.
+
+The key and deep insight, is known as the principle of stationary action, which says that a physical system satisfies $\delta S = 0$, i.e. small linear variation to the system's real trajectory are zeroed in the action.
+
+The condition $\delta S$ results in a famous equation, which the Lagrangian is to satisfy, known as the Euler-Lagrange (EL) equation:
+
+\begin{align}
+\frac{\partial L}{\partial q} - \frac{d}{dt}\frac{\partial L}{\partial \dot{q}}.
+\end{align}
+
+With this powerful principle, given the write action, one can obtain Maxwell's equations, Einstein General relativity etc.
+
+The simplest example is that of a particle in one dimension under potential $V(x)$. The Lagrangian is given by $\mathcal{L} = \frac{1}{2}m\dot{x}^2 - V$. Plugging it into the EL equation gives $-\frac{\partial V}{\partial x} = m\ddot{x}$, which is simply Newton's 2nd law, with the force given by $F=-\frac{\partial V}{\partial x}$.
+
+
