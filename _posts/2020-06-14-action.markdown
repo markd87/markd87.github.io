@@ -13,23 +13,25 @@ The action is defined in terms of another quantity called the Lagrangian which i
 oddly enough for a given system is defined as $\mathcal{L} = T-V$, with $T$ being 
 the kinetic energy and $V$ the potential energy. The action is defined for 
 a given trajectory of the system in time and space as the integral of the Lagrangian over
-the path in time.
+the path starting at $q(a)$ and ending at $q(b)$, between times $a$ and $b$.
 
 \begin{align}
-S = \int_{q_a}^{q_b} \mathcal{L(q,\dot{q},t)} dt 
+S = \int_{a}^{b} \mathcal{L(q(t),\dot{q}(t),t)} dt 
 \end{align}
 
-The action is a functional (function of a function) of the Lagrangian, which can depend on general spatial coordinates $\{q\}$ and their time derivative $\{\dot{q}\}$.
+The action is a functional (function of a function) of the Lagrangian, which can depend on general spatial coordinates $\{q\}$, their time derivative $\{\dot{q}\}$ and time $t$.
 
-The key and deep insight, is known as the principle of stationary action, which says that a physical system satisfies $\delta S = 0$, i.e. small linear variation to the system's real trajectory are zeroed in the action.
+The key and deep insight is known as the principle of stationary action, which says that the real trajectory followed by the system satisfies $\delta S = 0$, i.e. small linear variations to the system's real trajectory are zeroed in the action.
 
-The condition $\delta S$ results in a famous equation, which the Lagrangian is to satisfy, known as the Euler-Lagrange (EL) equation:
+The condition $\delta S$ results in a famous equation, which the Lagrangian satisfies, known as the Euler-Lagrange (EL) equation:
 
 \begin{align}
-\frac{\partial L}{\partial q} - \frac{d}{dt}\frac{\partial L}{\partial \dot{q}}.
+\frac{\partial L}{\partial q} - \frac{d}{dt}\frac{\partial L}{\partial \dot{q}}=0.
 \end{align}
 
-With this powerful principle, given the write action, one can obtain Maxwell's equations, Einstein General relativity etc.
+With this powerful principle, given the right action, one can obtain Maxwell's equations, Einstein's General relativity, etc.
+The properties of the action also dictate the properties of the system. A famous example is [Noether's theorem](https://en.wikipedia.org/wiki/Noether%27s_theorem), which states that a continuous symmetry in the action leads to a conservation law followed by the system. For example, if the Lagrangian in the action is time independent (i.e. there is no explicit time dependant), the conserved quantity is the total energy.
+Similarly, a symmetry under spatial translation leads to momentum conservation.
 
 The simplest example is that of a particle in one dimension under potential $V(x)$. The Lagrangian is given by $\mathcal{L} = \frac{1}{2}m\dot{x}^2 - V$. Plugging it into the EL equation gives $-\frac{\partial V}{\partial x} = m\ddot{x}$, which is simply Newton's 2nd law, with the force given by $F=-\frac{\partial V}{\partial x}$.
 
