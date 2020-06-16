@@ -72,5 +72,7 @@ This is the general shape of the hanging chain, known as catenary.
 
 ![hanging chain](/assets/catenary.png)
 
+The $q$ parameter in the above shape, has $q\propto 1/\lambda$, i.e. inverse relation with the mass density of the chain, as expected, denser chains hang less.
+
 The surprising fact Engineering related fact regarding the catenary shape, is that it's the mirror image of the shape of a stable arch!
 The reason for that is as follows. The hanging chain is in equilibrium due to a balance between gravity and the resulting tension in the elements of the chain. In the case of an Arch, we have compression instead of tension, therefore to establish the same support against gravity the compression forces in the arch must mirror the tension forces in the chain.
