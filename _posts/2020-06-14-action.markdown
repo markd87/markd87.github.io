@@ -4,6 +4,8 @@ title:  "The Action"
 date:   2020-06-14 23:07
 ---
 
+![a](/assets/arches.jpg)
+Photo by [Tosin Oyewole](https://unsplash.com/@seauxafrican) on Unsplash
 
 The action is a fundamental quantity in Physics. Its origin is in classical
 mechanics, used as an alternative formulation of Newtonian mechanics, however
@@ -63,9 +65,12 @@ Since this Lagrangian is independent of $x$ we can use Noether's theorem mention
 $Q = \frac{\partial L}{\partial y'}y'-\mathcal{L}$. Plugging in gives,
 $\frac{ y + c}{\sqrt{1+y'^2}} = q$, where we renamed the constants. Using hyper-trigonometric identities ($\cosh^2 x - \sinh^2x =1$), the general solution satisfying this equation is
 \begin{align}
-y = -c + q\cosh(\frac{1}{q}x + z),
+y = -c + q\cosh(\frac{1}{q}x + p),
 \end{align}
-where $c, q, z$ are constant which depend on the chain's two end points and total length $l$.
+where $c, q, p$ are constant which depend on the chain's two end points and total length $l$.
 This is the general shape of the hanging chain, known as catenary.
 
+![hanging chain](/assets/catenary.png)
 
+The surprising fact Engineering related fact regarding the catenary shape, is that it's the mirror image of the shape of a stable arch!
+The reason for that is as follows. The hanging chain is in equilibrium due to a balance between gravity and the resulting tension in the elements of the chain. In the case of an Arch, we have compression instead of tension, therefore to establish the same support against gravity the compression forces in the arch must mirror the tension forces in the chain.
