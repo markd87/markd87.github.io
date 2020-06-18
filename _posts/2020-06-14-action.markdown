@@ -8,40 +8,38 @@ date:   2020-06-14 23:07
 Photo by [Tosin Oyewole](https://unsplash.com/@seauxafrican) on Unsplash
 
 The action is a fundamental quantity in Physics. Its origin is in classical
-mechanics, used as an alternative formulation of Newtonian mechanics, however
-entailed much deeper understanding of the underlying principles natures operates
-by.
-The action is defined in terms of another quantity called the Lagrangian which is
-oddly enough for a given system is defined as $\mathcal{L} = T-V$, with $T$ being 
-the kinetic energy and $V$ the potential energy. The action is defined for 
-a given trajectory of the system in time and space as the integral of the Lagrangian over
-the path starting at $q(a)$ and ending at $q(b)$, between times $a$ and $b$.
+mechanics, where it was used as an alternative formulation of Newtonian mechanics proposed by [Lagrange](https://en.wikipedia.org/wiki/Lagrangian_mechanics), and later further reformulated by [Hamilton](https://en.wikipedia.org/wiki/Hamiltonian_mechanics). The principle behind the new formalism entails a deeper understanding of how nature works "underneath".
+The action is defined in terms of another quantity called the Lagrangian which is defined as $L = T-V$, with $T$ being 
+the kinetic energy and $V$ the potential energy. This quantity seems a bit strange, given that the more familiar quantity being the total energy is defined as $E = T+V$.
+The action is defined for a given trajectory of the system in time and space as the integral of the Lagrangian over
+the path starting at time $a$ and position $q(a)$ and ending at time $b$ and position $q(b)$.
 
 \begin{align}
-S = \int_{a}^{b} \mathcal{L(q(t),\dot{q}(t),t)} dt 
+S = \int_{a}^{b} L(q(t),\dot{q}(t),t) dt 
 \end{align}
 
 The action is a functional (function of a function) of the Lagrangian, which can depend on general spatial coordinates $\{q\}$, their time derivative $\{\dot{q}\}$ and time $t$.
 
-The key and deep insight is known as the principle of stationary action, which says that the real trajectory followed by the system satisfies $\delta S = 0$, i.e. small linear variations to the system's real trajectory are zeroed in the action.
+The key deep insight to do with the action, is known as the principle of stationary action, which says that the real trajectory followed by the system satisfies $\delta S = 0$, i.e. small linear variations to the system's real trajectory are zeroed in the action.
 
-The condition $\delta S$ results in a famous equation, which the Lagrangian satisfies, known as the Euler-Lagrange (EL) equation:
+The condition $\delta S=0$ results in a famous equation, which the Lagrangian satisfies, known as the (Euler-Lagrange)[https://en.wikipedia.org/wiki/Euler%E2%80%93Lagrange_equation] (EL) equation:
 
 \begin{align}
 \frac{\partial L}{\partial q} - \frac{d}{dt}\frac{\partial L}{\partial \dot{q}}=0.
 \end{align}
 
-With this powerful principle, given the right action, one can obtain Maxwell's equations, Einstein's General relativity, etc.
-The properties of the action also dictate the properties of the system. A famous example is [Noether's theorem](https://en.wikipedia.org/wiki/Noether%27s_theorem), which states that a continuous symmetry in the action leads to a conservation law followed by the system. For example, if the Lagrangian in the action is time independent (i.e. there is no explicit time dependant), the conserved quantity is the total energy.
+With this powerful principle, given the right action, one can obtain far reaching insights into nature such as Maxwell's equations, Einstein's General relativity, etc.
+
+The properties of the action also dictate the properties of the system. A famous example is [Noether's theorem](https://en.wikipedia.org/wiki/Noether%27s_theorem), which states that a continuous symmetry in the action leads to a conservation law followed by the system. For example, if the Lagrangian in the action is time independent (i.e. there is no explicit time dependance), the conserved quantity is the total energy.
 Similarly, a symmetry under spatial translation leads to momentum conservation.
 This principle goes far beyond simple particle systems, it applies in the same way to light as well, e.g. the diffraction of light going between two materials with different refraction index is a direct result of this principle.
 
-The principle however seems strange, since it begs the question, how does the system or particle know in advance the right path that makes the action stationary?
-The answer lies in a deeper understanding yet of nature through quantum mechanics.
-In quantum mechanics, different outcomes have a probability associated with them, which is given by the square of the amplitude, which is a complex number. Therefore each path between the starting and ending points has an amplitude associated with it, the probability for the particle/system to go from point a to point b is then given by the absolute square of the sum of the amplitudes. So in principle all paths are possible, but some paths have their amplitude amplified by near by paths due tue their amplitude being in phase (the amplitude being complex, has a size and phase). What is the amplitude associated with a path? it is $e^{i\frac{S}{\hbar}}$. Therefore if two paths have significantly differing paths (of the order $\hbar$) they will have destructive interference and cancel out, on the other hand, paths in the vicinity of the path with a stationary $S$, will add up constructively. However, the particle actually goes through all possible paths, at least according to quantum mechanics. This formulation, allows to arrive at the laws of motion i.e. Schrodinger's equation.
-In the classical limit ($\hbar \rightarrow 0$), $S$ is significantly larger than $h$ such that there is really only a tiny region of paths, which don't cancel out, as even a "tiny" variation will lead to destructive interference and zero probability, if we're away from the true path. It is that special path that is the classical path we observe.
+The principle, however seems strange, since it begs the question, how does the system or particle know in advance the right path that makes the action stationary?
+The answer lies in a deeper understanding of nature through quantum mechanics.
+In quantum mechanics, different outcomes have a probability associated with them, which are given by the square of the amplitude (a complex number). Therefore each path between the starting and ending points has an amplitude associated with it. The probability for the particle/system to go from point $a$ to point $b$ is then given by the absolute square of the sum of all the different amplitudes. In principle all paths are possible, but some paths have their amplitude amplified by near by paths due tue their amplitude being in phase (the amplitude being complex, has a size and phase). What is the amplitude associated with a path? Dirac suggested it is $e^{i\frac{S}{\hbar}}$. Therefore, if two paths have significantly differing phases (of the order $\hbar$) they will have destructive interference and cancel out, on the other hand, paths in the vicinity of the path with a stationary $S$, will add up constructively. The particle actually goes through all possible paths, at least according to quantum mechanics. This formulation, allows to arrive at the laws of motion i.e. Schrodinger's equation.
+In the classical limit ($\hbar \rightarrow 0$), $S$ is significantly larger than $\hbar$ such that there is really only a tiny region of paths, which don't cancel out, as even a "tiny" variation will lead to destructive interference and zero probability, if we are away from the true path. It is that special path that is the classical path we observe. This alternative formulation or understanding of quantum mechanics known as [path integral](https://en.wikipedia.org/wiki/Path_integral_formulation), was pioneered by Richard Feynman.
 
-The fact that the least action principle which is an integral principle telling us something about the path as a whole, leads to an understanding of how the system evo;ves (i.e. Newton's 2nd law, Maxwell's equation, Schrodinger's equation, etc.) is interesting, however also obvious. If the path as a whole has least action, each differential piece of the path also has least action, leading to a differential equation for the evolution of the system.
+The fact that the principle of least action, which is an integral principle, is telling us something about the path as a whole, leads to an understanding of how the system evo;ves (i.e. Newton's 2nd law, Maxwell's equation, Schrodinger's equation, etc.) is interesting, however also obvious. If the path as a whole has least action, each differential piece of the path also has least action, leading to a differential equation for the evolution of the system.
 
 
 ### Simple example
@@ -50,16 +48,16 @@ The simplest example of the principle in action, is that of a particle in one di
 
 ### A more interesting example
 
-The principle of least action allows to solve problems, which otherwise are much more complicated using traditional Newtonian mechanics, i.e. forces.
+The principle of least action allows to solve problems, which otherwise are much more complicated using traditional Newtonian mechanics.
 
-The example is that of a chain of length $L$ fixed at two ends, hanging under gravity. What is the shape of such a chain?
+The example is that of a chain of length $l$ fixed at two ends, hanging under gravity. What is the shape of such a chain?
 
-The Lagrangian for the system, as it is not moving is given by its potential energy (which the chain will want to minimize  under the given constraint of its length), which is the gravitation potential energy $mgy$, where where $y$ is the distance downwards of at the horizontal location $x$ from the hanging plane. The potential energy of the chain is the sum of the potential energy of all the elements making up the chain.
+The Lagrangian for the system, as it is not moving is given by its potential energy  (which the chain will minimize under the given constraint of its length). The potential energy of the chain is the sum of the potential energy ($mgy$) of all the elements making up the chain.
 Assuming the chain's mass density is $\lambda$, a differential chain element has a mass of $m = \lambda \sqrt{dx^2+dy^2}$, where I multiplied by the length of the element.
 The Lagrangian is then given by:
 $L = \int_{x_a}^{x_b}\lambda g  y \sqrt{1+y'^2}$.
-To take into account the fixed length of the chain, we can use the method of Lagrange (same person, but unrelated to the Lagrangian) multipliers, by modified $L$ to find its minimum under the constraint $\int_{x_a}^{x_b}\sqrt{q+y'^2}dx = l$. This is done by adding this constraint multiplied by a constant $h$, giving for the final Lagrangian we want to vary (by varying y) as:
-$L = \int_{x_a}^{x_b} (\lambda g y + h)\sqrt{1+y'^2} - \lambda l$.
+To take into account the fixed length of the chain, we can use the method of Lagrange multipliers, by modifying $L$ to find its minimum under the length constraint $\int_{x_a}^{x_b}\sqrt{1+y'^2}dx = l$. This is done by adding this constraint multiplied by a constant $h$, giving for the final Lagrangian we want to vary (by varying $y(x)$) as:
+$L = \int_{x_a}^{x_b} (\lambda g y + h)\sqrt{1+y'^2} - h l$.
 
 Since this Lagrangian is independent of $x$ we can use Noether's theorem mentioned above, which says that there is a conserved quantity, given by
 $Q = \frac{\partial L}{\partial y'}y'-\mathcal{L}$. Plugging in gives,
@@ -67,12 +65,12 @@ $\frac{ y + c}{\sqrt{1+y'^2}} = q$, where we renamed the constants. Using hyper-
 \begin{align}
 y = -c + q\cosh(\frac{1}{q}x + p),
 \end{align}
-where $c, q, p$ are constant which depend on the chain's two end points and total length $l$.
-This is the general shape of the hanging chain, known as catenary.
+where $c, q, p$ are constants, which depend on the chain's two end points and total length $l$.
+This is the general shape of the hanging chain, known as [catenary](https://en.wikipedia.org/wiki/Catenary).
 
 ![hanging chain](/assets/catenary.png)
 
 The $q$ parameter in the above shape, has $q\propto 1/\lambda$, i.e. inverse relation with the mass density of the chain, as expected, denser chains hang less.
 
-The surprising fact Engineering related fact regarding the catenary shape, is that it's the mirror image of the shape of a stable arch!
-The reason for that is as follows. The hanging chain is in equilibrium due to a balance between gravity and the resulting tension in the elements of the chain. In the case of an Arch, we have compression instead of tension, therefore to establish the same support against gravity the compression forces in the arch must mirror the tension forces in the chain.
+The surprising fact regarding the catenary shape, is that it's the mirror image of the shape of a stable arch!
+The reason for that is as follows. The hanging chain is in equilibrium due to a balance between gravity and the resulting tension in the elements of the chain. In the case of an [arch](https://en.wikipedia.org/wiki/Arch), we have compression instead of tension, therefore to establish the same support against gravity the compression forces in the arch must mirror the tension forces in the chain.
