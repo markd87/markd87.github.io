@@ -3,6 +3,7 @@ layout: post
 title:  "Fourier and the Beatles"
 date:   2015-11-10 18:45:31 +0100
 categories: posts
+tags: math
 ---
 
 Fourier analysis is a central tool in signal processing. It provides a representation in the frequency domain of the signal which is usually given in the time domain, thus decomposing the time signal into a sum of oscillatory components of single frequency which describe the variation in the original signal.

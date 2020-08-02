@@ -3,6 +3,7 @@ layout: post
 title:  "Plato solids"
 date:   2016-08-20 13:00:00 +0100
 categories: posts
+coding: math philosophy
 ---
 
 For some reason, our mind has evolved in such a way as to deeply and inherently appreciate symmetry. We seek it everywhere

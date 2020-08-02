@@ -3,6 +3,7 @@ layout: post
 title:  "Numbers"
 date:   2020-01-11 01:13:00 +0000
 categories: posts
+tags: math
 ---
 
 Numbers are quite mysterious. 

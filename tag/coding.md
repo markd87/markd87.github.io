@@ -1,6 +1,6 @@
 ---
 layout: tagpage
-title: "Tag: personal"
-tag: personal
+title: "Tag: coding"
+tag: coding
 exclude: true
 ---

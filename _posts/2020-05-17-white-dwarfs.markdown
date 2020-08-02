@@ -3,6 +3,7 @@ layout: post
 title:  "White Dwarfs"
 date:   2020-05-17 20:00:00 +0100
 description: Where relativity, quantum mechanics and gravity meet
+tags: physics
 ---
 
 A white dwarf is the amusing name given to the last stage of the life of medium sized stars (<5 solar masses). 

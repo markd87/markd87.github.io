@@ -3,6 +3,7 @@ layout: post
 title:  "Piano"
 date:   2019-12-30 14:18:00 +0000
 categories: posts
+tags: personal
 ---
 
 For a long time I had a fascination with classical music, it was my favourite genre and I practically listened only to classical music. I would listen excessively to pieces such as <a href='https://www.youtube.com/watch?v=LPa7jjeKVR4' target='_blank'>Chopin's Piano Concerto No. 1</a> as well as his Ballades and Nocturnes, <a href='https://www.youtube.com/watch?v=WyUfCCYb2Eo' target='_blank'>Brahm's Piano Concerto No.1</a>, <a href='https://www.youtube.com/watch?v=CE4n35O-49c' target='_blank'>Rachmaninoff's Piano Concerto No.2</a>, and many more. I would enjoy listening to different version of pieces by the great modern Pianists such as Richter, Horowitz, Lang Lang, Zimmerman etc.

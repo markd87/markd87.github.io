@@ -3,12 +3,13 @@ layout: post
 title:  "Netflix"
 date:   2019-06-23 20:39:00 +0100
 categories: posts
+tags: datascience coding
 ---
 
 Netflix provides for its users a complete list of their viewing history, through the settings page.
 Although the viewing history is only given with a day resolution it's still an interesting data set to explore.
 
-Using the data one can learn about his own Netflix vieweing patterns, the shows they've watched and when.
+Using the data one can learn about his own Netflix viewing patterns, the shows they've watched and when.
 
 Below is the Jupyter notebook I've created to explore this data set.
 

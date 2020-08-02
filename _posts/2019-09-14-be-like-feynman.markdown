@@ -3,6 +3,7 @@ layout: post
 title:  "Be Like Feynman"
 date:   2019-09-14 21:03:47 +0100
 categories: posts
+tags: philosophy
 ---
 
 

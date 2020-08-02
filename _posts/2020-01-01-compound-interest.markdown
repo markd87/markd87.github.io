@@ -3,6 +3,7 @@ layout: post
 title:  "Compound interest"
 date:   2020-01-01 14:35:00 +0000
 categories: posts
+tags: general
 ---
 
 A compound interest is a fixed interest that is applied every given 

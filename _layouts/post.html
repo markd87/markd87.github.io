@@ -27,16 +27,21 @@ layout: default
             {%- if forloop.last == false %}, {% endif -%}
             {% endfor %}
             {%- endif %}
-            {%- if page.tags -%}
-            <span>[
+        </p>
+        {%- if page.tags -%}
+        <p>
+            <span>
+                [
                 {% for tag in page.tags %}
                 {% capture tag_name %}{{ tag }}{% endcapture %}
-                <a href="/tag/{{ tag_name }}"><code
-                        class="highligher-rouge"><nobr>{{ tag_name }}</nobr></code>&nbsp;</a>
+                <a href="/tag/{{ tag_name }}">
+                    <code class="highligher-rouge"><nobr>{{ tag_name }}</nobr>
+                    </code></a>
                 {% endfor %}
-                ]</span>
-            {%- endif %}
+                ]
+            </span>
         </p>
+        {%- endif %}
 
         {% if page.categories.size > 0 and site.show_tags %}
         <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i>

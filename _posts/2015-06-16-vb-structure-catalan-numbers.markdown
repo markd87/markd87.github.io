@@ -3,6 +3,7 @@ layout: post
 title:  "Valence bond structures and Catalan numbers"
 date:   2015-06-16 11:00:00 +0100
 categories: posts
+tags: science math coding
 ---
 
 The Valence Bond theory (VB) describes chemical bonds in molecules. It is an alternative description to the 

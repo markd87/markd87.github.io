@@ -3,6 +3,7 @@ layout: post
 title:  "Finance dojo"
 date:   2019-07-24 21:39:00 +0100
 categories: posts
+tags: datascience coding
 ---
 
 I recently  went to a data science for finance meetup at M&G Investments,which turned out to be a data science dojo run by M&G employees, where a data science task related to a finance data set is given and atendees work and discuss it, 
