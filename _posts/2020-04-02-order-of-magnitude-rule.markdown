@@ -2,7 +2,6 @@
 layout: post
 title:  "Order of magnitude rule"
 date:   2020-04-02 23:28:00 +0000
-categories: posts
 tags: thoughts
 ---
 

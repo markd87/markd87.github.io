@@ -38,6 +38,15 @@ layout: default
       {% else %}
       {%- include post_list.html -%}
       {%- endif -%}
+      {%- if post.tags -%}
+      {% for tag in post.tags %}
+      {% capture tag_name %}{{ tag }}{% endcapture %}
+      <a class="category-tags-link" href="/tag/{{ tag_name }}">
+        {{ tag_name }}
+      </a>
+      {% unless forloop.last %}&nbsp;{% endunless %}
+      {% endfor %}
+      {%- endif %}
     </li>
     {%- endfor -%}
   </ul>

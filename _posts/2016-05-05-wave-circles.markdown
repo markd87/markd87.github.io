@@ -2,8 +2,7 @@
 layout: post
 title:  "Wave circles"
 date:   2016-05-06 16:05:31 +0000
-categories: posts
-tags: coding
+tags: coding 
 ---
 
 A while ago I saw this nice animation (not sure what is the original source, but it can be found in different places on the web) demonstrating a propagation 

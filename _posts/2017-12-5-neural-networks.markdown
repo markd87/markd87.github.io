@@ -2,7 +2,7 @@
 layout: post
 title:  "Neural Networks"
 date:   2017-12-05 22:00:00 +0100
-categories: posts
+tags: deeplearning
 ---
 
 The human brain is arguably the most sophisticated and complicated device ever "created". The thought of humans trying and succeeding to some extent, to understand the way the brain works is astonishing.

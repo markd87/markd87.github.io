@@ -2,7 +2,7 @@
 layout: post
 title:  "Pothole classifier using fastai"
 date:   2020-03-12 21:48:00 +0000
-categories: apps
+tags: app deeplearning
 ---
 
 

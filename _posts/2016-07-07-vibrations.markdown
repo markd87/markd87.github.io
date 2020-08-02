@@ -2,7 +2,6 @@
 layout: post
 title:  "Vibrations and normal modes"
 date:   2016-07-07 15:05:00 +0100
-categories: posts
 coding: physics
 ---
 

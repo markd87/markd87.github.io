@@ -2,7 +2,6 @@
 layout: post
 title:  "Fourier and the Beatles"
 date:   2015-11-10 18:45:31 +0100
-categories: posts
 tags: math
 ---
 

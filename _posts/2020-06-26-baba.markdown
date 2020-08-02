@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "Baba"
-date:   2020-06-26 09:04
-tags:   personal thoughts
+date: 2020-06-26 09:04
+tags: thoughts
 ---
 
 My grandmother passed away 30 days ago, about 3 months before her 90th birthday.

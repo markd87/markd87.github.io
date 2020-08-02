@@ -2,7 +2,7 @@
 layout: post
 title:  "Machine Learning classification"
 date:   2016-08-08 13:00:00 +0100
-categories: posts
+tags: machinelearning
 ---
 
 The purpose of this article is to serve as a playground for demonstrating the use of some of the common supervised classification algorithms using the <a href='http://scikit-learn.org/' target='_blank'>scikit-learn</a> library, which is a widely used popular machine learning library with a very detailed documentation

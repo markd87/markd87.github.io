@@ -30,21 +30,18 @@ layout: default
         </p>
         {%- if page.tags -%}
         <p>
-            <span>
-                [
-                {% for tag in page.tags %}
-                {% capture tag_name %}{{ tag }}{% endcapture %}
-                <a href="/tag/{{ tag_name }}">
-                    <code class="highligher-rouge"><nobr>{{ tag_name }}</nobr></code>
-                </a>
-                {% endfor %}
-                ]
-            </span>
+            {% for tag in page.tags %}
+            {% capture tag_name %}{{ tag }}{% endcapture %}
+            <a class="category-tags-link" href="/tag/{{ tag_name }}">
+                {{ tag_name }}
+            </a>
+            {% unless forloop.last %}|{% endunless %}
+            {% endfor %}
         </p>
         {%- endif %}
 
         {% if page.categories.size > 0 and site.show_tags %}
-        <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i>
+        <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i>
             {% for category in  page.categories  %}
             <a class="category-tags-link" href="{{site.baseurl}}/categories/#{{category|slugize}}">{{category}}</a>
             {% unless forloop.last %}&nbsp;{% endunless %}

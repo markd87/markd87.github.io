@@ -2,7 +2,6 @@
 layout: post
 title:  "Julia sets"
 date:   2016-01-11 17:00:00 +0100
-categories: posts
 tags: math
 ---
 

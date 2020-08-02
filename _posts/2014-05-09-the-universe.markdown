@@ -2,7 +2,6 @@
 layout: post
 title:  "The Universe"
 date:   2014-05-09 20:05:31 +0100
-categories: posts
 tags: physics
 ---
 
