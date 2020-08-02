@@ -3,6 +3,7 @@ layout: post
 title:  "The Universe"
 date:   2014-05-09 20:05:31 +0100
 categories: posts
+tags: physics
 ---
 
 Cosmology is one of the most awe inspiring fields in all of science. To think that humans, a specie that originated $$ \sim 10^5 $$ years ago 
