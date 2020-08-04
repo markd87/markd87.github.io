@@ -9,7 +9,7 @@ tags: physics
 A white dwarf is the amusing name given to the last stage of the life of medium sized stars (<5 solar masses). 
 Stars are huge nuclear furnaces, where nuclear fusion (converting hydrogen nuclei to helium nuclei ) provides the energy, which is released as light and heat and provides sufficient pressure against the star's gravity. However, once the nuclear fusion fuel runs out, there is nothing else to hold the star. Or is there?
 
-The first white dwarf was discovered in 1862, Sirius B, the companion star in the Sirius binary system. At the time it was just another star, much smaller and less bright than Sirius A (the brightest star in the night sky), however once the star's radius (0.008 $R_{sun}$) and mass ($\sim 1M_{sun}$) were calculated (from its Luminosity using Stefan-Boltzman Law and from its orbit around Sirius A), it was evident that it is no usual star, it's the mass of the sun tightly packed in a volume the size of the earth.
+The first white dwarf was discovered in 1862, Sirius B, the companion star in the Sirius binary system. At the time it was just another star, much smaller and less bright than Sirius A (the brightest star in the night sky), however once the star's radius (0.008 $R_{sun}$) and mass ($\sim 1M_{sun}$) were calculated (from its Luminosity using Stefan-Boltzmann Law and from its orbit around Sirius A), it was evident that it is no usual star, it's the mass of the sun tightly packed in a volume the size of the earth.
 
 The reason I've decided to write about white dwarfs is because it's one of the best examples of quantum mechanics manifesting itself on the largest scales, scales where typically only gravity is relevant.
 

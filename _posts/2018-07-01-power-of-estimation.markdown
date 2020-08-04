@@ -2,7 +2,6 @@
 layout: post
 title:  "Power of estimations"
 date:   2019-07-01 17:03:47 +0100
-categories: posts
 tags: physics science
 ---
 
@@ -53,42 +52,42 @@ expansion, conveniently giving the time elapsed and the distance scales on the p
 estimate this energy. In any dimensional analysis problem, one looks for dimensionless parameters constructed from the relevant physical
 parameters in the problem. The parameters he used were $$ E $$ - total energy, $$ \rho $$ - external density, $$ t $$ - time elapsed, $$ r $$ - radius of expansion.
 
-$$\begin{eqnarray} 
+$$\begin{gathered}
  [E] &=& M L^2 S^{-2} \\
  [\rho] &=& M L^{-3} \\
  [t] &=& S \\
  [r] &=& L
-\end{eqnarray}$$
+\end{gathered}$$
 
 We need to find the exponents which will give a dimensionless quantity:
 
-$$\begin{eqnarray} 
+$$\begin{gathered} 
 	E^{a}\rho^{b}t^{c}r^{d} &=& const,  \\
 	M^{a}L^{2a}S^{-2a}M^bL^{-3b}S^{c}L^d &=& M^{a+b}L^{2a-3b+d}S^{c-2a}
-\end{eqnarray}$$
+\end{gathered}$$
 
 Therefore,
 
-\$$\begin{eqnarray} 
-	a+b=0, \\
-	2a-3b+d=0, \\
-	c-2a=0 \\
-\end{eqnarray}$$
+$$\begin{gathered} 
+	a+b &=&0, \\
+	2a-3b+d &=& 0, \\
+	c-2a &=& 0 
+\end{gathered}$$
 
 The answer doesn't have to be unique, since we can take the constant to any power.
 We get
 
-\$$\begin{eqnarray} 
-	a=-b,
-	d=5b,
-	c=-2b
-\end{eqnarray}$$
+$$\begin{gathered} 
+	a &=& -b, \\
+	d &=& 5b, \\
+	c &=& -2b
+\end{gathered}$$
 	
 taking $$ b=1 $$, gives $$ a=-1 $$, $$ c=-2 $$, $$ d=5 $$ and the dimensionless parameter is:
 
-\$$
+$$\begin{gathered} 
 	const=\frac{r^5\rho}{t^2E}
-$$
+\end{gathered}$$
 
 Estimating the constant to be of order unity and using a photo such as this:
 <br>

@@ -2,7 +2,6 @@
 layout: post
 title:  "Rocket equation"
 date:   2019-10-06 20:03:00 +0100
-categories: posts
 tags: physics
 ---
 

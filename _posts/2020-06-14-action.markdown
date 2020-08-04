@@ -15,19 +15,19 @@ the kinetic energy and $V$ the potential energy. This quantity seems a bit stran
 The action is defined for a given trajectory of the system in time and space as the integral of the Lagrangian over
 the path starting at time $a$ and position $q(a)$ and ending at time $b$ and position $q(b)$.
 
-\begin{align}
+$$\begin{gathered}
 S = \int_{a}^{b} L(q(t),\dot{q}(t),t) dt 
-\end{align}
+\end{gathered}$$
 
 The action is a functional (function of a function) of the Lagrangian, which can depend on general spatial coordinates $\{q\}$, their time derivative $\{\dot{q}\}$ and time $t$.
 
 The key deep insight to do with the action, is known as the principle of stationary action, which says that the real trajectory followed by the system satisfies $\delta S = 0$, i.e. small linear variations to the system's real trajectory are zeroed in the action.
 
-The condition $\delta S=0$ results in a famous equation, which the Lagrangian satisfies, known as the (Euler-Lagrange)[https://en.wikipedia.org/wiki/Euler%E2%80%93Lagrange_equation] (EL) equation:
+The condition $\delta S=0$ results in a famous equation, which the Lagrangian satisfies, known as the [Euler-Lagrange](https://en.wikipedia.org/wiki/Euler%E2%80%93Lagrange_equation) (EL) equation:
 
-\begin{align}
+$$\begin{gathered}
 \frac{\partial L}{\partial q} - \frac{d}{dt}\frac{\partial L}{\partial \dot{q}}=0.
-\end{align}
+\end{gathered}$$
 
 With this powerful principle, given the right action, one can obtain far reaching insights into nature such as Maxwell's equations, Einstein's General relativity, etc.
 
@@ -63,9 +63,11 @@ $L = \int_{x_a}^{x_b} (\lambda g y + h)\sqrt{1+y'^2} - h l$.
 Since this Lagrangian is independent of $x$ we can use Noether's theorem mentioned above, which says that there is a conserved quantity, given by
 $Q = \frac{\partial L}{\partial y'}y'-\mathcal{L}$. Plugging in gives,
 $\frac{ y + c}{\sqrt{1+y'^2}} = q$, where we renamed the constants. Using hyper-trigonometric identities ($\cosh^2 x - \sinh^2x =1$), the general solution satisfying this equation is
-\begin{align}
+
+$$\begin{gathered}
 y = -c + q\cosh(\frac{1}{q}x + p),
-\end{align}
+\end{gathered}$$
+
 where $c, q, p$ are constants, which depend on the chain's two end points and total length $l$.
 This is the general shape of the hanging chain, known as [catenary](https://en.wikipedia.org/wiki/Catenary).
 
