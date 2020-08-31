@@ -459,13 +459,16 @@ train(cont_img,
     save_name=save_name)
 ```
 
-<center>
-
-|           Content Image (Horses)            |   Style Image (Starry night by Vincent Van Gogh )    |
-| :-----------------------------------------: | :--------------------------------------------------: |
-| ![horses](/assets/styletransfer/horses.jpg) | ![starynight](/assets/styletransfer/stary_night.jpg) |
-
-</center>
+<table class="center_table">
+<tr>
+<td>Content Image: Horses</td>
+<td>Style Image: Starry night by Vincent Van Gogh</td>
+</tr>
+<tr>
+<td> <img src = 'assets/styletransfer/horses.jpg' style="width: 350px;"/> </td><td> <img src='assets/styletransfer/stary_night.jpg' style="width: 350px;"/> </td>
+</tr>
+<tr>
+<table>
 
 Result:
 
@@ -473,38 +476,46 @@ Result:
 
 Here I used `epochs=200`. Training for more epochs will further reduce the loss making the image match the style more and more at the expanse of losing the content information.
 
-<center>
-
-|           Content Image (Horses)            |     Style Image (The Scream by Munch)     |
-| :-----------------------------------------: | :---------------------------------------: |
-| ![horses](/assets/styletransfer/horses.jpg) | ![munch](/assets/styletransfer/munch.jpg) |
-
-</center>
+<table class="center_table">
+<tr>
+<td>Content Image: Horses</td>
+<td>Style Image: The Scream by Munch</td>
+</tr>
+<tr>
+<td> <img src = 'assets/styletransfer/horses.jpg' style="width: 350px;"/> </td><td> <img src='assets/styletransfer/munch.jpg' style="width: 350px;"/> </td>
+</tr>
+<tr>
+<table>
 
 Result:
 
 ![horsesmunch](/assets/styletransfer/horses_munch.jpg)
 
-<center>
-
-|           Content Image (Horses)            |                            Style Image ( The Great Wave)                            |
-| :-----------------------------------------: | :---------------------------------------------------------------------------------: |
-| ![horses](/assets/styletransfer/horses.jpg) | <img src="/assets/styletransfer/great_wave.jpg" alt="drawing" style="width:900px"/> |
-|                                             |
-
-</center>
+<table class="center_table">
+<tr>
+<td>Content Image: Horses</td>
+<td>Style Image: The Great Wave</td>
+</tr>
+<tr>
+<td> <img src = 'assets/styletransfer/horses.jpg' style="width: 350px;"/> </td><td> <img src='assets/styletransfer/great_wave.jpg' style="width: 350px;"/> </td>
+</tr>
+<tr>
+<table>
 
 Result:
 
 ![horses](/assets/styletransfer/horses_wave.jpg)
 
-<center>
-
-|           Content Image (Horses)            |             Style Image (Picasso)             |
-| :-----------------------------------------: | :-------------------------------------------: |
-| ![horses](/assets/styletransfer/horses.jpg) | ![picasso](/assets/styletransfer/picasso.jpg) |
-
-</center>
+<table class="center_table">
+<tr>
+<td>Content Image: Horses</td>
+<td>Style Image: Picasso</td>
+</tr>
+<tr>
+<td> <img src = 'assets/styletransfer/horses.jpg' style="width: 350px;"/> </td><td> <img src='assets/styletransfer/picasso.jpg' style="width: 350px;"/> </td>
+</tr>
+<tr>
+<table>
 
 Result:
 
@@ -512,13 +523,16 @@ Result:
 
 In the next example I used `epochs=1000` and `style_ratio=1e5`:
 
-<center>
-
-|         Content Image (Edinburgh)         |    Style Image (Starry Night by Vincent Van Gogh)     |
-| :---------------------------------------: | :---------------------------------------------------: |
-| ![edinb](/assets/styletransfer/edinb.jpg) | ![stary_night](/assets/styletransfer/stary_night.jpg) |
-
-</center>
+<table class="center_table">
+<tr>
+<td>Content Image: Edinburgh</td>
+<td>Style Image: Starry Night by Vincent Van Gogh</td>
+</tr>
+<tr>
+<td> <img src = 'assets/styletransfer/edinb.jpg' style="width: 350px;"/> </td><td> <img src='assets/styletransfer/stary_night.jpg' style="width: 350px;"/> </td>
+</tr>
+<tr>
+<table>
 
 Result:
 

@@ -1,24 +1,24 @@
-  
 /*-----------------------------------*/
 /*--- IMPORT STYLES FOR FASTPAGES ---*/
-@import "minima/fastpages-styles";   
-
-
+@import "minima/fastpages-styles";
 
 /*-----------------------------------*/
 /*----- ADD YOUR STYLES BELOW -------*/
 
 .post-content {
-    font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
+.center_table {
+  margin-left: auto;
+  margin-right: auto;
+}
 
 // If you want to turn off dark background for syntax highlighting, comment or delete the below line.
-@import "minima/fastpages-dracula-highlight"; 
+@import "minima/fastpages-dracula-highlight";
 
-@media screen and (min-width: 800px) 
-{
-    .wrapper {
-        max-width: calc(950px - (30px * 2));
-    }
+@media screen and (min-width: 800px) {
+  .wrapper {
+    max-width: calc(950px - (30px * 2));
+  }
 }
