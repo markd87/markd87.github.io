@@ -468,7 +468,7 @@ train(cont_img,
 <td> <img src = '/assets/styletransfer/horses.jpg' style="width: 350px;"/> </td>
 <td> <img src='/assets/styletransfer/stary_night.jpg' style="width: 350px;"/> </td>
 </tr>
-<table>
+</table>
 
 Result:
 
@@ -485,7 +485,7 @@ Here I used `epochs=200`. Training for more epochs will further reduce the loss 
 <td> <img src = '/assets/styletransfer/horses.jpg' style="width: 350px;"/> </td>
 <td> <img src='/assets/styletransfer/munch.jpg' style="width: 350px;"/> </td>
 </tr>
-<table>
+</table>
 
 Result:
 
@@ -500,7 +500,7 @@ Result:
 <td> <img src = '/assets/styletransfer/horses.jpg' style="width: 350px;"/> </td>
 <td> <img src='/assets/styletransfer/great_wave.jpg' style="width: 350px;"/> </td>
 </tr>
-<table>
+</table>
 
 Result:
 
@@ -515,7 +515,7 @@ Result:
 <td> <img src = '/assets/styletransfer/horses.jpg' style="width: 350px;"/> </td>
 <td> <img src='/assets/styletransfer/picasso.jpg' style="width: 350px;"/> </td>
 </tr>
-<table>
+</table>
 
 Result:
 
@@ -532,7 +532,7 @@ In the next example I used `epochs=1000` and `style_ratio=1e5`:
 <td> <img src = '/assets/styletransfer/edinb.jpg' style="width: 350px;"/> </td>
 <td> <img src='/assets/styletransfer/stary_night.jpg' style="width: 350px;"/> </td>
 </tr>
-<table>
+</table>
 
 Result:
 
