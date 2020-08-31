@@ -465,9 +465,9 @@ train(cont_img,
 <td>Style Image: Starry night by Vincent Van Gogh</td>
 </tr>
 <tr>
-<td> <img src = 'assets/styletransfer/horses.jpg' style="width: 350px;"/> </td><td> <img src='assets/styletransfer/stary_night.jpg' style="width: 350px;"/> </td>
+<td> <img src = '/assets/styletransfer/horses.jpg' style="width: 350px;"/> </td>
+<td> <img src='/assets/styletransfer/stary_night.jpg' style="width: 350px;"/> </td>
 </tr>
-<tr>
 <table>
 
 Result:
@@ -482,9 +482,9 @@ Here I used `epochs=200`. Training for more epochs will further reduce the loss 
 <td>Style Image: The Scream by Munch</td>
 </tr>
 <tr>
-<td> <img src = 'assets/styletransfer/horses.jpg' style="width: 350px;"/> </td><td> <img src='assets/styletransfer/munch.jpg' style="width: 350px;"/> </td>
+<td> <img src = '/assets/styletransfer/horses.jpg' style="width: 350px;"/> </td>
+<td> <img src='/assets/styletransfer/munch.jpg' style="width: 350px;"/> </td>
 </tr>
-<tr>
 <table>
 
 Result:
@@ -497,9 +497,9 @@ Result:
 <td>Style Image: The Great Wave</td>
 </tr>
 <tr>
-<td> <img src = 'assets/styletransfer/horses.jpg' style="width: 350px;"/> </td><td> <img src='assets/styletransfer/great_wave.jpg' style="width: 350px;"/> </td>
+<td> <img src = '/assets/styletransfer/horses.jpg' style="width: 350px;"/> </td>
+<td> <img src='/assets/styletransfer/great_wave.jpg' style="width: 350px;"/> </td>
 </tr>
-<tr>
 <table>
 
 Result:
@@ -512,9 +512,9 @@ Result:
 <td>Style Image: Picasso</td>
 </tr>
 <tr>
-<td> <img src = 'assets/styletransfer/horses.jpg' style="width: 350px;"/> </td><td> <img src='assets/styletransfer/picasso.jpg' style="width: 350px;"/> </td>
+<td> <img src = '/assets/styletransfer/horses.jpg' style="width: 350px;"/> </td>
+<td> <img src='/assets/styletransfer/picasso.jpg' style="width: 350px;"/> </td>
 </tr>
-<tr>
 <table>
 
 Result:
@@ -529,9 +529,9 @@ In the next example I used `epochs=1000` and `style_ratio=1e5`:
 <td>Style Image: Starry Night by Vincent Van Gogh</td>
 </tr>
 <tr>
-<td> <img src = 'assets/styletransfer/edinb.jpg' style="width: 350px;"/> </td><td> <img src='assets/styletransfer/stary_night.jpg' style="width: 350px;"/> </td>
+<td> <img src = '/assets/styletransfer/edinb.jpg' style="width: 350px;"/> </td>
+<td> <img src='/assets/styletransfer/stary_night.jpg' style="width: 350px;"/> </td>
 </tr>
-<tr>
 <table>
 
 Result:
