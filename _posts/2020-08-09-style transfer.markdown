@@ -442,12 +442,12 @@ plt.imshow(style_img)
 
 ## Run training
 
+```python
 train(cont_img,
-style_img,
-style_ratio=style_ratio,
-epochs=epochs,
-save_name=save_name)
-
+    style_img,
+    style_ratio=style_ratio,
+    epochs=epochs,
+    save_name=save_name)
 ```
 
 |           Content Image (Horses)            |   Style Image (Starry night by Vincent Van Gogh )    |
@@ -484,7 +484,6 @@ Result:
 Result:
 
 ![horsespicasso](/assets/styletransfer/horses_picasso.jpg)
-```
 
 An example (log) loss curve from the training, showing that given the weights, the loss is primarily driven by the style loss:
 
