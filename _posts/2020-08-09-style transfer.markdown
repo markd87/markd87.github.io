@@ -125,7 +125,8 @@ class StyleTransfer(nn.Module):
       if isinstance(layer, torch.nn.MaxPool2d):
         self.model[i] = torch.nn.AvgPool2d(kernel_size=2, stride=2, padding=0)
 
-    # The model weights are fixed, we're not gonna backprop them, therefore can set their requires grad to False.
+    # The model weights are fixed, we're not gonna backprop them,
+    # therefore can set their requires grad to False.
     for param in self.model.parameters():
       param.requires_grad = False
 
@@ -306,7 +307,8 @@ def train(cont_img,
     Images are saved with the name prefix.
     """
 
-    # create image loader for the model's input i.e. transforming to tensor and adding batch axis
+    # create image loader for the model's input i.e.
+    # transforming to tensor and adding batch axis
     cont_img = prepare_img(cont_img)
     style_img = prepare_img(style_img)
 
@@ -317,7 +319,11 @@ def train(cont_img,
     # The random alternative
     # gen_img = torch.rand_like(cont_img).requires_grad_(True)
 
-    # Initialize the style transfer model and move it to the device. The eval command is needed to let pytorch know when we are using the model for evaluation and not training. This only controls things like batch norm and dropout, which we don't have in this model, but good practice
+    # Initialize the style transfer model and move it to the device.
+    # The eval command is needed to let pytorch
+    # know when we are using the model for evaluation and not training.
+    # This only controls things like batch norm and dropout,
+    # which we don't have in this model, but good practice
     model = StyleTransfer().to(device).eval()
 
     # Define optimizer with the learning parameters being the input image pixels and a learning lrate
@@ -329,7 +335,8 @@ def train(cont_img,
     tot_losses = []
 
     # Run style and content image through model
-    # the detach() command, removes the passed images from the computation graph, as we don't need to track gradients for the operations done on them.
+    # the detach() command, removes the passed images from the computation graph,
+    # as we don't need to track gradients for the operations done on them.
     orig_output = model(cont_img.detach())
     style_output = model(style_img.detach())
 
@@ -399,8 +406,8 @@ def train(cont_img,
 
     # Show loss through training process
     plt.figure()
-    plt.plot(np.log(s_losses), label='style loss', color='red')
-    plt.plot(np.log(c_losses), label='content loss', color='blue')
+    plt.plot(np.log(style_losses), label='style loss', color='red')
+    plt.plot(np.log(content_losses), label='content loss', color='blue')
     plt.plot(np.log(tot_losses), label='Total loss', color='black')
 
     # Show and save final image
@@ -419,10 +426,12 @@ Define parameters:
 ```python
 # These were chosen by trying what gives desired results
 # see note above regarding number of epochs.
-# There is no point going too high with the style loss, as at some point, it will simply be the entire loss, and as we're starting from the content, it won't change much the final output.
-epochs = 500  # training epochs
-style_ratio = 1e3  # the style loss weight relative to content. T
-content_image = "horses.jpg"  # content image
+# There is no point going too high with the style loss, as at some point, it will
+# simply be the entire loss, and as we're starting from the content, it won't
+# change much the final output.
+epochs = 500  # number of training epochs
+style_ratio = 1e3  # the style loss weight relative to content loss
+content_image = "horses.jpg"
 style_image = "stary_night.jpg"
 save_name = "horses_stary"  # filename for the output
 ```
@@ -451,9 +460,11 @@ train(cont_img,
 ```
 
 <center>
+
 |           Content Image (Horses)            |   Style Image (Starry night by Vincent Van Gogh )    |
 | :-----------------------------------------: | :--------------------------------------------------: |
 | ![horses](/assets/styletransfer/horses.jpg) | ![starynight](/assets/styletransfer/stary_night.jpg) |
+
 </center>
 
 Result:
@@ -463,9 +474,11 @@ Result:
 Here I used `epochs=200`. Training for more epochs will further reduce the loss making the image match the style more and more at the expanse of losing the content information.
 
 <center>
+
 |           Content Image (Horses)            |     Style Image (The Scream by Munch)     |
 | :-----------------------------------------: | :---------------------------------------: |
 | ![horses](/assets/styletransfer/horses.jpg) | ![munch](/assets/styletransfer/munch.jpg) |
+
 </center>
 
 Result:
@@ -473,10 +486,12 @@ Result:
 ![horsesmunch](/assets/styletransfer/horses_munch.jpg)
 
 <center>
+
 |           Content Image (Horses)            |                            Style Image ( The Great Wave)                            |
 | :-----------------------------------------: | :---------------------------------------------------------------------------------: |
 | ![horses](/assets/styletransfer/horses.jpg) | <img src="/assets/styletransfer/great_wave.jpg" alt="drawing" style="width:900px"/> |
 |                                             |
+
 </center>
 
 Result:
@@ -484,21 +499,25 @@ Result:
 ![horses](/assets/styletransfer/horses_wave.jpg)
 
 <center>
-|           Content Image (Horses)            |            Style Image (Picasso)             |
+
+|           Content Image (Horses)            |             Style Image (Picasso)             |
 | :-----------------------------------------: | :-------------------------------------------: |
 | ![horses](/assets/styletransfer/horses.jpg) | ![picasso](/assets/styletransfer/picasso.jpg) |
+
 </center>
 
 Result:
 
 ![horsespicasso](/assets/styletransfer/horses_picasso.jpg)
 
-In this example I used `epochs=1000` and `style_ratio=1e5`:
+In the next example I used `epochs=1000` and `style_ratio=1e5`:
 
 <center>
-|           Content Image (Edinburgh)            |            Style Image (Starry Night by Vincent Van Gogh)  |
-| :-----------------------------------------: | :-------------------------------------------: |
-| ![edinb](/assets/styletransfer/edinb.jpg) | ![picasso](/assets/styletransfer/stary_night.jpg) |
+
+|         Content Image (Edinburgh)         |    Style Image (Starry Night by Vincent Van Gogh)     |
+| :---------------------------------------: | :---------------------------------------------------: |
+| ![edinb](/assets/styletransfer/edinb.jpg) | ![stary_night](/assets/styletransfer/stary_night.jpg) |
+
 </center>
 
 Result:
