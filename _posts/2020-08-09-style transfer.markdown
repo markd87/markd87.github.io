@@ -521,7 +521,7 @@ Result:
 
 ![horsespicasso](/assets/styletransfer/horses_picasso.jpg)
 
-In the next example I used `epochs=1000` and `style_ratio=1e5`:
+In the next example I used epochs = 1000 and style_ratio = 1e5:
 
 <table class="center_table">
 <tr>
