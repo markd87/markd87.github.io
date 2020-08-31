@@ -2,7 +2,7 @@
 layout: post
 title: "Style Transfer"
 date: 2020-08-09 17:40:00 +0100
-tags: deep learning
+tags: deeplearning pytorch
 ---
 
 The idea of style transfer is to re-imagine an image in a style of another image by "transferring"
@@ -440,7 +440,7 @@ plt.subplot(1,2,2)
 plt.imshow(style_img)
 ```
 
-# Run training
+## Run training
 
 train(cont_img,
 style_img,
