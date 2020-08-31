@@ -288,6 +288,9 @@ def variation_loss(input):
 
 ## Training loop
 
+In the paper a random image (i.e. pixels normally distributed with mean 0 std 1) was used as the initial input. Here I use the content image as the starting point, which requires less training epochs to get
+a decent result.
+
 ```python
 def train(cont_img,
           style_img,
@@ -303,27 +306,43 @@ def train(cont_img,
     Images are saved with the name prefix.
     """
 
-    # the generated image is the input image which we clone
-    # and set as requiring gradient i.e. trainable
-    gen_img = cont_img.clone().requires_grad_(True)
+    # create image loader for the model's input i.e. transforming to tensor and adding batch axis
+    cont_img = prepare_img(cont_img)
+    style_img = prepare_img(style_img)
+
+    # The generated image is the input image which
+    # we set as trainable, i.e. requiring gradient calculation
+    gen_img = cont_img.requires_grad_(True)
+
+    # The random alternative
     # gen_img = torch.rand_like(cont_img).requires_grad_(True)
 
-    # initialize model and move it to the device
+    # Initialize the style transfer model and move it to the device. The eval command is needed to let pytorch know when we are using the model for evaluation and not training. This only controls things like batch norm and dropout, which we don't have in this model, but good practice
     model = StyleTransfer().to(device).eval()
 
-    # define optimizer, with the learning parameters being the input image
+    # Define optimizer with the learning parameters being the input image pixels and a learning lrate
     optimizer = optim.Adam([gen_img], lr=0.03)
 
-    # Training loop, updating the input image
-    s_losses = []
-    c_losses = []
+    # Lists to store the epoch losses
+    style_losses = []
+    content_losses = []
     tot_losses = []
 
+    # Run style and content image through model
+    # the detach() command, removes the passed images from the computation graph, as we don't need to track gradients for the operations done on them.
     orig_output = model(cont_img.detach())
     style_output = model(style_img.detach())
+
+    # Get content features from the content image
     content_target = orig_output['content']
+
+    # Get style feature from the style image
     style_target = style_output['style']
 
+    # Get number of layers for normalisation
+    num_style_layers = len(style_target)
+
+    # Start training
     print(f"Training for {epochs} epochs, with style ratio: {style_ratio}")
     for i in notebook.tqdm(range(epochs)):
 
@@ -331,52 +350,50 @@ def train(cont_img,
         # on each iteration
         optimizer.zero_grad()
 
-        # Run image through model
+        # Run the input image through model
         gen_output = model(gen_img)
 
-        # get content output list
+        # Get content features for the input image
         gen_content = gen_output['content']
 
-        # get style output list
+        # Get style features for the input image
         gen_style = gen_output['style']
 
-        style_layers = len(style_target)
-        content_layers = len(content_target)
-
-        # initialize losses
+        # Initialize losses
         style_loss_tot = 0
         cont_loss_tot = 0
 
-        # Compute style loss
+        # Compute style loss and add it to total from each feature layer
         for j, stl in enumerate(gen_style):
             style_loss_tot += style_loss(stl, style_target[j])
 
-        # normalize by number of layers
-        style_loss_tot /= style_layers
+        # Normalize by number of layers
+        style_loss_tot /= num_style_layers
 
         # Compute content loss (one layer)
         cont_loss_tot = content_loss(gen_content[0], content_target[0])
 
-        # weighted sum of style and content loss
+        # Compute total loss as a weighted sum of style and content loss
         loss = style_ratio*style_loss_tot + cont_loss_tot
 
-        # add variation loss
+        # Add variation loss
         loss += variation_weight*variation_loss(gen_img)
 
-        # perform back propagation (calculate gradients)
+        # Perform back propagation (calculate gradients)
         loss.backward()
-        # make gradient descent step
+
+        # Make gradient descent step
         optimizer.step()
 
         # Track style, content and total loss for plotting
-        s_losses.append(style_ratio*style_loss_tot)
-        c_losses.append(cont_loss_tot)
+        style_losses.append(style_ratio*style_loss_tot)
+        content_losses.append(cont_loss_tot)
         tot_losses.append(loss)
 
         # Optional save intermediate images
         if save_intermediate:
-            if i%20 == 0 and i>0:
-                print(f'saving image {i}')
+            if i%50 == 0 and i>0:
+                print(f"saving image {i}")
                 conv_img = convert_img(gen_img.detach())
                 save_image(conv_img, save_name + '.jpg')
 
@@ -397,6 +414,21 @@ def train(cont_img,
 
 Example:
 
+Define parameters:
+
+```python
+# These were chosen by trying what gives desired results
+# see note above regarding number of epochs.
+# There is no point going too high with the style loss, as at some point, it will simply be the entire loss, and as we're starting from the content, it won't change much the final output.
+epochs = 500  # training epochs
+style_ratio = 1e3  # the style loss weight relative to content. T
+content_image = "horses.jpg"  # content image
+style_image = "stary_night.jpg"
+save_name = "horses_stary"  # filename for the output
+```
+
+Load content and style images:
+
 ```python
 cont_img = load_img(content_image)
 style_img = load_img(style_image)
@@ -408,54 +440,52 @@ plt.subplot(1,2,2)
 plt.imshow(style_img)
 ```
 
-Define parameters:
-
-```python
-epochs = 500  # training epochs
-style_ratio = 1e3  # the style loss weight relative to content
-content_image = "horses.jpg"  # content image
-style_image = "stary_night.jpg"
-save_name = "horses_stary"  # filename for the output
-
 # Run training
+
 train(cont_img,
-      style_img,
-      style_ratio=style_ratio,
-      epochs=epochs,
-      save_name=save_name)
+style_img,
+style_ratio=style_ratio,
+epochs=epochs,
+save_name=save_name)
+
 ```
 
-|            Content Image (Horses)             |    Style Image (Starry night by Vincent Van Gogh )     |
-| :-------------------------------------------: | :----------------------------------------------------: |
-| ![horses](../assets/styletransfer/horses.jpg) | ![starynight](../assets/styletransfer/stary_night.jpg) |
+|           Content Image (Horses)            |   Style Image (Starry night by Vincent Van Gogh )    |
+| :-----------------------------------------: | :--------------------------------------------------: |
+| ![horses](/assets/styletransfer/horses.jpg) | ![starynight](/assets/styletransfer/stary_night.jpg) |
 
 Result:
 
-![horses](../assets/styletransfer/horses_stary.jpg)
+![horses](/assets/styletransfer/horses_stary.jpg)
 
 Here I used `epochs=200`. Training for more epochs will further reduce the loss making the image match the style more and more at the expanse of losing the content information.
 
-|            Content Image (Horses)             |      Style Image (The Scream by Munch)      |
-| :-------------------------------------------: | :-----------------------------------------: |
-| ![horses](../assets/styletransfer/horses.jpg) | ![munch](../assets/styletransfer/munch.jpg) |
+|           Content Image (Horses)            |     Style Image (The Scream by Munch)     |
+| :-----------------------------------------: | :---------------------------------------: |
+| ![horses](/assets/styletransfer/horses.jpg) | ![munch](/assets/styletransfer/munch.jpg) |
 
 Result:
 
-![horsesmunch](../assets/styletransfer/horses_munch.jpg)
+![horsesmunch](/assets/styletransfer/horses_munch.jpg)
 
-|            Content Image (Horses)             |                             Style Image ( The Great Wave)                             |
-| :-------------------------------------------: | :-----------------------------------------------------------------------------------: |
-| ![horses](../assets/styletransfer/horses.jpg) | <img src="../assets/styletransfer/great_wave.jpg" alt="drawing" style="width:900px"/> |
-|                                               |
-
-Result:
-
-![horses](../assets/styletransfer/horses_wave.jpg)
-
-|            Content Image (Horses)             |             Style Image ( Picasso)              |
-| :-------------------------------------------: | :---------------------------------------------: |
-| ![horses](../assets/styletransfer/horses.jpg) | ![picasso](../assets/styletransfer/picasso.jpg) |
+|           Content Image (Horses)            |                            Style Image ( The Great Wave)                            |
+| :-----------------------------------------: | :---------------------------------------------------------------------------------: |
+| ![horses](/assets/styletransfer/horses.jpg) | <img src="/assets/styletransfer/great_wave.jpg" alt="drawing" style="width:900px"/> |
+|                                             |
 
 Result:
 
-![horsespicasso](../assets/styletransfer/horses_picasso.jpg)
+![horses](/assets/styletransfer/horses_wave.jpg)
+
+|           Content Image (Horses)            |            Style Image ( Picasso)             |
+| :-----------------------------------------: | :-------------------------------------------: |
+| ![horses](/assets/styletransfer/horses.jpg) | ![picasso](/assets/styletransfer/picasso.jpg) |
+
+Result:
+
+![horsespicasso](/assets/styletransfer/horses_picasso.jpg)
+```
+
+An example (log) loss curve from the training, showing that given the weights, the loss is primarily driven by the style loss:
+
+![loss](/assets/styletransfer/loss_curve.png)
