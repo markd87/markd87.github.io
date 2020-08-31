@@ -222,7 +222,7 @@ def save_image(image, filename):
 ```
 
 Next we define the loss function, which the network will use to adjust it's input image in this case, in order to reduce the total loss.
-The loss in this case is a combination of 2 contributions: Style loss and content loss, each defined in the functions below:
+The loss in this case is a combination of 2 contributions: Style loss and content loss, each defined in the functions below. When training we additionally have a weight assigned to the style loss, which will allow to have the style influence more the total loss, and therefore the resulting image.
 
 The content loss is a simple pixel by pixels
 mean squared error loss, evaluated between the generated image content layer and the original image content layer.
@@ -327,53 +327,66 @@ def train(cont_img,
     print(f"Training for {epochs} epochs, with style ratio: {style_ratio}")
     for i in notebook.tqdm(range(epochs)):
 
-        # zero grad
+        # Zero the accumulated gradients
+        # on each iteration
         optimizer.zero_grad()
 
+        # Run image through model
         gen_output = model(gen_img)
+
+        # get content output list
         gen_content = gen_output['content']
+
+        # get style output list
         gen_style = gen_output['style']
 
         style_layers = len(style_target)
         content_layers = len(content_target)
 
+        # initialize losses
         style_loss_tot = 0
         cont_loss_tot = 0
 
-        # compute style loss
+        # Compute style loss
         for j, stl in enumerate(gen_style):
-        style_loss_tot += style_loss(stl, style_target[j])
+            style_loss_tot += style_loss(stl, style_target[j])
 
+        # normalize by number of layers
         style_loss_tot /= style_layers
 
-        # compute content loss
+        # Compute content loss (one layer)
         cont_loss_tot = content_loss(gen_content[0], content_target[0])
 
         # weighted sum of style and content loss
         loss = style_ratio*style_loss_tot + cont_loss_tot
+
+        # add variation loss
         loss += variation_weight*variation_loss(gen_img)
 
-        # perform back propagation
+        # perform back propagation (calculate gradients)
         loss.backward()
         # make gradient descent step
         optimizer.step()
 
+        # Track style, content and total loss for plotting
         s_losses.append(style_ratio*style_loss_tot)
         c_losses.append(cont_loss_tot)
         tot_losses.append(loss)
 
-        # save intermediate images
+        # Optional save intermediate images
         if save_intermediate:
-        if i%20 == 0 and i>0:
-            print(f'saving image {i}')
-            conv_img = convert_img(gen_img.detach())
-            save_image(conv_img, save_name + '.jpg')
+            if i%20 == 0 and i>0:
+                print(f'saving image {i}')
+                conv_img = convert_img(gen_img.detach())
+                save_image(conv_img, save_name + '.jpg')
 
+    # Show loss through training process
     plt.figure()
     plt.plot(np.log(s_losses), label='style loss', color='red')
     plt.plot(np.log(c_losses), label='content loss', color='blue')
     plt.plot(np.log(tot_losses), label='Total loss', color='black')
 
+    # Show and save final image
     plt.legend()
     plt.figure()
     conv_img = convert_img(gen_img.detach())
@@ -398,11 +411,11 @@ plt.imshow(style_img)
 Define parameters:
 
 ```python
-epochs = 500
-style_ratio = 1e3
-content_image = 'horses.jpg'
-style_image = 'stary_night.jpg'
-save_name = 'horses_stary'
+epochs = 500  # training epochs
+style_ratio = 1e3  # the style loss weight relative to content
+content_image = "horses.jpg"  # content image
+style_image = "stary_night.jpg"
+save_name = "horses_stary"  # filename for the output
 
 # Run training
 train(cont_img,
