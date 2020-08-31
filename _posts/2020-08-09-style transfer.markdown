@@ -450,9 +450,11 @@ train(cont_img,
     save_name=save_name)
 ```
 
+<center>
 |           Content Image (Horses)            |   Style Image (Starry night by Vincent Van Gogh )    |
 | :-----------------------------------------: | :--------------------------------------------------: |
 | ![horses](/assets/styletransfer/horses.jpg) | ![starynight](/assets/styletransfer/stary_night.jpg) |
+</center>
 
 Result:
 
@@ -460,30 +462,48 @@ Result:
 
 Here I used `epochs=200`. Training for more epochs will further reduce the loss making the image match the style more and more at the expanse of losing the content information.
 
+<center>
 |           Content Image (Horses)            |     Style Image (The Scream by Munch)     |
 | :-----------------------------------------: | :---------------------------------------: |
 | ![horses](/assets/styletransfer/horses.jpg) | ![munch](/assets/styletransfer/munch.jpg) |
+</center>
 
 Result:
 
 ![horsesmunch](/assets/styletransfer/horses_munch.jpg)
 
+<center>
 |           Content Image (Horses)            |                            Style Image ( The Great Wave)                            |
 | :-----------------------------------------: | :---------------------------------------------------------------------------------: |
 | ![horses](/assets/styletransfer/horses.jpg) | <img src="/assets/styletransfer/great_wave.jpg" alt="drawing" style="width:900px"/> |
 |                                             |
+</center>
 
 Result:
 
 ![horses](/assets/styletransfer/horses_wave.jpg)
 
-|           Content Image (Horses)            |            Style Image ( Picasso)             |
+<center>
+|           Content Image (Horses)            |            Style Image (Picasso)             |
 | :-----------------------------------------: | :-------------------------------------------: |
 | ![horses](/assets/styletransfer/horses.jpg) | ![picasso](/assets/styletransfer/picasso.jpg) |
+</center>
 
 Result:
 
 ![horsespicasso](/assets/styletransfer/horses_picasso.jpg)
+
+In this example I used `epochs=1000` and `style_ratio=1e5`:
+
+<center>
+|           Content Image (Edinburgh)            |            Style Image (Starry Night by Vincent Van Gogh)  |
+| :-----------------------------------------: | :-------------------------------------------: |
+| ![edinb](/assets/styletransfer/edinb.jpg) | ![picasso](/assets/styletransfer/stary_night.jpg) |
+</center>
+
+Result:
+
+![edinbstarry](/assets/styletransfer/edinb_starry.jpg)
 
 An example (log) loss curve from the training, showing that given the weights, the loss is primarily driven by the style loss:
 
