@@ -459,7 +459,9 @@ train(cont_img,
     save_name=save_name)
 ```
 
-<table class="center_table">
+## Examples:
+
+<table>
 <tr>
 <td>Content Image: Horses</td>
 <td>Style Image: Starry night by Vincent Van Gogh</td>
@@ -476,7 +478,7 @@ Result:
 
 Here I used `epochs=200`. Training for more epochs will further reduce the loss making the image match the style more and more at the expanse of losing the content information.
 
-<table class="center_table">
+<table>
 <tr>
 <td>Content Image: Horses</td>
 <td>Style Image: The Scream by Munch</td>
@@ -491,7 +493,7 @@ Result:
 
 ![horsesmunch](/assets/styletransfer/horses_munch.jpg)
 
-<table class="center_table">
+<table>
 <tr>
 <td>Content Image: Horses</td>
 <td>Style Image: The Great Wave</td>
@@ -506,7 +508,7 @@ Result:
 
 ![horses](/assets/styletransfer/horses_wave.jpg)
 
-<table class="center_table">
+<table>
 <tr>
 <td>Content Image: Horses</td>
 <td>Style Image: Picasso</td>
@@ -523,7 +525,7 @@ Result:
 
 In the next example I used epochs = 1000 and style_ratio = 1e5:
 
-<table class="center_table">
+<table>
 <tr>
 <td>Content Image: Edinburgh</td>
 <td>Style Image: Starry Night by Vincent Van Gogh</td>
