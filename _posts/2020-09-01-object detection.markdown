@@ -22,6 +22,38 @@ Here I wanted to try out the pre-trained model using PyTorch.
 
 The Google Colab notebook can be found [here](https://colab.research.google.com/drive/1zt--4f1v1o9Mmd481xKfYI4aF8Z9vhxm?usp=sharing).
 
+To see the allocated GPU specs:
+
+```bash
+!nvidia-smi
+```
+
+```
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 450.66       Driver Version: 418.67       CUDA Version: 10.1     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|                               |                      |               MIG M. |
+|===============================+======================+======================|
+|   0  Tesla P100-PCIE...  Off  | 00000000:00:04.0 Off |                    0 |
+| N/A   49C    P0    36W / 250W |   4020MiB / 16280MiB |      0%      Default |
+|                               |                      |                 ERR! |
++-------------------------------+----------------------+----------------------+
+
++-----------------------------------------------------------------------------+
+| Processes:                                                                  |
+|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+|        ID   ID                                                   Usage      |
+|=============================================================================|
+|  No running processes found                                                 |
++-----------------------------------------------------------------------------+
+```
+
+Which is the: Tesla P100 PCIe 16 GB.
+
+# The code
+
 Imports:
 
 ```python
@@ -35,11 +67,14 @@ import cv2
 import matplotlib.pyplot as plt
 ```
 
-Load pre-trained Faster R-CNN model.
+Load pre-trained Faster R-CNN model and move to GPU if exists.
 The ResNet50 indicates that the backbone of the network used for the feature map generation is the ResNet50 CNN.
 
 ```python
-model = fasterrcnn_resnet50_fpn(pretrained=True)
+
+device = torch.device('cuda' if torch.cuda.is_available() else "cpu")
+
+model = fasterrcnn_resnet50_fpn(pretrained=True).to(device)
 
 # Set model to evaluation mode (need for dropout and batchnorm which work differently under training and evaluation)
 model.eval()
@@ -105,24 +140,28 @@ def detect(img_path, save_path, threshold=0.9):
   # Load image
   img  = Image.open(img_path)
 
-  # Convert to tensor
+  # Convert to tensor and move to device
   transform = T.Compose([T.ToTensor()])
-  img = transform(img)
+  img = transform(img).to(device)
 
-  # Input image to model and get output
-  out = model([img]) # expects list of images
+  # Input image to model and get output, expects list of images
+  out = model([img])
 
-  # Get output indices correponding to object having a score above threshold, for filtering of the boxes and labels
-  indxs = np.where(out[0]['scores'].detach().numpy() >= threshold)[0]
+  # Get class scores and filter above a threshold
+  # Note we need to detach the object, before moving it to cpu, because it is part of the computation graph.
+  # Same applies for the detaches below
+  # Alternatively is to do `with torch.no_grad():` to disable following operations on the object
+  indxs = np.where(out[0]['scores'].detach().cpu().numpy() >= threshold)[0]
 
   # Get detected classes labels
-  detected_classes = [COCO_CATEGORIES[i] for i in out[0]['labels'].numpy()[indxs]]
+  detected_classes = [COCO_CATEGORIES[i]
+                      for i in out[0]['labels'].detach().cpu().numpy()[indxs]]
 
-  # Get class probabilities
-  scores = [out[0]['scores'].detach().numpy()[i] for i in indxs]
+  # Get scores (not used, but can be added to the image)
+  scores = [out[0]['scores'].detach().cpu().numpy()[i] for i in indxs]
 
   # Get the boxes corresponding to detected objects as numpy arrays
-  boxes = [out[0]['boxes'].detach().numpy()[i] for i in indxs]
+  boxes = [out[0]['boxes'].detach().cpu().numpy()[i] for i in indxs]
 
   # Create rectangles in the format OpenCV expects, two tuples of top left
   # and top right corners
@@ -163,7 +202,9 @@ def detect(img_path, save_path, threshold=0.9):
   cv2.imwrite(save_path, img)
 ```
 
-Examples:
+## Examples
+
+(The function call for the below examples below examples takes ~0.2 second per image):
 
 ![dogball](/assets/objectdetection/dog_ball_detected.jpg)
 
