@@ -6,7 +6,7 @@ tags: deeplearning pytorch
 ---
 
 One of the algorithms for object detection in images is called
-Faster R-CNN [paper](https://arxiv.org/abs/1506.01497).
+Faster R-CNN [[paper](https://arxiv.org/abs/1506.01497)].
 
 Unlike the typical image classification task, which given an input image returns a class. The task of object detection is much harder, and many clever techniques have been developed to solve this task.
 
