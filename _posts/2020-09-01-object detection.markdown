@@ -212,9 +212,12 @@ def detect(img_path, save_path, threshold=0.9):
 
 I actually didn't see the bird at the lower left corner before!
 
-![marta](/assets/objectdetection/family_detected.jpg)
+![family](/assets/objectdetection/family_detected.jpg)
 
 Little people are correctly identified.
+
+![cars](/assets/objectdetection/cars_plane_detected.jpg)
+<span>Photo by <a href="https://unsplash.com/@josephyates_?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Joe Yates</a> on <a href="https://unsplash.com/s/photos/cars-with-airplane?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
 
 The next step would be to utilize the pre-trained model (transfer learning) to
 detect new classes of objects.
