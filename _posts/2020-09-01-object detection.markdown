@@ -10,7 +10,7 @@ Faster R-CNN [[paper](https://arxiv.org/abs/1506.01497)].
 
 Unlike the typical image classification task, which given an input image returns a class. The task of object detection is much harder, and many clever techniques have been developed to solve this task.
 
-The objective is clear, a network needs to be able to both provide a bounding box (i.e. box coordinates) indicating where it thinks an object belonging to one of the training classes is found, as well as the class it self. Therefore, the network combines both a classification task for the object class as well as a regression task for the bounding box coordinates. A key idea with the bounding boxes, is that they are not regressed from scratch, rather the regression adjusts a number of initial reference boxes (specifically 9 anchor boxes), which is easier.
+The objective is to be able to both provide a bounding box indicating indicating where an object is, as well as the class of that object. Therefore, the network combines both a classification task for the object class as well as a regression task for the bounding box coordinates. A key idea with the bounding boxes, is that they are not regressed from scratch, rather the regression adjusts a number of initial reference boxes (specifically 9 anchor boxes), which is easier.
 
 The common idea is still to use a CNN to obtain feature maps at different scales, i.e. different network depths, as this contain encoded information within each neuron's receptive field (the portion of the original image it "sees"), and the deeper the layer the larger the receptive field and the complexity of the features.
 
