@@ -109,7 +109,7 @@ Sequential(
 
 Creating the model class, inhering from PyTorch's nn.Module:
 
-````python
+```python
 class StyleTransfer(nn.Module):
   def __init__(self):
     super(StyleTransfer, self).__init__()
@@ -155,8 +155,7 @@ class StyleTransfer(nn.Module):
 
     # return dictionary with content and style
     return {'content': content_features, 'style':style_features}
-    ```
-````
+```
 
 ## Utility functions
 
@@ -428,8 +427,7 @@ Define parameters:
 
 ```python
 # These were chosen by trying what gives desired results
-# see note above regarding number of epochs.
-# There is no point going too high with the style loss, as at some point, it will
+# There is no point going too high with the style loss, as at some point it will
 # simply be the entire loss, and as we're starting from the content, it won't
 # change much the final output.
 epochs = 500  # number of training epochs
