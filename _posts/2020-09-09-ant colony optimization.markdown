@@ -5,7 +5,7 @@ date: 2020-09-09 22:48:00 +0100
 tags: code
 ---
 
-I've recently become interested in vehicle routing problem,
+I've recently been interested in vehicle routing problem,
 a variation on the famous travelling salesperson problem (TSP),
 where the task is given a graph with the distances between cities, find the shortest path visiting all cities once and returning to the starting city.
 The problem falls under the complexity class NP-hard, which loosely means they cannot be solved in polynomial time. (Also it is not NP-complete, which means it is both in NP-Hard and in NP, where NP means that a solution can be verified in polynomial time, and for TSP verifying a path is the shortest is the same as finding the shortest path.)
@@ -25,14 +25,14 @@ Back to the travelling salesman problems, the application of the ant colony beha
 2. Move the ant using a probability distribution over the allowed node given by:
 
 $$
-p_{ij} \propto \tau^{\alpha}_{ij}\nu_{ij}^{\beta},
+p_{ij} \propto \tau^{\alpha}_{ij}\eta_{ij}^{\beta},
 $$
 
-where $\tau_{ij}$ is the amount of pheromone deposited on edge $ij$, and plays the role of the collective information passed by other ants, and $\nu_{ih}$ is a heuristic attractiveness of a given edge (A common choice is $\eta_{ij}\sim\frac{1}{d_{ij}}$, where $d_{ih}$ is the edge length, therefore shorter is better). The powers $\alpha$ and $\beta$ are tuning parameters for the weight of either $\tau$ or $\nu$.
+where $\tau_{ij}$ is the amount of pheromone deposited on edge $ij$, and plays the role of the collective information passed by other ants, and $\eta_{ij}$ is a heuristic attractiveness of a given edge (A common choice is $\eta_{ij}\sim\frac{1}{d_{ij}}$, where $d_{ij}$ is the edge length, therefore shorter is better). The powers $\alpha$ and $\beta$ are tuning parameters for the weight of either $\tau$ or $\eta$.
 
 The idea of having both of these terms, is similar to the famous explore-exploit trade-off, where we want the ants to exploit the information passed from other ants, while also exploring other paths through the immediate information on the available edges.
 
-3. An optimization is to include an evaporation parameter $\rho \in [0,1]$, which allows for pheromones to evaporate, helping in avoiding the ants to converge early on a bad solution and allowing more exploration, therefore update: $\tau_{ij} \rightarrow \rho\tau_{ih}$.
+3. An optimization is to include an evaporation parameter $\rho \in [0,1]$, which allows for pheromones to evaporate, helping in avoiding the ants to converge early on a bad solution and allowing more exploration, therefore update: $\tau_{ij} \rightarrow \rho\tau_{ij}$.
 
 4. After all ants have completed a full path, calculate the length of all path, and deposit an amount of pheromone $\Delta \tau^k_{ij} = \frac{Q}{L^k}$ on each edge $ij$ that ant $k$ went through, where $L^k$ is the total path length for ant $k$, and $Q$ is another free tuning parameter.
 
