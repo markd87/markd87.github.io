@@ -331,7 +331,7 @@ ctx.add_basemap(ax)
 
 Next we optimise a path through the cities:
 
-```pyhton
+```python
 ants = AntOpt(capitals_points, dist='geo', n_iter=200, n_ants=15, rho=0.85)
 
 best_path = ants.run_ants()
@@ -350,3 +350,5 @@ ax.set_title(f'Total path length: {path_length:,.0f} km', fontsize=18)
 ```
 
 ![capitals_path](https://raw.githubusercontent.com/markd87/Ants/master/images/capitals_path.png)
+
+The ant optimization algorithm can be extended to other variations of the TSP, e.g. capacity constrained vehicle routing, where the vehicles have a limited capacity of goods they need to deliver to the cities. The only change to the Ant optimization algorithm would be to limit the possible transition nodes an ant can't choose and keep track of the capacity each ant carries.
