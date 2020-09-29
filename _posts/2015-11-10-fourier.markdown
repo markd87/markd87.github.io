@@ -102,7 +102,7 @@ Finally a more curious example, in which I will analyse the frequencies present 
 "A Hard Day's Night" by the Beatles. This analysis was already thoroughly done in <a href='http://www.mscs.dal.ca/~brown/n-oct04-harddayjib.pdf'>here</a>, but as an exercise I will try to reproduce these results.
 
 <center>
-<iframe style='max-width:100%' src="https://www.youtube.com/watch?v=zx2TFk0vh1I&ab_channel=TheBeatles-Topic"  frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe style='max-width:100%' src="https://www.youtube.com/embed/zx2TFk0vh1I"  frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </center>
 
 And the opening chord alone:
