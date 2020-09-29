@@ -11,10 +11,10 @@ Here I will show a simple example of using the Fourier Transform for a real sign
 		
 The Fourier Transform usually introduced for continuous valued functions on $(-\infty,\infty)$ is given by
 
-\$$\begin{equation}
+$$
 F(\omega)=\int_{-\infty}^{\infty}f(t)e^{-2\pi i \omega t}dt \\
 f(x)=\int_{-\infty}^{\infty}F(\omega)e^{2\pi i \omega t}d\omega
-\end{equation}$$
+$$
 
 provided that $f(x)$ is absolutely integrable,
 
@@ -28,10 +28,10 @@ In this case we consider a signal of length $N$. As the Fourier Transform is ess
 oscillatory function we first construct a basis of periodic functions on $[0,N-1]$ for the vector space $\mathbb{C}^N$,
 $w_k[n]=e^{i\omega_k n}$, $n=0,..,N-1$. Requiring whole number of periods within the domain we have $_k[N]=w_k[0]=1$, which translates to $(e^{i \omega_k})^N=1$, which has $N$ solutions corresponding to the N roots of 1 on the unit circle $e^{i 2\pi m/N}$, $m=0,..,N-1$. This can be shown to be an orthogonal set of vectors and thus consisting a base in $\mathbb{C}^N$. The Fourier Transform in this case takes the following form (which is essentially a change of basis):
 
-\$$\begin{equation}		
+$$
 	X[k]=\sum_{n=0}^{N-1} x[n] e^{-i\frac{2\pi n k}{N}}, \quad k=0,..,N-1 \\
 	x[n]=\frac{1}{N}\sum_{k=0}^{N-1} X[k] e^{i\frac{2\pi n k}{N}}, \quad n=0,..,N-1
-\end{equation}$$
+$$
 
 Where the factor $1/N$ comes from normalization of the basis function to be orthonormal.
 Since we are dealing with real signals, and complex basis functions, we have two frequency components for each frequency,
@@ -102,7 +102,7 @@ Finally a more curious example, in which I will analyse the frequencies present 
 "A Hard Day's Night" by the Beatles. This analysis was already thoroughly done in <a href='http://www.mscs.dal.ca/~brown/n-oct04-harddayjib.pdf'>here</a>, but as an exercise I will try to reproduce these results.
 
 <center>
-<iframe style='max-width:100%' src="//www.youtube.com/watch?v=zx2TFk0vh1I&ab_channel=TheBeatles-Topic" frameborder="0" allowfullscreen></iframe>
+<iframe style='max-width:100%' src="https://www.youtube.com/watch?v=zx2TFk0vh1I&ab_channel=TheBeatles-Topic"  frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </center>
 
 And the opening chord alone:
