@@ -1,13 +1,13 @@
 ---
 layout: post
-title:  "The Universe"
-date:   2014-05-09 20:05:31 +0100
+title: "The Universe"
+date: 2014-05-09 20:05:31 +0100
 tags: physics
 ---
 
-Cosmology is one of the most awe inspiring fields in all of science. To think that humans, a specie that originated $$ \sim 10^5 $$ years ago 
-in Africa, standing on a speck of dust (the Earth), are able to understand the universe as a whole, it's origin and evolution is indeed amazing. Here I decided to focus on two very interesting quantities, mentioned in the title, 
-that are related to our universe and find their values based on the most recent observations and the standard cosmological model. 
+Cosmology is one of the most awe inspiring fields in all of science. To think that humans, a specie that originated $$ \sim 10^5 $$ years ago
+in Africa, standing on a speck of dust (the Earth), are able to understand the universe as a whole, it's origin and evolution is indeed amazing. Here I decided to focus on two very interesting quantities, mentioned in the title,
+that are related to our universe and find their values based on the most recent observations and the standard cosmological model.
 The cosmological principle states that the universe is both homogeneous and isotropic on "large scales", an assumption that is very well verified in observations such as the CMB being highly homogeneous (1 part in 100,000).
 This assumption significantly reduces the allowed metrics which describe the geometry of the universe, called the FRW metric:
 
@@ -17,7 +17,7 @@ $$
 
 Where $$ k $$ is related to the curvature and can take the values $$ -1,0,1 $$ corresponding to a hyperbolic, Euclidean and spherical universes.
 The spatial part of the metric describes the geometry of a homogeneous and isotropic universe at a given time slice t.
-$$ a(t) $$ is the scale factor which allows a temporal evolution of the spatial part of the metric. Specifically the spatial coordinates are 
+$$ a(t) $$ is the scale factor which allows a temporal evolution of the spatial part of the metric. Specifically the spatial coordinates are
 co-moving and independent of any time evolution.
 The dynamics of the metric $$ g_{\mu \nu} $$ is determined by Einstein's field equations:
 
@@ -27,7 +27,7 @@ $$
 
 Focusing on the $$ 00 $$ component we can get the following equation by plugging the FRW metric:
 
-$$ 
+$$
 \frac{\dot a^2}{a^2}=\frac{8\pi G \rho}{3}-\frac{kc^2}{a^2}+\frac{\Lambda c^2}{3}
 $$
 
@@ -57,7 +57,7 @@ $$
 
 We see that since we define the quantities relative to the current values we have by plugging $$ a=1 $$: $$ \Omega_k+\Omega=1 $$, where $$ \Omega $$ is the sum of all other components other than the curvature component.
 
-The age of the universe is the time span in which the universe evolved from $$ a = 0 $$ to $$ a = 1 $$, therefor from the equation we can write using the 
+The age of the universe is the time span in which the universe evolved from $$ a = 0 $$ to $$ a = 1 $$, therefor from the equation we can write using the
 definition of $$ H $$:
 
 $$
@@ -66,44 +66,45 @@ $$
 
 I now list the most recent measurements at the time of writing (best fit values) of the above parameters obtained from the Planck satellite measuring the CMB [<a href='http://arxiv.org/abs/1303.5076' target='_blank'>arXiv</a>].
 
-$$\begin{gathered}
+$$
     H_0 &=& 67.3 km/s/Mpc\\
 	\Omega_m &=& 0.315 \\
 	\Omega_{r} &=& 10^{-4} \\
 	\Omega_{\Lambda} &=& 0.685 \\
-	\Omega_{k} &=& -10^{-4} 
+	\Omega_{k} &=& -10^{-4}
 \end{gathered}$$
 
-Plugging these values in the integral and calculating it numerically we get for the <b>age of the universe</b>: 
-
+Plugging these values in the integral and calculating it numerically we get for the <b>age of the universe</b>:
 $$
+
 t_0=13.81 Gyr
-$$
 
+$$
 (With the last digit having some error associated with the measurement errors in the parameters).
 
 Next we estimate the size of the observable universe. Where observable means that light had enough time to reach our detectors.
 Since the universe is constantly expanding, the naive answer $$ R=ct_0 $$ is incorrect.
-The correct answer considers the path of photon in the FRW metric. Since for a photon we have $$ ds^2=0 $$, and taking a radial trajectory in a flat 
+The correct answer considers the path of photon in the FRW metric. Since for a photon we have $$ ds^2=0 $$, and taking a radial trajectory in a flat
 space $$ (k=0) $$ we get from (1):
-
 $$
+
 R=\int \frac{cdt}{a}
-$$
 
-Rewriting this in terms of a and $$ H=\frac{\dot a}{a} $$, which I have expressions for in terms of known quantities. 
+$$
+Rewriting this in terms of a and $$ H=\frac{\dot a}{a} $$, which I have expressions for in terms of known quantities.
 we make the change $$ dt=\frac{da}{\dot a}=\frac{da}{a H} $$. Plugging this in (6):
-
-$$
-R=\int_0^1 \frac{c da}{a^2 H(a)}=\int_0^1 \frac{c da}{a^2 H_0(\Omega_{r}a^{-4}+\Omega_m a^{-3}+\Omega_k a^{-2}+\Omega_{\Lambda})^{1/2}}
 $$
 
+R=\int*0^1 \frac{c da}{a^2 H(a)}=\int_0^1 \frac{c da}{a^2 H_0(\Omega*{r}a^{-4}+\Omega*m a^{-3}+\Omega_k a^{-2}+\Omega*{\Lambda})^{1/2}}
+
+$$
 Numerically calculating this integral gives for the radius of the observable universe:
-
 $$
+
 R=46.2Gly
-$$
 
+$$
 Below I show the size of the observable universe as a function of time.
 
 ![Age](/assets/agesize.png)
+$$

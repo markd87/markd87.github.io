@@ -1,12 +1,11 @@
 ---
 layout: post
-title:  "Fractals"
-date:   2016-04-21 18:12:21 +0100
-tags: math coding
+title: "Fractals"
+date: 2016-04-21 18:12:21 +0100
+tags: math code
 ---
 
-
-Fractals are unique mathematical objects with interesting properties and surprising manifestations in nature. They are obtained by usually a simple rule that is repeated recursively, leading to intricate self-similar structures repeating on all scales, making them scale free. 
+Fractals are unique mathematical objects with interesting properties and surprising manifestations in nature. They are obtained by usually a simple rule that is repeated recursively, leading to intricate self-similar structures repeating on all scales, making them scale free.
 This intricate pattern might suggest an infinite amount of information is required to describe such an object, however the power of their complexity is in the simplicity of the generating rule together with the feedback or recursive application of this rule.
 
 Fractals were found to be tightly related to chaos theory, and they naturally appear in systems on the edge of chaos, such as in turbulent flow, and population growth described by the logistic equation.
@@ -22,24 +21,27 @@ Below I show a few of the common toy fractals all having a simple rule which was
 The Cantor set, named after the mathematician Georg Cantor is obtained by recursively removing the central third of a line. This then leads in the limit of infinite recursions to a set of infinitely many points with measure zero.
 ![cantor](/assets/fractals/cantor.gif)
 
-### Koch fractal    
+### Koch fractal
 
 The Koch fractal is obtained by replacing the central third of a line by an equilateral triangle without the bottom part. When starting with a triangle we get the Koch flake.
 
 ![koch](/assets/fractals/koch.gif)
 ![koch_flake](/assets/fractals/koch_flake.gif)
-           
+
 ### Sierpsinski triangle
+
 The Sierpinski triangle is obtained by repeatingly drawing a triangle between the central points of the sides of each formed triangle.
 ![sierpinski](/assets/fractals/sierpinski.gif)
 
 ### Tree fractal
+
 The tree fractal is obtained by drawing two branches from each line at a fixed angle to the line and reducing the size of consecutive branches by a constant factor.
 
 ![tree](/assets/fractals/tree.gif)
 ![tree2](/assets/fractals/tree2.gif)
 
 ### Fractal dimension
+
 The fractal dimension can in some cases be obtained be a generalization of the more familiar notion of a dimension for objects such as lines, squares and cubes.
 We have that an n-dimensional object can be constructed by $$ N=m^n $$ copies of itself each scaled by $$ 1/m $$. The dimension is then given by $$ n=\log_m N $$. For example, a line divided by half (m=2), has two copies of itself, giving $$ 2^n= $$ and $$ n=1 $$, similarly for a square with sides halved we have $$ 2^n=4 $$ giving $$ n=2 $$, and similarly for a cube we have $$ 2^n=8 $$.
 
@@ -49,10 +51,10 @@ Similarly for the Cantor set we have in the second generation, 2 copies of the o
 
 As mentioned in the beginning, fractals commonly appear in dynamical system involving feedback. This is best demonstrated with the seemingly simple rule,
 
-\$$
-x_{i+1}=r x_i(1-x_i)
-$$
+\$\$
+x\_{i+1}=r x_i(1-x_i)
 
+$$
 known as the logistic model, which describes a population with a growth rate $r$, and $$ x\in [0,1] $$ is the fraction of the population relative to the maximum.
 
 A system described by the logistic model reaches steady state when $$ x_{i+1}=x_i $$ for $$ i>M $$ for some $$ M $$.
@@ -60,3 +62,4 @@ By plotting the steady state value for different value of $$ r $$ we obtained th
 
 ![bifu](/assets/fractals/bifurcation.png)
 ![bifu](/assets/fractals/bifurcation_zoom.png)
+$$

@@ -1,12 +1,11 @@
 ---
 layout: post
-title:  "Finance dojo"
-date:   2019-07-24 21:39:00 +0100
-categories: posts
+title: "Finance dojo"
+date: 2019-07-24 21:39:00 +0100
 tags: datascience coding
 ---
 
-I recently  went to a data science for finance meetup at M&G Investments,which turned out to be a data science dojo run by M&G employees, where a data science task related to a finance data set is given and atendees work and discuss it, 
+I recently went to a data science for finance meetup at M&G Investments,which turned out to be a data science dojo run by M&G employees, where a data science task related to a finance data set is given and atendees work and discuss it,
 and at the end whoever wants can present their finding and ideas.
 
 Below is my Jupyter notebook from the event.
@@ -25,18 +24,13 @@ pd.options.mode.chained_assignment = None  # default='warn'
 
 # Data science finance dojo - Bonds
 
-
 ```python
 df = pd.read_csv('BondsForDataScienceCodingDojo.csv')
 ```
 
-
 ```python
 df.head()
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -51,6 +45,7 @@ df.head()
     .dataframe thead th {
         text-align: right;
     }
+
 </style>
 <table border="1" class="dataframe">
   <thead>
@@ -205,9 +200,6 @@ df.head()
 <p>5 rows × 36 columns</p>
 </div>
 
-
-
-
 ```python
 df.info()
 ```
@@ -254,14 +246,9 @@ df.info()
     dtypes: float64(23), object(13)
     memory usage: 340.7+ KB
 
-
-
 ```python
 df.columns
 ```
-
-
-
 
     Index(['Cusip', 'ISIN', 'Description', 'Ticker', 'Coupon', 'Maturity',
            'Composite Rating', 'Currency', 'Country', 'Sector Level 1',
@@ -277,16 +264,10 @@ df.columns
            'OAS vs Swap ', 'Prior Month-End OAS vs Swap'],
           dtype='object')
 
-
-
-
 ```python
 # how manuy NaNs per column
 df.isna().sum().sort_values()
 ```
-
-
-
 
     Cusip                                  0
     Effective Duration                     0
@@ -326,9 +307,6 @@ df.isna().sum().sort_values()
     Prior Month-End OAS vs Swap           64
     dtype: int64
 
-
-
-
 ```python
 # remove rows with NaN
 df_clean = df.dropna()
@@ -337,8 +315,6 @@ print(len(df_clean))
 
     1147
 
-
-
 ```python
 # feature engineering
 
@@ -346,7 +322,6 @@ print(len(df_clean))
 df_clean['Maturity'] =  pd.to_datetime(df_clean['Maturity'])
 df_clean['years_to_maturity'] = df_clean['Maturity'].apply(lambda x: (x - pd.Timestamp.now()).days//365)
 ```
-
 
 ```python
 fig, axes = plt.subplots(1, 4, figsize=(15,5))
@@ -362,25 +337,18 @@ p3.set_xticklabels(p3.get_xticklabels(),rotation=90);
 p4.set_xticklabels(p4.get_xticklabels(),rotation=90);
 ```
 
-
 ![png](/assets/finance/output_9_0.png)
 
-
 ## separate numeric and non-numeric columns
-
 
 ```python
 numeric_cols = df_clean.select_dtypes([np.number]).columns
 non_numeric_cols = [col for col in df_clean.columns if col not in numeric_cols and col not in ['Maturity','ISIN']]
 ```
 
-
 ```python
 non_numeric_cols
 ```
-
-
-
 
     ['Cusip',
      'Description',
@@ -394,15 +362,9 @@ non_numeric_cols
      'Sector Level 4',
      'Type']
 
-
-
-
 ```python
 numeric_cols
 ```
-
-
-
 
     Index(['Coupon', 'Face Value', 'Price', 'Accrued Interest',
            'Duration To Worst', 'Yield to Worst', 'Effective Duration',
@@ -415,10 +377,7 @@ numeric_cols
            'OAS vs Swap ', 'Prior Month-End OAS vs Swap', 'years_to_maturity'],
           dtype='object')
 
-
-
 ## Correlation heatmap of features
-
 
 ```python
 #Using Pearson Correlation
@@ -434,18 +393,14 @@ plt.yticks(fontsize=15)
 plt.show()
 ```
 
-
 ![png](/assets/finance/output_15_0.png)
 
-
 ## Modelling
-
 
 ```python
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 ```
-
 
 ```python
 scaler = StandardScaler()
@@ -453,14 +408,12 @@ X = df_clean[numeric_cols].values
 Xscaled = scaler.fit_transform(X)
 ```
 
-
 ```python
 # Perform PCA analysis with 2 components
 pca = PCA(n_components=2)
 pca.fit(Xscaled)
 Xpca = pca.transform(Xscaled)
 ```
-
 
 ```python
 # how much of the variance explained by the two first components
@@ -472,26 +425,17 @@ print("total variance explained %f" % (sum(ex_vars)))
     [ 0.49591697  0.19150402]
     total variance explained 0.687421
 
-
-
 ```python
 # transformed values shape
 Xpca.shape
 ```
 
-
-
-
     (1147, 2)
-
-
-
 
 ```python
 pdf = pd.DataFrame(data = Xpca, columns = ['p1', 'p2'])
 finalDf = pd.concat([pdf, df_clean[non_numeric_cols]], axis = 1)
 ```
-
 
 ```python
 fig = plt.figure(figsize=(15,8))
@@ -503,24 +447,15 @@ for i in range(0, len(small_cat_columns)):
     sns.scatterplot(data=finalDf, x='p1',y='p2',hue=small_cat_columns[i], alpha=0.5)
 ```
 
-
 ![png](/assets/finance/output_23_0.png)
 
-
 ## Modelling - Regression
-
 
 ```python
 df_clean['Composite Rating'].unique()
 ```
 
-
-
-
     array(['BBB3', 'AA1', 'AAA', 'BBB1', 'A1', 'BBB2', 'A3', 'AA2', 'AA3', 'A2'], dtype=object)
-
-
-
 
 ```python
 # hot code encode categorical variables
@@ -531,12 +466,10 @@ onehot_cols = onehot_df.columns.tolist()
 model_df = pd.concat([df_clean[numeric_cols], onehot_df[onehot_cols]],axis=1)
 ```
 
-
 ```python
 X = model_df.drop(['Price','Prior Month-End Price'],axis=1).values
 y = model_df['Price'].values
 ```
-
 
 ```python
 from sklearn import svm
@@ -546,16 +479,13 @@ from sklearn.model_selection import KFold
 from sklearn.model_selection import cross_val_score
 ```
 
-
 ```python
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
 ```
 
-
 ```python
 kf = KFold(n_splits=5)
 ```
-
 
 ```python
 from sklearn.ensemble import RandomForestRegressor
@@ -567,13 +497,9 @@ regr = RandomForestRegressor(random_state=42, n_estimators=100, max_depth=6, min
 # clf = GridSearchCV(regr, parameters, cv=kf, n_jobs=-1, verbose=True)
 ```
 
-
 ```python
 regr.fit(X_train, y_train.ravel())
 ```
-
-
-
 
     RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=6,
                max_features='auto', max_leaf_nodes=None,
@@ -582,13 +508,9 @@ regr.fit(X_train, y_train.ravel())
                min_weight_fraction_leaf=0.0, n_estimators=100, n_jobs=1,
                oob_score=False, random_state=42, verbose=0, warm_start=False)
 
-
-
-
 ```python
 scores = cross_val_score(regr, X_train, y_train.ravel(), cv=kf)
 ```
-
 
 ```python
 print("Training mean score %f: +-  %f" % (scores.mean(), scores.std()))
@@ -596,20 +518,12 @@ print("Training mean score %f: +-  %f" % (scores.mean(), scores.std()))
 
     Training mean score 0.886462: +-  0.038345
 
-
-
 ```python
 clf.best_estimator_.fit(X_train, y_train.ravel())
 clf.score(X_test, y_test)
 ```
 
-
-
-
     0.92960229796412874
-
-
-
 
 ```python
 plt.plot(y_test,regr.predict(X_test),'.');
@@ -619,10 +533,7 @@ plt.ylabel('Prediction');
 plt.xlabel('Actual');
 ```
 
-
 ![png](/assets/finance/output_36_0.png)
-
-
 
 ```python
 # model feature importance
@@ -641,81 +552,64 @@ plt.xlabel('Relative Importance')
 plt.show()
 ```
 
-
 ![png](/assets/financeoutput_37_0.png)
 
-
 ## Explore groups in different sectors according to their composite rating
-
 
 ```python
 level1 = df_clean.groupby(['Composite Rating','Sector Level 1'])\
                  .size().unstack().fillna(0)
 ```
 
-
 ```python
 level2 = df_clean.groupby(['Composite Rating','Sector Level 2'])\
                  .size().unstack().fillna(0)
 ```
-
 
 ```python
 level3 = df_clean.groupby(['Composite Rating','Sector Level 3'])\
                  .size().unstack().fillna(0)
 ```
 
-
 ```python
 level4 = df_clean.groupby(['Composite Rating','Sector Level 4'])\
                  .size().unstack().fillna(0)
 ```
 
-
 ```python
 plt.figure(figsize=(14,6))
-sns.heatmap(data = level1, xticklabels=True, yticklabels=True, cmap=cmap, 
+sns.heatmap(data = level1, xticklabels=True, yticklabels=True, cmap=cmap,
             linewidths=0.04)
 plt.xticks(fontsize=14);
 ```
-
 
 ![png](/assets/finance/output_43_0.png)
 
-
-
 ```python
 plt.figure(figsize=(24,12))
-sns.heatmap(data = level2, xticklabels=True, yticklabels=True, cmap=cmap, 
+sns.heatmap(data = level2, xticklabels=True, yticklabels=True, cmap=cmap,
             linewidths=0.04)
 plt.xticks(fontsize=14);
 ```
-
 
 ![png](/assets/finance/output_44_0.png)
 
-
-
 ```python
 plt.figure(figsize=(24,12))
-sns.heatmap(data = level3, xticklabels=True, yticklabels=True, cmap=cmap, 
+sns.heatmap(data = level3, xticklabels=True, yticklabels=True, cmap=cmap,
             linewidths=0.04)
 plt.xticks(fontsize=14);
 ```
 
-
 ![png](/assets/finance/output_45_0.png)
-
-
 
 ```python
 plt.figure(figsize=(26,12))
-sns.heatmap(data = level4, xticklabels=True, 
+sns.heatmap(data = level4, xticklabels=True,
             yticklabels=True, cmap=cmap, linewidths=0.04)
 plt.xticks(fontsize=14);
 plt.yticks(fontsize=16);
 plt.ylabel('Composite Rating',fontsize=16);
 ```
-
 
 ![png](/assets/finance/output_46_0.png)

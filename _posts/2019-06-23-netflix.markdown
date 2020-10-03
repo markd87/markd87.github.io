@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Netflix"
-date:   2019-06-23 20:39:00 +0100
-categories: posts
+title: "Netflix"
+date: 2019-06-23 20:39:00 +0100
+description: Netflix viewing habits
 tags: datascience coding
 ---
 
@@ -12,7 +12,6 @@ Although the viewing history is only given with a day resolution it's still an i
 Using the data one can learn about his own Netflix viewing patterns, the shows they've watched and when.
 
 Below is the Jupyter notebook I've created to explore this data set.
-
 
 ```python
 import pandas as pd
@@ -24,18 +23,13 @@ import calendar
 %matplotlib inline
 ```
 
-
 ```python
 netflix_df = pd.read_csv('NetflixViewingHistory.csv')
 ```
 
-
 ```python
 netflix_df.tail(10)
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -50,6 +44,7 @@ netflix_df.tail(10)
     .dataframe thead th {
         text-align: right;
     }
+
 </style>
 <table border="1" class="dataframe">
   <thead>
@@ -114,15 +109,9 @@ netflix_df.tail(10)
 </table>
 </div>
 
-
-
-
 ```python
 netflix_df.head()
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -137,6 +126,7 @@ netflix_df.head()
     .dataframe thead th {
         text-align: right;
     }
+
 </style>
 <table border="1" class="dataframe">
   <thead>
@@ -176,13 +166,9 @@ netflix_df.head()
 </table>
 </div>
 
-
-
-
 ```python
 netflix_df['Date']=pd.to_datetime(netflix_df['Date'])
 ```
-
 
 ```python
 netflix_df['week_day'] = netflix_df['Date'].apply(lambda x: x.weekday())
@@ -193,18 +179,13 @@ netflix_df['week_day_name'] = pd.Categorical(netflix_df['week_day_name'], catego
     ordered=True)
 ```
 
-
 ```python
 weekday_df=netflix_df.groupby('week_day_name').Title.agg(['count'])
 ```
 
-
 ```python
 weekday_df
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -219,6 +200,7 @@ weekday_df
     .dataframe thead th {
         text-align: right;
     }
+
 </style>
 <table border="1" class="dataframe">
   <thead>
@@ -264,9 +246,6 @@ weekday_df
 </table>
 </div>
 
-
-
-
 ```python
 fig, ax = plt.subplots(figsize=(14,5))
 weekday_df.plot.bar(ax=ax, legend=False);
@@ -277,10 +256,7 @@ plt.ylabel('Views',fontsize=22);
 plt.xlabel('Week day',fontsize=22);
 ```
 
-
 ![png](/assets/netflix/output_8_0.png)
-
-
 
 ```python
 netflix_df['month'] = netflix_df['Date'].apply(lambda x: x.month)
@@ -290,18 +266,13 @@ netflix_df['month_name'] = pd.Categorical(netflix_df['month_name'],categories=
     ordered=True)
 ```
 
-
 ```python
 month_day_views = netflix_df.groupby(['week_day_name','month_name']).Title.agg('count').unstack().fillna(0)
 ```
 
-
 ```python
 month_day_views
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -316,6 +287,7 @@ month_day_views
     .dataframe thead th {
         text-align: right;
     }
+
 </style>
 <table border="1" class="dataframe">
   <thead>
@@ -460,9 +432,6 @@ month_day_views
 </table>
 </div>
 
-
-
-
 ```python
 plt.figure(figsize=(14,6))
 sns.heatmap(month_day_views)
@@ -473,26 +442,20 @@ plt.ylabel('Week Day', fontsize=18)
 plt.title('Views by week day and month', fontsize=22);
 ```
 
-
 ![png](/assets/netflix/output_12_0.png)
-
-
 
 ```python
 netflix_df['show'] = netflix_df['Title'].apply(lambda x: x.split(':')[0])
 netflix_df['is_movie'] = netflix_df['Title'].apply(lambda x: ':' not in x)
 ```
 
-
 ```python
 show_views = netflix_df.groupby(['show','Date']).Title.agg('count').unstack()
 ```
 
-
 ```python
 # import matplotlib.dates as mdates
 ```
-
 
 ```python
 fig, ax = plt.subplots(figsize=(18,15));
@@ -502,15 +465,11 @@ plt.xticks(rotation=-90);
 plt.ylabel('');
 ```
 
-
 ![png](/assets/netflix/output_16_0.png)
-
-
 
 ```python
 series_counts = netflix_df[~netflix_df.is_movie].groupby('show').Title.agg(['count']).sort_values(by='count',ascending=False)
 ```
-
 
 ```python
 fig, ax = plt.subplots(figsize=(14,5));
@@ -522,22 +481,15 @@ plt.xlabel("")
 plt.title("Netflix series watched", fontsize=22);
 ```
 
-
 ![png](/assets/netflix/output_18_0.png)
-
-
 
 ```python
 movies = netflix_df[netflix_df.is_movie]
 ```
 
-
 ```python
 movies
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -552,6 +504,7 @@ movies
     .dataframe thead th {
         text-align: right;
     }
+
 </style>
 <table border="1" class="dataframe">
   <thead>
@@ -813,4 +766,3 @@ movies
   </tbody>
 </table>
 </div>
-
