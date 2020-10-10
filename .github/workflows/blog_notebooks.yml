@@ -20,7 +20,7 @@ jobs:
 
       - name: run notebooks
         run: |
-          pip install matplotlib pandas seaborn papermill ipykernel jupyter numpy lxml html5lib
+          pip install matplotlib pandas seaborn papermill ipykernel jupyter numpy lxml html5lib plotly
           python3 -m ipykernel install --user --name python3
           sudo chmod -R 777 .
           cd _notebooks
