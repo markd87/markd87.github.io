@@ -35,6 +35,7 @@ jobs:
           git add _posts/
           git commit -m 'saving notebooks and posts'
           git remote set-url --push origin https://markd87:${{ secrets.GITHUB_TOKEN }}@github.com/markd87/gh-pages
+
       - name: convert notebooks to posts
         uses: fastai/fastpages@master
 
@@ -57,4 +58,4 @@ jobs:
           deploy_key: ${{ secrets.SSH_DEPLOY_KEY }}
           publish_branch: master
           publish_dir: ./_site
-          keep_files: true
+          keep_files: false
