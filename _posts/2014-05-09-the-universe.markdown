@@ -5,7 +5,7 @@ date: 2014-05-09 20:05:31 +0100
 tags: physics
 ---
 
-Cosmology is one of the most awe inspiring fields in all of science. To think that humans, a specie that originated $$ \sim 10^5 $$ years ago
+Cosmology is one of the most awe inspiring fields in all of science. To think that humans, a specie that originated $\sim 10^5$ years ago
 in Africa, standing on a speck of dust (the Earth), are able to understand the universe as a whole, it's origin and evolution is indeed amazing. Here I decided to focus on two very interesting quantities, mentioned in the title,
 that are related to our universe and find their values based on the most recent observations and the standard cosmological model.
 The cosmological principle states that the universe is both homogeneous and isotropic on "large scales", an assumption that is very well verified in observations such as the CMB being highly homogeneous (1 part in 100,000).

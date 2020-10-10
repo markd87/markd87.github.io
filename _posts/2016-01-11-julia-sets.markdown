@@ -5,7 +5,7 @@ date: 2016-01-11 17:00:00 +0100
 tags: math code
 ---
 
-Consider the following "game" where given a complex valued function $$ f(z) $$ and some point in the complex plane $$ z_0 $$
+Consider the following game where given a complex valued function $$ f(z) $$ and some point in the complex plane $$ z_0 $$
 we generate a set of numbers $$ z=\{z_0,f(z(0)),f(f(z_0)),..\} $$ which is given by the rule $$ z_{n}=f(z_{n-1}) $$. This describes a
 discrete dynamical system over the complex field.
 A possible question to ask regarding this process is whether it is bounded $$ (\exists M $$ such that $$ f^n(z_0) \lt M, \forall n) $$ or not.
