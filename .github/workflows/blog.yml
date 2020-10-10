@@ -13,6 +13,32 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.6
+
+      - name: run notebooks
+        run: |
+          pip install matplotlib pandas seaborn papermill ipykernel jupyter numpy lxml html5lib	plotly
+          python3 -m ipykernel install --user --name python3	
+          sudo chmod -R 777 .	
+          cd _notebooks	
+          ls *.ipynb	
+          papermill --kernel python3 2020-03-21-covid19.ipynb 2020-03-21-covid19.ipynb
+
+      - name: save files
+        run: |
+          git config --global user.name "markd87"	
+          git config --global user.email "markd87@users.noreply.github.com"	
+          git add _notebooks/	
+          git add _posts/	
+          git commit -m 'saving notebooks and posts'	
+          git remote set-url --push origin https://markd87:${{ secrets.GITHUB_TOKEN }}@github.com/markd87/gh-pages
+
+      - name: convert notebooks to posts
+        uses: fastai/fastpages@master
+
       - name: setup directories for Jekyll build
         run: |
           rm -rf _site
