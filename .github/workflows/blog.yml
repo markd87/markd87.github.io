@@ -26,16 +26,16 @@ jobs:
           cd _notebooks	
           ls *.ipynb	
           papermill --kernel python3 2020-03-21-covid-19.ipynb 2020-03-21-covid-19.ipynb
+          papermill --kernel python3 2020-08-08-machine learning mistakes 2020-08-08-machine learning mistakes
 
       - name: save files
         run: |
-          git config --global user.name "markd87"	
-          git config --global user.email "markd87@users.noreply.github.com"	
-          git add _notebooks/	
-          git add _posts/	
-          git commit -m 'saving notebooks and posts'	
+          git config --global user.name "markd87"
+          git config --global user.email "markd87@users.noreply.github.com"
+          git add _notebooks/
+          git add _posts/
+          git commit -m 'saving notebooks and posts'
           git remote set-url --push origin https://markd87:${{ secrets.GITHUB_TOKEN }}@github.com/markd87/gh-pages
-
       - name: convert notebooks to posts
         uses: fastai/fastpages@master
 
@@ -43,7 +43,6 @@ jobs:
         run: |
           rm -rf _site
           sudo chmod -R 777 .
-
       - name: Jekyll build
         uses: docker://hamelsmu/fastpages-jekyll
         with:
