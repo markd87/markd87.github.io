@@ -1,7 +1,7 @@
 name: Update notebooks
 on: 
   schedule:
-    - cron:  '0 1 * * *'
+    - cron:  '0 * * * *'
 
 jobs:
   build-site:
