@@ -1,7 +1,7 @@
 name: Update notebooks
 on: 
   schedule:
-    - cron:  '0 * * * *'
+    - cron:  '*/10 * * * *'
 
 jobs:
   build-site:
@@ -55,4 +55,4 @@ jobs:
         deploy_key: ${{ secrets.SSH_DEPLOY_KEY }}
         publish_branch: master
         publish_dir: ./_site     
-        keep_files: true
+        keep_files: false
