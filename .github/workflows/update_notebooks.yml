@@ -55,4 +55,3 @@ jobs:
         deploy_key: ${{ secrets.SSH_DEPLOY_KEY }}
         publish_branch: master
         publish_dir: ./_site     
-        keep_files: true
