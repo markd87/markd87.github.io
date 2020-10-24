@@ -1,4 +1,4 @@
-name: Build blog
+name: Update blog
 on:
   push:
     branches:
