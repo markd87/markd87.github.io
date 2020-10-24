@@ -51,7 +51,6 @@ jobs:
         env:
           JEKYLL_ENV: "production"
 
-      - uses: actions/checkout@v1
       - name: Jekyll Publish Drafts
         uses: soywiz/github-action-jekyll-publish-drafts@v2
         with:
