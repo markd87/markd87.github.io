@@ -51,9 +51,11 @@ jobs:
         env:
           JEKYLL_ENV: "production"
 
-      - name: Jekyll Publish Drafts
-        uses: soywiz/github-action-jekyll-publish-drafts@v2
+      - name: Deploy
+        if: github.event_name == 'push'
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          jekyll_path: ./
-          branch: master
+          deploy_key: ${{ secrets.SSH_DEPLOY_KEY }}
+          publish_branch: master
+          publish_dir: ./_site
+          keep_files: true
