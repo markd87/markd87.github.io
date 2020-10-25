@@ -26,7 +26,7 @@ group :jekyll_plugins do
   gem 'jekyll-paginate'
 end
 
-gem "kramdown-math-katex", ">= 2.3.0"
+gem "kramdown-math-katex"
 
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem
 # and associated library.
