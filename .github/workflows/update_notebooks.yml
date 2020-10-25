@@ -4,7 +4,7 @@ on:
     - cron: "0 * * * *"
 
 jobs:
-  build-site:
+  update_notebooks:
     runs-on: ubuntu-latest
     steps:
       - name: Copy Repository Contents
