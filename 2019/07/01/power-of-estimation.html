@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" /><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Power of estimations | Mark Danovich</title>
+<meta name="generator" content="Jekyll v4.0.1" />
+<meta property="og:title" content="Power of estimations" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Using estimation and guesstimation methods" />
+<meta property="og:description" content="Using estimation and guesstimation methods" />
+<meta property="og:site_name" content="Mark Danovich" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-07-01T11:03:47-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Power of estimations" />
+<script type="application/ld+json">
+{"description":"Using estimation and guesstimation methods","@type":"BlogPosting","url":"/2019/07/01/power-of-estimation.html","dateModified":"2019-07-01T11:03:47-05:00","datePublished":"2019-07-01T11:03:47-05:00","headline":"Power of estimations","mainEntityOfPage":{"@type":"WebPage","@id":"/2019/07/01/power-of-estimation.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css" /><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Mark Danovich" /><script async src="https://www.googletagmanager.com/gtag/js?id=UA-10819841-6"></script>
+<script>
+  window['ga-disable-UA-10819841-6'] = window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1";
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-10819841-6');
+</script>
+ 
+
+
+
+
+ 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"
+    integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+<script type="text/javascript" async
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"
+    integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz"
+    crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+    integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI"
+    crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "[%", right: "%]", display: true },
+                { left: "$", right: "$", display: false }
+            ]
+        }
+        );
+    });
+</script>
+
+
+<script>
+    function wrap_img(fn) {
+        if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+            var elements = document.querySelectorAll(".post img");
+            Array.prototype.forEach.call(elements, function (el, i) {
+                if (el.getAttribute("title")) {
+                    const caption = document.createElement('figcaption');
+                    var node = document.createTextNode(el.getAttribute("title"));
+                    caption.appendChild(node);
+                    const wrapper = document.createElement('figure');
+                    wrapper.className = 'image';
+                    el.parentNode.insertBefore(wrapper, el);
+                    el.parentNode.removeChild(el);
+                    wrapper.appendChild(el);
+                    wrapper.appendChild(caption);
+                }
+            });
+        } else { document.addEventListener('DOMContentLoaded', fn); }
+    }
+    window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // add link icon to anchor tags
+        var elem = document.querySelectorAll(".anchor-link")
+        elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script></head>
+<body><header class="site-header">
+
+    <div class="wrapper"><a class="site-title" rel="author" href="/">Mark Danovich</a><nav class="site-nav">
+            <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+            <label for="nav-trigger">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 18 15" width="18px" height="15px">
+                        <path
+                            d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z" />
+                    </svg>
+                </span>
+            </label>
+
+            <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+        </nav></div>
+</header><main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <header class="post-header">
+        <h1 class="post-title p-name" itemprop="name headline">Power of estimations</h1><p class="page-description">Using estimation and guesstimation methods</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2019-07-01T11:03:47-05:00" itemprop="datePublished">
+                Jul 1, 2019
+            </time>
+        </p><p>
+            
+            
+            <a class="category-tags-link" href="/tag/physics">
+                physics
+            </a>
+            |
+            
+            
+            <a class="category-tags-link" href="/tag/science">
+                science
+            </a>
+            
+            
+        </p>
+
+        
+
+        </header>
+
+    <div class="post-content e-content" itemprop="articleBody">
+        <p>One of the fastest ways to solve any problem is to know the answer in advance.
+Especially in Physics, one of the most important tools to have is the ability to estimate the answers to problems before actually solving them. This involves invoking physical or general considerations which allow to get an order of magnitude estimate to a given problem be it physics related or completely general. Sometimes this practice is also
+called back of the envelope calculation.
+The greatest Physicists were famous in their ability to make such back of the envelope estimations of various problems,
+most famous of which were Fermi, Feynman and Landau.</p>
+
+<p>During my studies I took a course on methods of estimations and approximations taught by Prof. Nir Shaviv. In the first lecture
+he said that Physicists are like Superman, they can solve any problem.
+Here I wanted to present the famous Fermi problem which shows how one can tackle a seemingly impossible problem using the power of estimations,and then I give a short example of the methods of estimation used in the context of a Physics problem.</p>
+
+<p>The question Fermi used to present as the first problem was: “How many piano tuners are there in Chicago?”
+The approach to this and other seemingly impossible problems is through separating it to smaller problems which we
+can estimate more easily the answer to and then construct the final answer, also known as ‘divide and conquer’.
+The sub-problems that need to be solved are:
+the number of people in Chicago: This is definitely more than 1 million and less than 100 million, we’ll take 10 million.
+Frequency of piano tunings: definitely more than once a month and more than once per decade, we’ll take once a year.
+It takes about 2 hours to tune a piano (88 keys). Number of pianos: Here there are a number of ways to estimate, with various resolutions. We can assume 3 people per household on average with 5% of households having a piano giving: 160,000 pianos.
+An alternative way is to consider how many people hold a piano, there are about 10% (less than 100% more than 1%) who play the piano
+but probably much less hold one, about 10% of them will also hold a piano, so we’ll take <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mrow><mo>−</mo><mn>2</mn></mrow></msup></mrow><annotation encoding="application/x-tex">1\times 10^{-2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span>. In addition there are pianos usually in churches and schools, these are
+about 1 per 1000 people, so additional <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mrow><mo>−</mo><mn>3</mn></mrow></msup></mrow><annotation encoding="application/x-tex">2\times10^{-3}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span>, giving a total of 120,000 pianos. We can take the average of the two
+as the final estimate: 140,000 pianos.
+The final estimation is the amount of time a piano tuner works: we take a standard of 5 days a week, 8 hours a day, 50 weeks a year,
+which is 2000 piano tuning hours a year. At 2 hours per piano this gives 1000 piano tunings per year.
+Since there are 140,000 pianos to be tuned per year, there should be about 140 piano tuners.
+With a tool such as <a href="http://www.wolframalpha.com/input/?i=how+many+piano+tuners+are+there+in+Chicago">Wolfram Alpha</a>
+This question can actually be answered exactly and quickly, giving ~290, which is of the same order of magnitude as our result. One
+can play with the estimates to see where the estimations can be improved.</p>
+
+<p>A more sophisticated example of Fermi’s brilliant use of the power of estimation is the estimation of the energy released in the
+Trinity atomic bomb test in 1945 as part of the Manhattan project leading to the bombing of Hiroshima and Nagasaki less than a month later.
+The way he estimated it required a little more than just number guessing but some actual data which he obtained by witnessing the
+explosion and the resulting shock wave itself. By throwing pieces of paper where he stood, he measured the displacement outwards and inwards
+of these pieces papers due to the passing shock front. He found that they were displaced by 2.5m, and he stood 16km from the place of explosion.
+The way to estimate the total energy is using conservation of energy and the work done by the shock wave on the air at the place where Fermi stood.
+The volume displaced is the hemispherical shell of thickness 2.5m: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>V</mi><mo>=</mo><mo stretchy="false">(</mo><mn>2</mn><mi>π</mi><msup><mi>r</mi><mn>2</mn></msup><mo stretchy="false">)</mo><mi>d</mi><mo>=</mo><mn>4</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>9</mn></msup><msup><mi>m</mi><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">\Delta V=(2\pi r^2)d=4\times10^9 m^3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">Δ</span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">2</span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">9</span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">m</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span> (2 because only half a sphere).
+The work done is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>=</mo><mi>W</mi><mo>=</mo><mi>P</mi><mi mathvariant="normal">Δ</mi><mi>V</mi></mrow><annotation encoding="application/x-tex">E=W=P\Delta V</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord">Δ</span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span></span></span></span>, the pressure here is the over pressure above atmospheric pressure. 1 atmosphere is
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>5</mn></msup><mi>N</mi><mi mathvariant="normal">/</mi><msup><mi>m</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">10^5N/m^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord">/</span><span class="mord"><span class="mord mathdefault">m</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>, which is like 10 tons of weight on a human body, this is not reasonable, since in that case Fermi wouldn’t be able to
+withstand it. It is probably more than <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>2</mn></msup><mi>N</mi><mi mathvariant="normal">/</mi><msup><mi>m</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">10^2 N/m^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord">/</span><span class="mord"><span class="mord mathdefault">m</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span> or 10kg, so we can take <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>=</mo><mn>1</mn><msup><mn>0</mn><mn>3</mn></msup><mi>N</mi><mi mathvariant="normal">/</mi><msup><mi>m</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">P=10^3 N/m^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord">/</span><span class="mord"><span class="mord mathdefault">m</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>, giving: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>=</mo><mn>4</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>12</mn></msup><mi>J</mi><mo>=</mo><mn>1</mn><mi>K</mi><mi>T</mi></mrow><annotation encoding="application/x-tex">E=4\times10^{12} J= 1 KT</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">2</span></span></span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.09618em;">J</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span>.
+This is not the total energy, since not all the energy goes into the kinetic energy of the shock, some goes to light, nuclear radiation,
+heating and more. So an additional factor of a few, say 4, gives an estimate for the total energy of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn><mi>K</mi><mi>T</mi></mrow><annotation encoding="application/x-tex">4 KT</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">4</span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span>.</p>
+
+<p>Another physicist who used the power of estimation to estimate the energy released in the explosion, using a different
+method and different available data, was <a href="https://en.wikipedia.org/wiki/G._I._Taylor">Taylor</a> who in 1950 using a set of photos released to the media showing the blast wave
+expansion, conveniently giving the time elapsed and the distance scales on the photos. Taylor used the method of dimensional analysis to
+estimate this energy. In any dimensional analysis problem, one looks for dimensionless parameters constructed from the relevant physical
+parameters in the problem. The parameters he used were <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span></span></span></span> - total energy, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ρ</mi></mrow><annotation encoding="application/x-tex">\rho</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">ρ</span></span></span></span> - external density, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">t</span></span></span></span> - time elapsed, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span></span> - radius of expansion.</p>
+
+<span class="katex-error" title="ParseError: KaTeX parse error: Expected &#x27;EOF&#x27;, got &#x27;&amp;&#x27; at position 5: [E] &amp;̲=&amp; M L^2 S^{-2}…" style="color:#cc0000">[E] &amp;=&amp; M L^2 S^{-2} \\
+ [\rho] &amp;=&amp; M L^{-3} \\
+ [t] &amp;=&amp; S \\
+ [r] &amp;=&amp; L
+\end{gathered}</span>
+
+<p>We need to find the exponents which will give a dimensionless quantity:
+$$</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>E^{a}\rho^{b}t^{c}r^{d} &amp;=&amp; const,  \\
+M^{a}L^{2a}S^{-2a}M^bL^{-3b}S^{c}L^d &amp;=&amp; M^{a+b}L^{2a-3b+d}S^{c-2a}
+</code></pre></div></div>
+
+<p>\end{gathered}\$$</p>
+
+<p>Therefore,</p>
+
+<span class="katex-error" title="ParseError: KaTeX parse error: Expected &#x27;EOF&#x27;, got &#x27;&amp;&#x27; at position 5: a+b &amp;̲=&amp;0, \\
+	2a-3b+…" style="color:#cc0000">a+b &amp;=&amp;0, \\
+	2a-3b+d &amp;=&amp; 0, \\
+	c-2a &amp;=&amp; 0
+\end{gathered}</span>
+
+<p>The answer doesn’t have to be unique, since we can take the constant to any power.
+We get
+$$</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>a &amp;=&amp; -b, \\
+d &amp;=&amp; 5b, \\
+c &amp;=&amp; -2b
+</code></pre></div></div>
+
+<p>\end{gathered}$$</p>
+
+<p>taking <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">b=1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>, gives <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a=-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord">1</span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>=</mo><mo>−</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">c=-2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">c</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord">2</span></span></span></span>, $$ d=5 $$ and the dimensionless parameter is:</p>
+
+<span class="katex-error" title="ParseError: KaTeX parse error: Expected &#x27;EOF&#x27;, got &#x27;\end&#x27; at position 28: …r^5\rho}{t^2E}
+\̲e̲n̲d̲{gathered}" style="color:#cc0000">const=\frac{r^5\rho}{t^2E}
+\end{gathered}</span>
+
+<p>Estimating the constant to be of order unity and using a photo such as this:
+<br />
+</p>
+<div style="text-align:center">
+<img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Trinity_Test_Fireball_16ms.jpg" width="300px" />
+<br />
+source: wikipedia.
+</div>
+<p><br />
+taken at 25ms after the explosion with a blast radius of ~140m, he was able to get an estimation of 20kT which is the accurate value.
+So both Fermi and Taylor used estimation methods and got an order of magnitude estimation which was very close to the exact
+value, a feat which otherwise would require much more time and effort.
+$$</p>
+
+    </div><a class="u-url" href="/2019/07/01/power-of-estimation.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>My personal website and blog. Life, Science, Programming and Data Science.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/markd87" title="markd87"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/mmasaniad" title="mmasaniad"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

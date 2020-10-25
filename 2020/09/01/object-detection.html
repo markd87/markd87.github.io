@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" /><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Object Detection | Mark Danovich</title>
+<meta name="generator" content="Jekyll v4.0.1" />
+<meta property="og:title" content="Object Detection" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="One of the algorithms for object detection in images is called Faster R-CNN [paper]." />
+<meta property="og:description" content="One of the algorithms for object detection in images is called Faster R-CNN [paper]." />
+<meta property="og:site_name" content="Mark Danovich" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-09-01T15:50:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Object Detection" />
+<script type="application/ld+json">
+{"description":"One of the algorithms for object detection in images is called Faster R-CNN [paper].","@type":"BlogPosting","url":"/2020/09/01/object-detection.html","dateModified":"2020-09-01T15:50:00-05:00","datePublished":"2020-09-01T15:50:00-05:00","headline":"Object Detection","mainEntityOfPage":{"@type":"WebPage","@id":"/2020/09/01/object-detection.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css" /><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Mark Danovich" /><script async src="https://www.googletagmanager.com/gtag/js?id=UA-10819841-6"></script>
+<script>
+  window['ga-disable-UA-10819841-6'] = window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1";
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-10819841-6');
+</script>
+ 
+
+
+
+
+ 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"
+    integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+<script type="text/javascript" async
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"
+    integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz"
+    crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+    integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI"
+    crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "[%", right: "%]", display: true },
+                { left: "$", right: "$", display: false }
+            ]
+        }
+        );
+    });
+</script>
+
+
+<script>
+    function wrap_img(fn) {
+        if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+            var elements = document.querySelectorAll(".post img");
+            Array.prototype.forEach.call(elements, function (el, i) {
+                if (el.getAttribute("title")) {
+                    const caption = document.createElement('figcaption');
+                    var node = document.createTextNode(el.getAttribute("title"));
+                    caption.appendChild(node);
+                    const wrapper = document.createElement('figure');
+                    wrapper.className = 'image';
+                    el.parentNode.insertBefore(wrapper, el);
+                    el.parentNode.removeChild(el);
+                    wrapper.appendChild(el);
+                    wrapper.appendChild(caption);
+                }
+            });
+        } else { document.addEventListener('DOMContentLoaded', fn); }
+    }
+    window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // add link icon to anchor tags
+        var elem = document.querySelectorAll(".anchor-link")
+        elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script></head>
+<body><header class="site-header">
+
+    <div class="wrapper"><a class="site-title" rel="author" href="/">Mark Danovich</a><nav class="site-nav">
+            <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+            <label for="nav-trigger">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 18 15" width="18px" height="15px">
+                        <path
+                            d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z" />
+                    </svg>
+                </span>
+            </label>
+
+            <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+        </nav></div>
+</header><main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <header class="post-header">
+        <h1 class="post-title p-name" itemprop="name headline">Object Detection</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-09-01T15:50:00-05:00" itemprop="datePublished">
+                Sep 1, 2020
+            </time>
+        </p><p>
+            
+            
+            <a class="category-tags-link" href="/tag/deeplearning">
+                deeplearning
+            </a>
+            |
+            
+            
+            <a class="category-tags-link" href="/tag/pytorch">
+                pytorch
+            </a>
+            
+            
+        </p>
+
+        
+
+        </header>
+
+    <div class="post-content e-content" itemprop="articleBody">
+        <p>One of the algorithms for object detection in images is called
+Faster R-CNN [<a href="https://arxiv.org/abs/1506.01497">paper</a>].</p>
+
+<p>Unlike the typical image classification task, which given an input image returns a class. The task of object detection is much harder, and many clever techniques have been developed to solve this task.</p>
+
+<p>The objective is to be able to both provide a bounding box indicating indicating where an object is, as well as the class of that object. Therefore, the network combines both a classification task for the object class as well as a regression task for the bounding box coordinates. A key idea with the bounding boxes, is that they are not regressed from scratch, rather the regression adjusts a number of initial reference boxes (specifically 9 anchor boxes), which is easier.</p>
+
+<p>The common idea is still to use a CNN to obtain feature maps at different scales, i.e. different network depths, as this contain encoded information within each neuron’s receptive field (the portion of the original image it “sees”), and the deeper the layer the larger the receptive field and the complexity of the features.</p>
+
+<p>The feature map is used to propose potential regions of object, the proposed region is further fed into two separate fully-connected layers performing the classification and regression tasks.</p>
+
+<p>There are plenty more specific implementation details as can be read in the paper, but that’s the idea.</p>
+
+<p>Here I wanted to try out the pre-trained model using PyTorch.</p>
+
+<p>The Google Colab notebook can be found <a href="https://colab.research.google.com/drive/1zt--4f1v1o9Mmd481xKfYI4aF8Z9vhxm?usp=sharing">here</a>.</p>
+
+<p>To see the allocated GPU specs:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">!</span>nvidia-smi
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>+-----------------------------------------------------------------------------+
+| NVIDIA-SMI 450.66       Driver Version: 418.67       CUDA Version: 10.1     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|                               |                      |               MIG M. |
+|===============================+======================+======================|
+|   0  Tesla P100-PCIE...  Off  | 00000000:00:04.0 Off |                    0 |
+| N/A   49C    P0    36W / 250W |   4020MiB / 16280MiB |      0%      Default |
+|                               |                      |                 ERR! |
++-------------------------------+----------------------+----------------------+
+
++-----------------------------------------------------------------------------+
+| Processes:                                                                  |
+|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+|        ID   ID                                                   Usage      |
+|=============================================================================|
+|  No running processes found                                                 |
++-----------------------------------------------------------------------------+
+</code></pre></div></div>
+
+<p>Which is the: Tesla P100 PCIe 16 GB.</p>
+
+<h1 id="the-code">The code</h1>
+
+<p>Imports:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torchvision.models.detection</span> <span class="kn">import</span> <span class="n">fasterrcnn_resnet50_fpn</span>
+<span class="kn">import</span> <span class="nn">torchvision.transforms</span> <span class="k">as</span> <span class="n">T</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+</code></pre></div></div>
+
+<p>Load pre-trained Faster R-CNN model and move to GPU if exists.
+The ResNet50 indicates that the backbone of the network used for the feature map generation is the ResNet50 CNN.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">device</span><span class="p">(</span><span class="s">'cuda'</span> <span class="k">if</span> <span class="n">torch</span><span class="p">.</span><span class="n">cuda</span><span class="p">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s">"cpu"</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">fasterrcnn_resnet50_fpn</span><span class="p">(</span><span class="n">pretrained</span><span class="o">=</span><span class="bp">True</span><span class="p">).</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+<span class="c1"># Set model to evaluation mode (need for dropout and batchnorm which work differently under training and evaluation)
+</span><span class="n">model</span><span class="p">.</span><span class="nb">eval</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>The model was originally trained on an object detection dataset called COCO (Common Objects in Context),
+which has 90 classes (not including background class, i.e. no object).</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Predefined object classes
+</span><span class="n">COCO_CATEGORIES</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s">'__background__'</span><span class="p">,</span> <span class="s">'person'</span><span class="p">,</span> <span class="s">'bicycle'</span><span class="p">,</span> <span class="s">'car'</span><span class="p">,</span> <span class="s">'motorcycle'</span><span class="p">,</span> <span class="s">'airplane'</span><span class="p">,</span> <span class="s">'bus'</span><span class="p">,</span>
+    <span class="s">'train'</span><span class="p">,</span> <span class="s">'truck'</span><span class="p">,</span> <span class="s">'boat'</span><span class="p">,</span> <span class="s">'traffic light'</span><span class="p">,</span> <span class="s">'fire hydrant'</span><span class="p">,</span> <span class="s">'N/A'</span><span class="p">,</span> <span class="s">'stop sign'</span><span class="p">,</span>
+    <span class="s">'parking meter'</span><span class="p">,</span> <span class="s">'bench'</span><span class="p">,</span> <span class="s">'bird'</span><span class="p">,</span> <span class="s">'cat'</span><span class="p">,</span> <span class="s">'dog'</span><span class="p">,</span> <span class="s">'horse'</span><span class="p">,</span> <span class="s">'sheep'</span><span class="p">,</span> <span class="s">'cow'</span><span class="p">,</span>
+    <span class="s">'elephant'</span><span class="p">,</span> <span class="s">'bear'</span><span class="p">,</span> <span class="s">'zebra'</span><span class="p">,</span> <span class="s">'giraffe'</span><span class="p">,</span> <span class="s">'N/A'</span><span class="p">,</span> <span class="s">'backpack'</span><span class="p">,</span> <span class="s">'umbrella'</span><span class="p">,</span> <span class="s">'N/A'</span><span class="p">,</span> <span class="s">'N/A'</span><span class="p">,</span>
+    <span class="s">'handbag'</span><span class="p">,</span> <span class="s">'tie'</span><span class="p">,</span> <span class="s">'suitcase'</span><span class="p">,</span> <span class="s">'frisbee'</span><span class="p">,</span> <span class="s">'skis'</span><span class="p">,</span> <span class="s">'snowboard'</span><span class="p">,</span> <span class="s">'sports ball'</span><span class="p">,</span>
+    <span class="s">'kite'</span><span class="p">,</span> <span class="s">'baseball bat'</span><span class="p">,</span> <span class="s">'baseball glove'</span><span class="p">,</span> <span class="s">'skateboard'</span><span class="p">,</span> <span class="s">'surfboard'</span><span class="p">,</span> <span class="s">'tennis racket'</span><span class="p">,</span>
+    <span class="s">'bottle'</span><span class="p">,</span> <span class="s">'N/A'</span><span class="p">,</span> <span class="s">'wine glass'</span><span class="p">,</span> <span class="s">'cup'</span><span class="p">,</span> <span class="s">'fork'</span><span class="p">,</span> <span class="s">'knife'</span><span class="p">,</span> <span class="s">'spoon'</span><span class="p">,</span> <span class="s">'bowl'</span><span class="p">,</span>
+    <span class="s">'banana'</span><span class="p">,</span> <span class="s">'apple'</span><span class="p">,</span> <span class="s">'sandwich'</span><span class="p">,</span> <span class="s">'orange'</span><span class="p">,</span> <span class="s">'broccoli'</span><span class="p">,</span> <span class="s">'carrot'</span><span class="p">,</span> <span class="s">'hot dog'</span><span class="p">,</span> <span class="s">'pizza'</span><span class="p">,</span>
+    <span class="s">'donut'</span><span class="p">,</span> <span class="s">'cake'</span><span class="p">,</span> <span class="s">'chair'</span><span class="p">,</span> <span class="s">'couch'</span><span class="p">,</span> <span class="s">'potted plant'</span><span class="p">,</span> <span class="s">'bed'</span><span class="p">,</span> <span class="s">'N/A'</span><span class="p">,</span> <span class="s">'dining table'</span><span class="p">,</span>
+    <span class="s">'N/A'</span><span class="p">,</span> <span class="s">'N/A'</span><span class="p">,</span> <span class="s">'toilet'</span><span class="p">,</span> <span class="s">'N/A'</span><span class="p">,</span> <span class="s">'tv'</span><span class="p">,</span> <span class="s">'laptop'</span><span class="p">,</span> <span class="s">'mouse'</span><span class="p">,</span> <span class="s">'remote'</span><span class="p">,</span> <span class="s">'keyboard'</span><span class="p">,</span> <span class="s">'cell phone'</span><span class="p">,</span>
+    <span class="s">'microwave'</span><span class="p">,</span> <span class="s">'oven'</span><span class="p">,</span> <span class="s">'toaster'</span><span class="p">,</span> <span class="s">'sink'</span><span class="p">,</span> <span class="s">'refrigerator'</span><span class="p">,</span> <span class="s">'N/A'</span><span class="p">,</span> <span class="s">'book'</span><span class="p">,</span>
+    <span class="s">'clock'</span><span class="p">,</span> <span class="s">'vase'</span><span class="p">,</span> <span class="s">'scissors'</span><span class="p">,</span> <span class="s">'teddy bear'</span><span class="p">,</span> <span class="s">'hair drier'</span><span class="p">,</span> <span class="s">'toothbrush'</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<p>The model’s output looks as follows for a sample image:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1"># Example output
+</span>  <span class="n">img</span>  <span class="o">=</span> <span class="n">Image</span><span class="p">.</span><span class="nb">open</span><span class="p">(</span><span class="s">'dog_ball.jpg'</span><span class="p">)</span>
+  <span class="n">transform</span> <span class="o">=</span> <span class="n">T</span><span class="p">.</span><span class="n">Compose</span><span class="p">([</span><span class="n">T</span><span class="p">.</span><span class="n">ToTensor</span><span class="p">()])</span>
+  <span class="n">img</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+  <span class="n">out</span> <span class="o">=</span> <span class="n">model</span><span class="p">([</span><span class="n">img</span><span class="p">])</span>
+  <span class="n">out</span>
+</code></pre></div></div>
+
+<p>Output:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[{</span><span class="s">'boxes'</span><span class="p">:</span> <span class="n">tensor</span><span class="p">([[</span><span class="mf">646.0035</span><span class="p">,</span> <span class="mf">449.6353</span><span class="p">,</span> <span class="mf">905.4247</span><span class="p">,</span> <span class="mf">735.7059</span><span class="p">],</span>
+          <span class="p">[</span> <span class="mf">49.0856</span><span class="p">,</span> <span class="mf">543.5223</span><span class="p">,</span> <span class="mf">242.2890</span><span class="p">,</span> <span class="mf">736.4569</span><span class="p">],</span>
+          <span class="p">[</span><span class="mf">164.4843</span><span class="p">,</span> <span class="mf">577.5748</span><span class="p">,</span> <span class="mf">204.7126</span><span class="p">,</span> <span class="mf">619.7700</span><span class="p">]],</span> <span class="n">grad_fn</span><span class="o">=&lt;</span><span class="n">StackBackward</span><span class="o">&gt;</span><span class="p">),</span>
+  <span class="s">'labels'</span><span class="p">:</span> <span class="n">tensor</span><span class="p">([</span><span class="mi">18</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span>  <span class="mi">1</span><span class="p">]),</span>
+  <span class="s">'scores'</span><span class="p">:</span> <span class="n">tensor</span><span class="p">([</span><span class="mf">0.9989</span><span class="p">,</span> <span class="mf">0.9896</span><span class="p">,</span> <span class="mf">0.2459</span><span class="p">],</span> <span class="n">grad_fn</span><span class="o">=&lt;</span><span class="n">IndexBackward</span><span class="o">&gt;</span><span class="p">)}]</span>
+</code></pre></div></div>
+
+<p>It is a list of dictionaries (one dictionary per input image).
+The output contains three keys: boxes, labels and scores with tensor values.
+The boxes contains the identified boxes as a tensor with 4 values per box corresponding to the top left and bottom right corners.
+The labels contain the identified classes (one per box).
+The scores contain the probability of the classification, which is binary, either the object belongs to the class or not.</p>
+
+<p>The detection function:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">detect</span><span class="p">(</span><span class="n">img_path</span><span class="p">,</span> <span class="n">save_path</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.9</span><span class="p">):</span>
+  <span class="s">"""
+  Use Faster R-CNN to detect objects in an image.
+  Filter objects with score below threshold
+  """</span>
+
+  <span class="c1"># Load image
+</span>  <span class="n">img</span>  <span class="o">=</span> <span class="n">Image</span><span class="p">.</span><span class="nb">open</span><span class="p">(</span><span class="n">img_path</span><span class="p">)</span>
+
+  <span class="c1"># Convert to tensor and move to device
+</span>  <span class="n">transform</span> <span class="o">=</span> <span class="n">T</span><span class="p">.</span><span class="n">Compose</span><span class="p">([</span><span class="n">T</span><span class="p">.</span><span class="n">ToTensor</span><span class="p">()])</span>
+  <span class="n">img</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">img</span><span class="p">).</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+  <span class="c1"># Input image to model and get output, expects list of images
+</span>  <span class="n">out</span> <span class="o">=</span> <span class="n">model</span><span class="p">([</span><span class="n">img</span><span class="p">])</span>
+
+  <span class="c1"># Get class scores and filter above a threshold
+</span>  <span class="c1"># Note we need to detach the object, before moving it to cpu, because it is part of the computation graph.
+</span>  <span class="c1"># Same applies for the detaches below
+</span>  <span class="c1"># Alternatively is to do `with torch.no_grad():` to disable following operations on the object
+</span>  <span class="n">indxs</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">where</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s">'scores'</span><span class="p">].</span><span class="n">detach</span><span class="p">().</span><span class="n">cpu</span><span class="p">().</span><span class="n">numpy</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="n">threshold</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+  <span class="c1"># Get detected classes labels
+</span>  <span class="n">detected_classes</span> <span class="o">=</span> <span class="p">[</span><span class="n">COCO_CATEGORIES</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                      <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s">'labels'</span><span class="p">].</span><span class="n">detach</span><span class="p">().</span><span class="n">cpu</span><span class="p">().</span><span class="n">numpy</span><span class="p">()[</span><span class="n">indxs</span><span class="p">]]</span>
+
+  <span class="c1"># Get scores (not used, but can be added to the image)
+</span>  <span class="n">scores</span> <span class="o">=</span> <span class="p">[</span><span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s">'scores'</span><span class="p">].</span><span class="n">detach</span><span class="p">().</span><span class="n">cpu</span><span class="p">().</span><span class="n">numpy</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indxs</span><span class="p">]</span>
+
+  <span class="c1"># Get the boxes corresponding to detected objects as numpy arrays
+</span>  <span class="n">boxes</span> <span class="o">=</span> <span class="p">[</span><span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s">'boxes'</span><span class="p">].</span><span class="n">detach</span><span class="p">().</span><span class="n">cpu</span><span class="p">().</span><span class="n">numpy</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">indxs</span><span class="p">]</span>
+
+  <span class="c1"># Create rectangles in the format OpenCV expects, two tuples of top left
+</span>  <span class="c1"># and top right corners
+</span>  <span class="n">rects</span> <span class="o">=</span> <span class="p">[[(</span><span class="n">box</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">box</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="n">box</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">box</span><span class="p">[</span><span class="mi">3</span><span class="p">])]</span> <span class="k">for</span> <span class="n">box</span> <span class="ow">in</span> <span class="n">boxes</span><span class="p">]</span>
+
+  <span class="c1"># Use OpenCV to draw rectangle and text on image
+</span>  <span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">imread</span><span class="p">(</span><span class="n">img_path</span><span class="p">)</span>
+
+  <span class="c1"># Need to convert from BGR to RGB
+</span>  <span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">);</span>
+
+  <span class="c1"># Loop over bounding boxes and class and add to the image
+</span>  <span class="k">for</span> <span class="n">rect</span><span class="p">,</span> <span class="n">dclass</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">rects</span><span class="p">,</span> <span class="n">detected_classes</span><span class="p">,</span> <span class="n">scores</span><span class="p">):</span>
+
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">rect</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1"># Draw Rectangle with the coordinates
+</span>    <span class="n">cv2</span><span class="p">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">img</span><span class="p">,</span>
+                  <span class="n">rect</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                  <span class="n">rect</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                  <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+                  <span class="n">thickness</span><span class="o">=</span><span class="mi">3</span><span class="p">);</span>
+
+    <span class="c1"># Add the class label to the image as text
+</span>    <span class="n">cv2</span><span class="p">.</span><span class="n">putText</span><span class="p">(</span><span class="n">img</span><span class="p">,</span>
+                <span class="s">f"</span><span class="si">{</span><span class="n">dclass</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">score</span><span class="p">:.</span><span class="mi">2</span><span class="n">f</span><span class="si">}</span><span class="s">"</span><span class="p">,</span>
+                <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">-</span><span class="mi">10</span><span class="p">),</span>  <span class="c1"># shift text vertically from box
+</span>                <span class="n">cv2</span><span class="p">.</span><span class="n">FONT_HERSHEY_SIMPLEX</span><span class="p">,</span>
+                <span class="mi">1</span><span class="p">,</span>
+                <span class="p">(</span><span class="mi">250</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
+                <span class="n">thickness</span><span class="o">=</span><span class="mi">4</span><span class="p">);</span>
+
+  <span class="c1"># Show image
+</span>  <span class="n">plt</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+
+  <span class="c1"># Save image
+</span>  <span class="c1"># OpenCV expects BGR to save properly
+</span>  <span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">COLOR_RGB2BGR</span><span class="p">);</span>
+  <span class="n">cv2</span><span class="p">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="examples">Examples</h2>
+
+<p>(The function call for the below examples below examples takes ~0.2 second per image):</p>
+
+<p><img src="/assets/objectdetection/dog_ball_detected.jpg" alt="dogball" /></p>
+
+<p><img src="/assets/objectdetection/marta_parrot_detected.jpg" alt="marta" /></p>
+
+<p>I actually didn’t see the bird at the lower left corner before!</p>
+
+<p><img src="/assets/objectdetection/family_detected.jpg" alt="family" /></p>
+
+<p>Little people are correctly identified.</p>
+
+<p><img src="/assets/objectdetection/cars_plane_detected.jpg" alt="cars" />
+<span>Photo by <a href="https://unsplash.com/@josephyates_?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Joe Yates</a> on <a href="https://unsplash.com/s/photos/cars-with-airplane?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span></p>
+
+<p>The next step would be to utilize the pre-trained model (transfer learning) to
+detect new classes of objects.</p>
+
+    </div><a class="u-url" href="/2020/09/01/object-detection.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>My personal website and blog. Life, Science, Programming and Data Science.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/markd87" title="markd87"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/mmasaniad" title="mmasaniad"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

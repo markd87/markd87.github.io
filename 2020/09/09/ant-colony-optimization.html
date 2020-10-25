@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" /><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Ant Colony Optimization | Mark Danovich</title>
+<meta name="generator" content="Jekyll v4.0.1" />
+<meta property="og:title" content="Ant Colony Optimization" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I’ve recently been interested in vehicle routing problem, a variation on the famous travelling salesperson problem (TSP), where the task is given a graph with the distances between cities, find the shortest path visiting all cities once and returning to the starting city. The problem falls under the complexity class NP-hard, which loosely means they cannot be solved in polynomial time. (Also it is not NP-complete, which means it is both in NP-Hard and in NP, where NP means that a solution can be verified in polynomial time, and for TSP verifying a path is the shortest is the same as finding the shortest path.)" />
+<meta property="og:description" content="I’ve recently been interested in vehicle routing problem, a variation on the famous travelling salesperson problem (TSP), where the task is given a graph with the distances between cities, find the shortest path visiting all cities once and returning to the starting city. The problem falls under the complexity class NP-hard, which loosely means they cannot be solved in polynomial time. (Also it is not NP-complete, which means it is both in NP-Hard and in NP, where NP means that a solution can be verified in polynomial time, and for TSP verifying a path is the shortest is the same as finding the shortest path.)" />
+<meta property="og:site_name" content="Mark Danovich" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-09-09T16:48:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Ant Colony Optimization" />
+<script type="application/ld+json">
+{"description":"I’ve recently been interested in vehicle routing problem, a variation on the famous travelling salesperson problem (TSP), where the task is given a graph with the distances between cities, find the shortest path visiting all cities once and returning to the starting city. The problem falls under the complexity class NP-hard, which loosely means they cannot be solved in polynomial time. (Also it is not NP-complete, which means it is both in NP-Hard and in NP, where NP means that a solution can be verified in polynomial time, and for TSP verifying a path is the shortest is the same as finding the shortest path.)","@type":"BlogPosting","url":"/2020/09/09/ant-colony-optimization.html","dateModified":"2020-09-09T16:48:00-05:00","datePublished":"2020-09-09T16:48:00-05:00","headline":"Ant Colony Optimization","mainEntityOfPage":{"@type":"WebPage","@id":"/2020/09/09/ant-colony-optimization.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css" /><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Mark Danovich" /><script async src="https://www.googletagmanager.com/gtag/js?id=UA-10819841-6"></script>
+<script>
+  window['ga-disable-UA-10819841-6'] = window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1";
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-10819841-6');
+</script>
+ 
+
+
+
+
+ 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"
+    integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+<script type="text/javascript" async
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"
+    integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz"
+    crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+    integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI"
+    crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "[%", right: "%]", display: true },
+                { left: "$", right: "$", display: false }
+            ]
+        }
+        );
+    });
+</script>
+
+
+<script>
+    function wrap_img(fn) {
+        if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+            var elements = document.querySelectorAll(".post img");
+            Array.prototype.forEach.call(elements, function (el, i) {
+                if (el.getAttribute("title")) {
+                    const caption = document.createElement('figcaption');
+                    var node = document.createTextNode(el.getAttribute("title"));
+                    caption.appendChild(node);
+                    const wrapper = document.createElement('figure');
+                    wrapper.className = 'image';
+                    el.parentNode.insertBefore(wrapper, el);
+                    el.parentNode.removeChild(el);
+                    wrapper.appendChild(el);
+                    wrapper.appendChild(caption);
+                }
+            });
+        } else { document.addEventListener('DOMContentLoaded', fn); }
+    }
+    window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // add link icon to anchor tags
+        var elem = document.querySelectorAll(".anchor-link")
+        elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script></head>
+<body><header class="site-header">
+
+    <div class="wrapper"><a class="site-title" rel="author" href="/">Mark Danovich</a><nav class="site-nav">
+            <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+            <label for="nav-trigger">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 18 15" width="18px" height="15px">
+                        <path
+                            d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z" />
+                    </svg>
+                </span>
+            </label>
+
+            <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+        </nav></div>
+</header><main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <header class="post-header">
+        <h1 class="post-title p-name" itemprop="name headline">Ant Colony Optimization</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-09-09T16:48:00-05:00" itemprop="datePublished">
+                Sep 9, 2020
+            </time>
+        </p><p>
+            
+            
+            <a class="category-tags-link" href="/tag/code">
+                code
+            </a>
+            
+            
+        </p>
+
+        
+
+        </header>
+
+    <div class="post-content e-content" itemprop="articleBody">
+        <p>I’ve recently been interested in vehicle routing problem,
+a variation on the famous travelling salesperson problem (TSP),
+where the task is given a graph with the distances between cities, find the shortest path visiting all cities once and returning to the starting city.
+The problem falls under the complexity class NP-hard, which loosely means they cannot be solved in polynomial time. (Also it is not NP-complete, which means it is both in NP-Hard and in NP, where NP means that a solution can be verified in polynomial time, and for TSP verifying a path is the shortest is the same as finding the shortest path.)</p>
+
+<p>Given it cannot be solved in polynomial time, as the number of cities grows, the time it would take to solve it by brute force of checking all possible paths, would grow as n! (n - number of cities). Therefore, people have looked for more optimised ways to approach the problem and get at least a “good enough solution” using what are known as meta-heuristic approaches. A very appealing approach, given its inspiration from nature, is known as the Ant Colony Optimisation (<a href="https://d1wqtxts1xzle7.cloudfront.net/4418203/ic.06-ecal92.pdf?response-content-disposition=inline%3B+filename%3DDistributed_optimization_by_ant_colonies.pdf&amp;Expires=1599694915&amp;Signature=UMX4gedrpI-DLg3~WM0BL3NQogGpqhUTnFIrSqhNJmRgWN-Yignk2RZmxpjP6fZo6XACvY3Ht9dwTMAE8Z5u8cbAx5KB1-vddXGlo0q9KMZUJEWKSYYG8jRPC8BFIBU3m8mi~Doa0t2ArnoCKMD6OKggfvSKe8f2jgslxJIzr8Mqj0WKBvtLLs7xdEa4ZmMhv~jP4MH4HrPb63mcGy16eyTJJf0HOFQJm0fc0GlpBSZOHE4CVlzkXQz4QJKgbaYFXXyrUDeFsKfhef6q7lzQJ5Tr3X48oq2ra98vMIE-1MV3NvmV0uXbFwmp7GeHnchMbSm7kmowLVpniICeQBCv0Q__&amp;Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA">Dorigo, 1991</a>).</p>
+
+<p>The idea is very elegant and relies on nature’s long and trialed experience.
+Specifically, ants. Ant colonies are observed to be very organised in terms of how they self-sustain the group, finding food and bringing it back.
+Initially, each ant may choose a random starting path to reach its destination,
+however as more and more ants choose paths reach their destination and return, the ones that chose the shortest overall path, will return before the ones choosing a longer path. The key part is the information passed between the ants in the form of pheromones deposited along the path, no other more complex signal is required. The next ant when choosing a path, will be more inclined to choose the path with more pheromones, which from what I described will, with time, tend towards the shortest path, being traversed and reinforced with pheromones, leading eventually to all the ants converging on the shortest path.
+The elegance in this approach to me is in the emergence of global coordination through local information. An idea familiar from complex systems, and in physics was described by Phillip Anderson as “<a href="https://science.sciencemag.org/content/177/4047/393">More is different</a>”, one will not learn about this large scale coordination by reducing the ant colony to individual non-interacting ants.</p>
+
+<p>Back to the travelling salesman problems, the application of the ant colony behaviour with some additional improvements, is as follows:</p>
+
+<ol>
+  <li>
+    <p>Start with ant at a given node and a small equal amount of pheromones on all edges (for stability).</p>
+  </li>
+  <li>
+    <p>Move the ant using a probability distribution over the allowed node given by:</p>
+  </li>
+</ol>
+
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>∝</mo><msubsup><mi>τ</mi><mrow><mi>i</mi><mi>j</mi></mrow><mi>α</mi></msubsup><msubsup><mi>η</mi><mrow><mi>i</mi><mi>j</mi></mrow><mi>β</mi></msubsup><mo separator="true">,</mo></mrow><annotation encoding="application/x-tex">p_{ij} \propto \tau^{\alpha}_{ij}\eta_{ij}^{\beta},</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.716668em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∝</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.379988em;vertical-align:-0.412972em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.1132em;">τ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.714392em;"><span style="top:-2.4530000000000003em;margin-left:-0.1132em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span style="top:-3.1130000000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.0037em;">α</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.383108em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">η</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9670159999999999em;"><span style="top:-2.4231360000000004em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span style="top:-3.1809080000000005em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05278em;">β</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.412972em;"><span></span></span></span></span></span></span><span class="mpunct">,</span></span></span></span></span>
+
+<p>where $\tau_{ij}$ is the amount of pheromone deposited on edge $ij$, and plays the role of the collective information passed by other ants, and $\eta_{ij}$ is a heuristic attractiveness of a given edge (A common choice is $\eta_{ij}\sim\frac{1}{d_{ij}}$, where $d_{ij}$ is the edge length, therefore shorter is better). The powers $\alpha$ and $\beta$ are tuning parameters for the weight of either $\tau$ or $\eta$.</p>
+
+<p>The idea of having both of these terms, is similar to the famous explore-exploit trade-off, where we want the ants to exploit the information passed from other ants, while also exploring other paths through the immediate information on the available edges.</p>
+
+<ol>
+  <li>
+    <p>An optimization is to include an evaporation parameter $\rho \in [0,1]$, which allows for pheromones to evaporate, helping in avoiding the ants to converge early on a bad solution and allowing more exploration, therefore update: $\tau_{ij} \rightarrow \rho\tau_{ij}$.</p>
+  </li>
+  <li>
+    <p>After all ants have completed a full path, calculate the length of all path, and deposit an amount of pheromone $\Delta \tau^k_{ij} = \frac{Q}{L^k}$ on each edge $ij$ that ant $k$ went through, where $L^k$ is the total path length for ant $k$, and $Q$ is another free tuning parameter.</p>
+  </li>
+  <li>
+    <p>Repeat until convergence or number of iterations.</p>
+  </li>
+</ol>
+
+<p>Another variation to the above, which I have used in the implementation below, is known as the “Elitist ant”, which is very cute.
+In this variation we additionally add an amount of pheromone $\frac{Q_e}{L^*}$ on each edge of the shortest overall path found so far in all iterations. This serves as an additional global information to guide the ants.</p>
+
+<p>One of the disadvantages of the Ant system optmisation is the large number of free parameters, for which the optimal parameters depend on the particular problem or graph. Most parameters represent a balance between exploration and exploitation.
+The choice of parameters may determine how good of a path the ants will find.
+Generally, the more ants and iterations the more chance for exploration, however for relatively simpler graphs, too many ants can result in slow convergence.</p>
+
+<h2 id="code">Code</h2>
+
+<p>The code and notebook can be found in the github repo <a href="https://github.com/markd87/ants">here</a>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">AntOpt</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">points</span><span class="p">,</span>
+                 <span class="n">d_matrix</span> <span class="o">=</span> <span class="bp">None</span><span class="p">,</span>
+                 <span class="n">dist</span><span class="o">=</span><span class="s">'euclid'</span><span class="p">,</span> <span class="c1"># distance metric
+</span>                 <span class="n">n_iter</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span>    <span class="c1"># Number of iterations
+</span>                 <span class="n">n_ants</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>     <span class="c1"># Number of ants
+</span>                 <span class="n">alpha</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>       <span class="c1"># pheromone importance
+</span>                 <span class="n">beta</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>        <span class="c1"># local importance heuristic
+</span>                 <span class="n">rho</span><span class="o">=</span><span class="mf">0.85</span><span class="p">,</span>      <span class="c1"># evaporation factor
+</span>                 <span class="n">Q</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>         <span class="c1"># pheromone amplification factor
+</span>                 <span class="n">tau0</span><span class="o">=</span><span class="mf">1e-4</span>      <span class="c1"># initial pheromone level
+</span>                <span class="p">):</span>
+
+        <span class="bp">self</span><span class="p">.</span><span class="n">n_iter</span> <span class="o">=</span> <span class="n">n_iter</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">n_ants</span> <span class="o">=</span> <span class="n">n_ants</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">beta</span> <span class="o">=</span> <span class="n">beta</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">rho</span> <span class="o">=</span> <span class="n">rho</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">Q</span> <span class="o">=</span> <span class="n">Q</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">tau0</span> <span class="o">=</span> <span class="n">tau0</span>
+
+        <span class="bp">self</span><span class="p">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">points</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">n_points</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">points</span><span class="p">)</span> <span class="c1"># number of nodes/cities
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">cities</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">n_points</span><span class="p">)</span> <span class="c1"># list of nodes/cities
+</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">dist</span> <span class="o">=</span> <span class="n">dist</span>
+
+        <span class="k">if</span> <span class="n">d_matrix</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">d_matrix</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">calc_distance_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">points</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">d_matrix</span> <span class="o">=</span> <span class="n">d_matrix</span>
+
+        <span class="c1"># Check distance matrix is symmetric
+</span>        <span class="k">assert</span> <span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">d_matrix</span> <span class="o">==</span> <span class="bp">self</span><span class="p">.</span><span class="n">d_matrix</span><span class="p">.</span><span class="n">transpose</span><span class="p">()).</span><span class="nb">all</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="p">.</span><span class="n">pheremons</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">tau0</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">ones_like</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">d_matrix</span><span class="p">)</span>
+        <span class="n">np</span><span class="p">.</span><span class="n">fill_diagonal</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">pheremons</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1">#  no transition to the same node
+</span>
+        <span class="c1"># set seed
+</span>        <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="o">@</span><span class="nb">staticmethod</span>
+    <span class="k">def</span> <span class="nf">haversine_distance</span><span class="p">(</span><span class="n">lon1</span><span class="p">,</span> <span class="n">lat1</span><span class="p">,</span> <span class="n">lon2</span><span class="p">,</span> <span class="n">lat2</span><span class="p">):</span>
+        <span class="s">"""
+        Calculate the great circle distance between two points
+        on the earth (specified in decimal degrees)
+        Reference:
+            https://stackoverflow.com/a/29546836/7657658
+        """</span>
+        <span class="n">lon1</span><span class="p">,</span> <span class="n">lat1</span><span class="p">,</span> <span class="n">lon2</span><span class="p">,</span> <span class="n">lat2</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">radians</span><span class="p">,</span> <span class="p">[</span><span class="n">lon1</span><span class="p">,</span> <span class="n">lat1</span><span class="p">,</span> <span class="n">lon2</span><span class="p">,</span> <span class="n">lat2</span><span class="p">])</span>
+
+        <span class="n">dlon</span> <span class="o">=</span> <span class="n">lon2</span> <span class="o">-</span> <span class="n">lon1</span>
+        <span class="n">dlat</span> <span class="o">=</span> <span class="n">lat2</span> <span class="o">-</span> <span class="n">lat1</span>
+
+        <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">sin</span><span class="p">(</span>
+            <span class="n">dlat</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">np</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="n">lat1</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="n">lat2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">sin</span><span class="p">(</span><span class="n">dlon</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+
+        <span class="n">c</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">arcsin</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+        <span class="n">km</span> <span class="o">=</span> <span class="mi">6371</span> <span class="o">*</span> <span class="n">c</span>
+        <span class="k">return</span> <span class="n">km</span>
+
+    <span class="o">@</span><span class="nb">staticmethod</span>
+    <span class="k">def</span> <span class="nf">euclid_distance</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">):</span>
+        <span class="s">"Calculate Euclidean distance between two points in 2d"</span>
+        <span class="k">assert</span> <span class="n">p1</span><span class="p">.</span><span class="n">shape</span>
+        <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">p1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">p1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">p2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">calc_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="s">'euclid'</span><span class="p">):</span>
+        <span class="s">"""
+        Calculate distance between two points
+        dist: distance metric [euclid or geo]
+        """</span>
+        <span class="k">if</span> <span class="n">dist</span> <span class="o">==</span> <span class="s">'euclid'</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">euclid_distance</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">dist</span> <span class="o">==</span> <span class="s">'geo'</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">haversine_distance</span><span class="p">(</span><span class="n">p1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span><span class="p">(</span><span class="s">'Unknown distance metric, use euclid or geo'</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">calc_distance_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">):</span>
+        <span class="s">"Calculate distance matrix for array of points"</span>
+        <span class="n">n_points</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+        <span class="n">d_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="n">float32</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_points</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+                <span class="n">d_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">calc_distance</span><span class="p">(</span><span class="n">points</span><span class="p">[</span><span class="n">i</span><span class="p">,:],</span> <span class="n">points</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="p">:],</span> <span class="n">dist</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">dist</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">d_matrix</span> <span class="o">+</span> <span class="n">d_matrix</span><span class="p">.</span><span class="n">transpose</span><span class="p">()</span>  <span class="c1"># symmetric
+</span>
+    <span class="k">def</span> <span class="nf">path_length</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="n">tot_length</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">tot_length</span> <span class="o">+=</span> <span class="bp">self</span><span class="p">.</span><span class="n">d_matrix</span><span class="p">[</span><span class="n">path</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">path</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]]</span>
+        <span class="k">return</span> <span class="n">tot_length</span>
+
+    <span class="k">def</span> <span class="nf">_make_transition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ant_tour</span><span class="p">):</span>
+        <span class="s">"Make single ant transition"</span>
+        <span class="n">crnt</span> <span class="o">=</span> <span class="n">ant_tour</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">options</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">.</span><span class="n">cities</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ant_tour</span><span class="p">]</span>  <span class="c1"># no repetition
+</span>        <span class="n">probs</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="p">.</span><span class="n">pheremons</span><span class="p">[</span><span class="n">crnt</span><span class="p">,</span> <span class="n">nxt</span><span class="p">]</span><span class="o">**</span><span class="bp">self</span><span class="p">.</span><span class="n">alpha</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="bp">self</span><span class="p">.</span><span class="n">d_matrix</span><span class="p">[</span><span class="n">crnt</span><span class="p">,</span><span class="n">nxt</span><span class="p">])</span><span class="o">**</span><span class="bp">self</span><span class="p">.</span><span class="n">beta</span> <span class="k">for</span> <span class="n">nxt</span> <span class="ow">in</span> <span class="n">options</span><span class="p">])</span>
+        <span class="n">probs</span> <span class="o">=</span> <span class="n">probs</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">probs</span><span class="p">)</span>  <span class="c1"># normalize
+</span>        <span class="n">next_city</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">choice</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">probs</span><span class="p">)</span>
+        <span class="n">ant_tour</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">next_city</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">run_ants</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s">"Run ants optimization"</span>
+
+        <span class="c1"># Initizlize last improvement iteration
+</span>        <span class="n">last_iter</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="c1"># Initizlie optimal length
+</span>        <span class="n">optimal_length</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">inf</span>
+
+        <span class="c1"># Keep track of path length improvement
+</span>        <span class="n">best_path_lengths</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="n">trange</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">n_iter</span><span class="p">):</span>
+            <span class="n">paths</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">path_lengths</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="c1"># release ants
+</span>            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">n_ants</span><span class="p">):</span>
+
+                <span class="c1"># Place ant on random city
+</span>                <span class="n">ant_path</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">cities</span><span class="p">)]</span>
+
+                <span class="c1"># Make ant choose next node until it covered all nodes
+</span>                <span class="bp">self</span><span class="p">.</span><span class="n">_make_transition</span><span class="p">(</span><span class="n">ant_path</span><span class="p">)</span>
+                <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">ant_path</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="p">.</span><span class="n">n_points</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="p">.</span><span class="n">_make_transition</span><span class="p">(</span><span class="n">ant_path</span><span class="p">)</span>
+
+                <span class="c1"># Return to starting node
+</span>                <span class="n">ant_path</span> <span class="o">+=</span> <span class="p">[</span><span class="n">ant_path</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+
+                <span class="c1"># Calculate path length
+</span>                <span class="n">path_length</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">path_length</span><span class="p">(</span><span class="n">ant_path</span><span class="p">)</span>
+                <span class="n">paths</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">ant_path</span><span class="p">)</span>
+                <span class="n">path_lengths</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">path_length</span><span class="p">)</span>
+
+                <span class="c1"># Check if new optimal
+</span>                <span class="k">if</span> <span class="n">path_length</span> <span class="o">&lt;</span> <span class="n">optimal_length</span><span class="p">:</span>
+                    <span class="n">optimal_path</span> <span class="o">=</span> <span class="n">ant_path</span>
+                    <span class="n">optimal_length</span> <span class="o">=</span> <span class="n">path_length</span>
+                    <span class="n">last_iter</span> <span class="o">=</span> <span class="n">it</span>
+                <span class="n">best_path_lengths</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">optimal_length</span><span class="p">)</span>
+
+            <span class="c1"># Break if no improvements for more than 50 iterations
+</span>            <span class="k">if</span> <span class="p">(</span><span class="n">it</span> <span class="o">-</span> <span class="n">last_iter</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">f'breaking at iteration: </span><span class="si">{</span><span class="n">it</span><span class="si">}</span><span class="s"> with best path length: </span><span class="si">{</span><span class="n">optimal_length</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+                <span class="k">break</span>
+
+            <span class="c1"># Evaporate pheromons
+</span>            <span class="bp">self</span><span class="p">.</span><span class="n">pheremons</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">rho</span><span class="o">*</span><span class="bp">self</span><span class="p">.</span><span class="n">pheremons</span>
+
+            <span class="c1"># Update pheremons based on path lengths
+</span>            <span class="k">for</span> <span class="n">path</span><span class="p">,</span> <span class="n">length</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">paths</span><span class="p">,</span> <span class="n">path_lengths</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">n_points</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+                    <span class="bp">self</span><span class="p">.</span><span class="n">pheremons</span><span class="p">[</span><span class="n">path</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">path</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+=</span> <span class="bp">self</span><span class="p">.</span><span class="n">Q</span><span class="o">/</span><span class="n">length</span>
+
+            <span class="c1"># Elitist ant
+</span>            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">n_points</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">pheremons</span><span class="p">[</span><span class="n">optimal_path</span><span class="p">[</span><span class="n">k</span><span class="p">],</span><span class="n">optimal_path</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+=</span> <span class="bp">self</span><span class="p">.</span><span class="n">Q</span><span class="o">/</span><span class="n">optimal_length</span>
+
+        <span class="k">return</span> <span class="n">optimal_path</span>
+
+    <span class="k">def</span> <span class="nf">greedy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s">"Generate path by moving to closest node to current node"</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">cities</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">f"start: </span><span class="si">{</span><span class="n">start</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="p">[</span><span class="n">start</span><span class="p">]</span>
+        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">cities</span><span class="p">):</span>
+            <span class="n">options</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">argsort</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">d_matrix</span><span class="p">[</span><span class="n">start</span><span class="p">,:])</span>  <span class="c1"># find nearest node
+</span>            <span class="n">nxt</span> <span class="o">=</span> <span class="p">[</span><span class="n">op</span> <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="n">options</span> <span class="k">if</span> <span class="n">op</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">path</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">start</span> <span class="o">=</span> <span class="n">nxt</span>
+            <span class="n">path</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">nxt</span><span class="p">)</span>
+
+        <span class="c1"># return home
+</span>        <span class="n">path</span> <span class="o">+=</span> <span class="p">[</span><span class="n">path</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+
+        <span class="k">return</span> <span class="n">path</span>
+
+
+    <span class="k">def</span> <span class="nf">plot_cities</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s">"Plot the nodes"</span>
+        <span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">points</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="p">.</span><span class="n">points</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'k'</span><span class="p">)</span>
+        <span class="n">plt</span><span class="p">.</span><span class="n">axis</span><span class="p">(</span><span class="s">'square'</span><span class="p">);</span>
+
+    <span class="k">def</span> <span class="nf">plot_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="s">"Plot a path"</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">plot_cities</span><span class="p">()</span>
+        <span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">points</span><span class="p">[</span><span class="n">path</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="p">.</span><span class="n">points</span><span class="p">[</span><span class="n">path</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s">'k'</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+        <span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">f'Path Length: </span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">path_length</span><span class="p">(</span><span class="n">path</span><span class="p">):,.</span><span class="mi">1</span><span class="n">f</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">f"Optimizing with </span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">n_points</span><span class="si">}</span><span class="s"> cities, n_iter=</span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">n_iter</span><span class="si">}</span><span class="s">, n_ants=</span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">n_ants</span><span class="si">}</span><span class="s">, alpha=</span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">alpha</span><span class="si">}</span><span class="s">, beta=</span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">beta</span><span class="si">}</span><span class="s">, rho=</span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">rho</span><span class="si">}</span><span class="s">, Q=</span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">Q</span><span class="si">}</span><span class="s">"</span>
+</code></pre></div></div>
+
+<h2 id="examples">Examples</h2>
+
+<h3 id="10-nodes">10 Nodes</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ants</span> <span class="o">=</span> <span class="n">AntOpt</span><span class="p">(</span><span class="n">points10</span><span class="p">)</span>
+<span class="n">ants</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>Optimizing with 10 cities, n_iter=300, n_ants=10, alpha=2, beta=3, rho=0.85, Q=0.3</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">best_path</span> <span class="o">=</span> <span class="n">ants</span><span class="p">.</span><span class="n">run_ants</span><span class="p">()</span>
+<span class="n">ants</span><span class="p">.</span><span class="n">plot_path</span><span class="p">(</span><span class="n">best_path</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="https://raw.githubusercontent.com/markd87/Ants/master/images/10nodes_tsp.png" alt="10node" /></p>
+
+<p>It’s interesting to compare this path to a greedy path achieved by starting from a random node and selecting the nearest next node until we’ve been through all nodes.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">greedy_path</span> <span class="o">=</span> <span class="n">ants</span><span class="p">.</span><span class="n">greedy</span><span class="p">()</span>
+<span class="n">ants</span><span class="p">.</span><span class="n">plot_path</span><span class="p">(</span><span class="n">greedy_path</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="https://raw.githubusercontent.com/markd87/Ants/master/images/10nodes_tsp_greedy.png" alt="10node_greedy" /></p>
+
+<p>We see that the path is longer than the one found by the ants.</p>
+
+<h3 id="100-nodes">100 nodes</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ants</span> <span class="o">=</span> <span class="n">AntOpt</span><span class="p">(</span><span class="n">points100</span><span class="p">,</span> <span class="n">n_ants</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ants</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>Optimizing with 100 cities, n_iter=300, n_ants=20, alpha=2, beta=3, rho=0.85, Q=0.3</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">best_path</span> <span class="o">=</span> <span class="n">ants</span><span class="p">.</span><span class="n">run_ants</span><span class="p">()</span>
+<span class="n">ants</span><span class="p">.</span><span class="n">plot_path</span><span class="p">(</span><span class="n">best_path</span><span class="p">)</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>40%|███▉ | 119/300 [02:50&lt;04:19, 1.43s/it]
+breaking at iteration: 119 with best path length: 4736.8152396678925</p>
+</blockquote>
+
+<p><img src="https://raw.githubusercontent.com/markd87/Ants/master/images/100nodes_tsp.png" alt="100node" /></p>
+
+<h3 id="actual-cities-example">Actual cities example</h3>
+
+<p>In this example I’ll use capital cities around the world, and find a path using the ants optimization.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># imports and setting up
+</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="n">gpd</span>
+<span class="kn">import</span> <span class="nn">contextily</span> <span class="k">as</span> <span class="n">ctx</span>
+
+<span class="n">capitals</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'data/capitals.csv'</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="s">'CountryName'</span><span class="p">,</span><span class="s">'CapitalName'</span><span class="p">,</span> <span class="s">'CapitalLatitude'</span><span class="p">,</span> <span class="s">'CapitalLongitude'</span><span class="p">,</span> <span class="s">'ContinentName'</span><span class="p">])</span>  <span class="c1"># from https://www.kaggle.com/nikitagrec/world-capitals-gps
+</span>
+<span class="c1"># filter to specific countries
+</span><span class="n">countries</span> <span class="o">=</span> <span class="p">[</span><span class="s">'United Kingdom'</span><span class="p">,</span> <span class="s">'France'</span><span class="p">,</span> <span class="s">'Italy'</span><span class="p">,</span><span class="s">'Spain'</span><span class="p">,</span><span class="s">'Germany'</span><span class="p">,</span><span class="s">'Sweden'</span><span class="p">,</span><span class="s">'Norway'</span><span class="p">,</span><span class="s">'Denmark'</span><span class="p">,</span><span class="s">'Iceland'</span><span class="p">,</span><span class="s">'Greece'</span><span class="p">,</span><span class="s">'Switzerland'</span><span class="p">,</span><span class="s">'Austria'</span><span class="p">,</span><span class="s">'Poland'</span><span class="p">,</span><span class="s">'Russia'</span><span class="p">,</span><span class="s">'Israel'</span><span class="p">,</span><span class="s">'United States'</span><span class="p">,</span><span class="s">'Australia'</span><span class="p">,</span><span class="s">'Japan'</span><span class="p">,</span><span class="s">'Brazil'</span><span class="p">,</span><span class="s">'China'</span><span class="p">,</span><span class="s">'Thailand'</span><span class="p">]</span>
+
+<span class="n">capitals</span> <span class="o">=</span> <span class="n">capitals</span><span class="p">[</span><span class="n">capitals</span><span class="p">[</span><span class="s">'CountryName'</span><span class="p">].</span><span class="n">isin</span><span class="p">(</span><span class="n">countries</span><span class="p">)].</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="n">capitals</span><span class="p">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s">'CapitalName'</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="c1"># Get capital lat/lon as points
+</span><span class="n">capitals_points</span> <span class="o">=</span> <span class="n">capitals</span><span class="p">[[</span><span class="s">'CapitalLongitude'</span><span class="p">,</span><span class="s">'CapitalLatitude'</span><span class="p">]].</span><span class="n">values</span>
+
+<span class="c1"># Convert to GeoPandas Dataframe
+</span><span class="n">gdf_capitals</span> <span class="o">=</span> <span class="n">gpd</span><span class="p">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">capitals</span><span class="p">,</span> <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="p">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">capitals</span><span class="p">.</span><span class="n">CapitalLongitude</span><span class="p">,</span> <span class="n">capitals</span><span class="p">.</span><span class="n">CapitalLatitude</span><span class="p">))</span>
+<span class="n">gdf_capitals</span><span class="p">.</span><span class="n">crs</span> <span class="o">=</span> <span class="s">'epsg:4326'</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span><span class="mi">24</span><span class="p">))</span>
+<span class="n">gdf_capitals</span><span class="p">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s">'epsg:3857'</span><span class="p">).</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'r'</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s">'k'</span><span class="p">)</span>
+<span class="n">ctx</span><span class="p">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="https://raw.githubusercontent.com/markd87/Ants/master/images/capitals.png" alt="capitals" /></p>
+
+<p>Next we optimise a path through the cities:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ants</span> <span class="o">=</span> <span class="n">AntOpt</span><span class="p">(</span><span class="n">capitals_points</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="s">'geo'</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">n_ants</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="mf">0.85</span><span class="p">)</span>
+
+<span class="n">best_path</span> <span class="o">=</span> <span class="n">ants</span><span class="p">.</span><span class="n">run_ants</span><span class="p">()</span>
+
+<span class="c1"># connect points to create path as a geodataframe
+</span><span class="n">worldpath</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">(</span><span class="n">gdf_capitals</span><span class="p">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">best_path</span><span class="p">][</span><span class="s">'geometry'</span><span class="p">].</span><span class="n">values</span><span class="p">)</span>
+<span class="n">gdf_path</span> <span class="o">=</span> <span class="n">gpd</span><span class="p">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">geometry</span><span class="o">=</span><span class="p">[</span><span class="n">worldpath</span><span class="p">],</span> <span class="n">crs</span><span class="o">=</span><span class="s">'epsg:4326'</span><span class="p">)</span>
+
+<span class="c1"># plot path
+</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span><span class="mi">24</span><span class="p">))</span>
+<span class="n">gdf_capitals</span><span class="p">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s">'epsg:3857'</span><span class="p">).</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'r'</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s">'k'</span><span class="p">)</span>
+<span class="n">gdf_path</span><span class="p">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s">'epsg:3857'</span><span class="p">).</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'black'</span><span class="p">)</span>
+<span class="n">ctx</span><span class="p">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">f'Total path length: </span><span class="si">{</span><span class="n">path_length</span><span class="p">:,.</span><span class="mi">0</span><span class="n">f</span><span class="si">}</span><span class="s"> km'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="https://raw.githubusercontent.com/markd87/Ants/master/images/capitals_path.png" alt="capitals_path" /></p>
+
+<p>The ant optimization algorithm can be extended to other variations of the TSP, e.g. capacity constrained vehicle routing, where the vehicles have a limited capacity of goods they need to deliver to the cities. The only change to the Ant optimization algorithm would be to limit the possible transition nodes an ant can’t choose and keep track of the capacity each ant carries.</p>
+
+    </div><a class="u-url" href="/2020/09/09/ant-colony-optimization.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>My personal website and blog. Life, Science, Programming and Data Science.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/markd87" title="markd87"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/mmasaniad" title="mmasaniad"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
