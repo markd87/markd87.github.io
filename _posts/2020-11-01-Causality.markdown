@@ -13,7 +13,7 @@ Judea Pearl one of the pioneers and advocates of causal inference in data scienc
 
 In the book Judea describes three rungs in the ladder of causality:
 
-1. Seeing - Observing and describing the data in terms of join distributions, correlations, conditional probability, etc.
+1.  Seeing - Observing and describing the data in terms of join distributions, correlations, conditional probability, etc.
 2. Doing - Intervening on the data to answer what will happen if we make an action.
 3. Imagining - Counterfactual thinking, what would have happened if a different course of action was taken, given we know what has happened.
 
@@ -30,8 +30,8 @@ Using the example from Dr. Paul Hunermund's Causal data science [course](https:/
 | Management     | \$5,592.44 (13) | \$5,319.82 (41) |
 | Average        |   \$3,479.09    |   \$3,960.08    |
 
-We see from the table that both within management roles and within non-management roles, females have a higher salary than males, however overall on average females have a lower salary than males (lower by ~\$481).
-The apparent paradox is easily resolved mathematically by the fact that if $a/b > c/d$ and $e/f > g/h$ it doesn't follow that $(a+e)/(b+f) > (c+g)/(d+h)$.
+We see from the table that both within management roles and within non-management roles, females have a higher salary than males, however overall on average females have a lower salary than males (lower by $$\sim \$481$$).
+The apparent paradox is easily resolved mathematically by the fact that if $\frac{a}{b} > \frac{c}{d}$ and $\frac{e}{f} > \frac{g}{h}$ it doesn't follow that $\frac{a+e}{b+f} > \frac{c+g}{d+h}$.
 However beyond the algebra there is a real and unequivocal question, are females underpaid compared to men or not?
 
 To answer this question, we need to have a causal model behind the data, which entails assuming something beyond the raw data.
@@ -49,16 +49,17 @@ The question then is how can we obtain the result of the intervention having onl
 In this first diagram, there are no such arrows, and therefore intervening will not change anything in the diagram and in the probability distribution it generates.
 The end result (which can be reduced from the more general case) is therefore:
 
-$$p(S|do(G=F)) - p(S|do(G=M)) = p(S|G=F) - p(S|G=M)$$,
+$$ 
+p(S|do(G=F)) - p(S|do(G=M)) = p(S|G=F) - p(S|G=M) 
+$$
 
 which corresponds to:
 
-$$ 3,479.09 - 3,960.08 = -481 $$
+$$ \$3,479.09 - \$3,960.08 = -\$481 $$
 
 i.e. the pay gap is indeed in favor of males.
 
-The interesting part comes when we consider the same raw data, however change gender with lifestyle as in the below table 
-
+The interesting part comes when we consider the same raw data, however change gender with lifestyle as in the below table:
 
 |                |     Healthy Lifestyle      |      Unhealthy Lifestyle       |
 | -------------- | :-------------: | :-------------: |
@@ -66,7 +67,7 @@ The interesting part comes when we consider the same raw data, however change ge
 | Management     | \$5,592.44 (13) | \$5,319.82 (41) |
 | Average        |   \$3,479.09    |   \$3,960.08    |
 
-The numbers remained the same (and Simpson's paradox still remains), however the causal model diagram changed. In this new model the causal arrow goes between management to lifestyle. This is known as a fork structure in which management is a confounder of lifestyle and salary.
+The numbers remained the same (and so does Simpson's paradox), however the causal model diagram changed. In this new model the causal arrow goes between management to lifestyle. This is known as a fork structure in which management is a confounder of lifestyle and salary.
 
 ![diag_2](/assets/causality/diagram_2.png)
 
@@ -75,7 +76,9 @@ In this case, due to the different causal model, simply conditioning on lifestyl
 
 The causal effect we want to calculate is:
 
-$$p(S|do(L=Healthy)) - p(S|do(L=Unhealthy))$$.
+$$
+p(S|do(L=Healthy)) - p(S|do(L=Unhealthy)).
+$$
 
 In this case as the lifestyle random variable has a parent (management), setting its value will remove the arrow resulting in the new diagram below and a new joint distribution $p_m(L, M, S)$.
 
@@ -85,30 +88,31 @@ The surprising fact is that we can answer the intervention question in terms of 
 the trick is to marginalize over the parents:
 
 $$
-p(S=s|do(L=x)) = p_m(S=s|L=x) = \sum_z p_m(S=s|L=x, M=z)p_m(M=z|L=x)
-$$.
+p(S=s|do(L=x)) = p_m(S=s|L=x) = \sum_z p_m(S=s|L=x, M=z)p_m(M=z|L=x).
+$$
 
-Since there is no arrow between management (it is said that $L$ and $M$ are d-separated because there is no-unblocked path between them) and lifestyle we have: $p_m(M=z|L=x) = p_m(M=z) = p(M=z)$, where the last equality comes from the fact that we didn't intervene on $M$.
+Since there is no arrow between management (it is said that $L$ and $M$ are d-separated because there is no-unblocked path between them) and lifestyle we have: $p_m(M=z\|L=x) = p_m(M=z) = p(M=z)$, where the last equality comes from the fact that we didn't intervene on $M$.
 Second, since the intervention doesn't change the functional relationship between $S$ and $M, L$ we also have: $p_m(S=s|L=x, M=z) = p(S=s|L=x, M=z)$.
 
 Finally we can write:
 
 $$
-p(S=s|do(L=x)) = \sum_z p(S=s|L=x, M=z)p(M=z)
-$$.
+p(S=s|do(L=x)) = \sum_z p(S=s|L=x, M=z)p(M=z).
+$$
 
-More generally, this is a special case of the Causal Effect Rule, which says that the causal effect of X on Y is given by:
+More generally, this is a special case of the Causal Effect Rule, which says that the causal effect of $X$ on $Y$ is given by:
 
-$$P(Y=y|do(X=x)) = \sum_z P(Y=y|X=x, PA=z)P(PA=z)$$,
+$$
+P(Y=y|do(X=x)) = \sum_z P(Y=y|X=x, PA=z)P(PA=z),
+$$
 
-where $PA$ are the set of parents of $X$ in the causal graph.
+where $PA$ are the set of parents of $X$ in the causal graph. In other words we are conditioning over $X$'s parents.
 
 Back to the example, we calculate the expected value of the salary under the probability distributions resulting from the two interventions (a similar expression obtained by replacing $H$ with $U$): 
 
 $$
 p(S=s|do(L=H)) = 
-p(S=s|L=H, M=M)p(M=M) \\
-+ p(S=s|L=H, M=Non-M)p(M=Non-M)
+p(S=s|L=H, M=M)p(M=M)+ p(S=s|L=H, M={\rm not}\ M)p(M={\rm not}\ M)
 $$
 
 We get using the values in the table for the average causal effect (ACE):
@@ -120,9 +124,15 @@ $$
 and 
 
 $$
-ACE(L=U) = 5,319.82*\frac{13+41}{200} + 3,015.18*\frac{87+59}{200} = 3,637.43
-$$.
+ACE(L=U) = 5,319.82*\frac{13+41}{200} + 3,015.18*\frac{87+59}{200} = \$3,637.43.
+$$
 
-The difference is: $ACE(L=H) - ACE(L=U)=181.47$, which is positive in favour of the healthy lifestyle.
+The difference is: 
+
+$$
+ACE(L=H) - ACE(L=U)=\$181.74,
+$$ 
+
+which is positive in favour of the healthy lifestyle.
 
 In conclusion, the same raw data with different causal models leads to opposite actionable results.
