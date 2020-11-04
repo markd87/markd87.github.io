@@ -118,13 +118,13 @@ $$
 We get using the values in the table for the average causal effect (ACE):
 
 $$
-ACE(L=H) = 5,592.44*\frac{13+41}{200} + 3,163.30*\frac{87+59}{200} = 3,819.17,
+ACE(L=H) = 5,592.44\cdot\frac{13+41}{200} + 3,163.30\cdot\frac{87+59}{200} = 3,819.17,
 $$
 
 and 
 
 $$
-ACE(L=U) = 5,319.82*\frac{13+41}{200} + 3,015.18*\frac{87+59}{200} = \$3,637.43.
+ACE(L=U) = 5,319.82\cdot\frac{13+41}{200} + 3,015.18\cdot\frac{87+59}{200} = \$3,637.43.
 $$
 
 The difference is: 
