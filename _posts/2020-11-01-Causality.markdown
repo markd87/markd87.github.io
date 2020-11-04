@@ -115,7 +115,16 @@ p(S=s|do(L=H)) =
 p(S=s|L=H, M=M)p(M=M)+ p(S=s|L=H, M={\rm not}\ M)p(M={\rm not}\ M)
 $$
 
-We get using the values in the table for the average causal effect (ACE):
+To cast this into expectations we use:
+
+$$
+E(S=s|do(L=H)) = \sum_s s \cdot p(S=s|do(L=H)) = \\
+\sum_s s \sum_z p(S=s|L=H, M=z)p(M=z) = \sum_z p(M=z)\sum_s s\cdot p(S=s|L=H, M=z) = \\
+\sum_z p(M=z) E(S=s|L=H, M=z).
+$$
+
+The expectation in the above expression is what we have in the table.
+Using the values in the table we get for for the average causal effect (ACE):
 
 $$
 ACE(L=H) = 5,592.44\cdot\frac{13+41}{200} + 3,163.30\cdot\frac{87+59}{200} = 3,819.17,
