@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" /><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Causality and Simpson’s Paradox | Mark Danovich</title>
+<meta name="generator" content="Jekyll v4.0.1" />
+<meta property="og:title" content="Causality and Simpson’s Paradox" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Raw observational data, no matter how much of it is available, is not enough to be actionable, where actionable means that we can ask causal questions and infer the answers. Being able to answer causal questions from the data means that we are able to correctly interpret the data and make better decisions." />
+<meta property="og:description" content="Raw observational data, no matter how much of it is available, is not enough to be actionable, where actionable means that we can ask causal questions and infer the answers. Being able to answer causal questions from the data means that we are able to correctly interpret the data and make better decisions." />
+<meta property="og:site_name" content="Mark Danovich" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-11-01T14:43:00-06:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Causality and Simpson’s Paradox" />
+<script type="application/ld+json">
+{"description":"Raw observational data, no matter how much of it is available, is not enough to be actionable, where actionable means that we can ask causal questions and infer the answers. Being able to answer causal questions from the data means that we are able to correctly interpret the data and make better decisions.","@type":"BlogPosting","url":"/2020/11/01/Causality.html","dateModified":"2020-11-01T14:43:00-06:00","datePublished":"2020-11-01T14:43:00-06:00","headline":"Causality and Simpson’s Paradox","mainEntityOfPage":{"@type":"WebPage","@id":"/2020/11/01/Causality.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css" /><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Mark Danovich" /><script async src="https://www.googletagmanager.com/gtag/js?id=UA-10819841-6"></script>
+<script>
+  window['ga-disable-UA-10819841-6'] = window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1";
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-10819841-6');
+</script>
+ 
+
+
+
+
+ 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"
+    integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+<script type="text/javascript" async
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"
+    integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz"
+    crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"
+    integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI"
+    crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "[%", right: "%]", display: true },
+                { left: "$", right: "$", display: false }
+            ]
+        }
+        );
+    });
+</script>
+
+
+<script>
+    function wrap_img(fn) {
+        if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+            var elements = document.querySelectorAll(".post img");
+            Array.prototype.forEach.call(elements, function (el, i) {
+                if (el.getAttribute("title")) {
+                    const caption = document.createElement('figcaption');
+                    var node = document.createTextNode(el.getAttribute("title"));
+                    caption.appendChild(node);
+                    const wrapper = document.createElement('figure');
+                    wrapper.className = 'image';
+                    el.parentNode.insertBefore(wrapper, el);
+                    el.parentNode.removeChild(el);
+                    wrapper.appendChild(el);
+                    wrapper.appendChild(caption);
+                }
+            });
+        } else { document.addEventListener('DOMContentLoaded', fn); }
+    }
+    window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // add link icon to anchor tags
+        var elem = document.querySelectorAll(".anchor-link")
+        elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script></head>
+<body><header class="site-header">
+
+    <div class="wrapper"><a class="site-title" rel="author" href="/">Mark Danovich</a><nav class="site-nav">
+            <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+            <label for="nav-trigger">
+                <span class="menu-icon">
+                    <svg viewBox="0 0 18 15" width="18px" height="15px">
+                        <path
+                            d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z" />
+                    </svg>
+                </span>
+            </label>
+
+            <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+        </nav></div>
+</header><main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <header class="post-header">
+        <h1 class="post-title p-name" itemprop="name headline">Causality and Simpson&#39;s Paradox</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-11-01T14:43:00-06:00" itemprop="datePublished">
+                Nov 1, 2020
+            </time>
+        </p><p>
+            
+        </p>
+
+        
+
+        </header>
+
+    <div class="post-content e-content" itemprop="articleBody">
+        <p>Raw observational data, no matter how much of it is available, is not enough to be actionable, where actionable means that we can ask causal questions and infer the answers. Being able to answer causal questions from the data means that we are able to correctly interpret the data and make better decisions.</p>
+
+<p>Judea Pearl one of the pioneers and advocates of causal inference in data science writes in the “Book of Why”:</p>
+
+<blockquote>
+  <p>“… causal questions can never be answered from data alone. They requires us to formulate a model of the process that generates the data, or at least some aspects of that process.”</p>
+</blockquote>
+
+<p>In the book Judea describes three rungs in the ladder of causality:</p>
+
+<ol>
+  <li>Seeing - Observing and describing the data in terms of join distributions, correlations, conditional probability, etc.</li>
+  <li>Doing - Intervening on the data to answer what will happen if we make an action.</li>
+  <li>Imagining - Counterfactual thinking, what would have happened if a different course of action was taken, given we know what has happened.</li>
+</ol>
+
+<p>Most current data science is done in the first rung.
+Therefore, to go at least from the first to the second rung, assumptions need to be made and a model of how the data was generated needs to be created.
+In fact, the same data (having the same join distribution) can have completely different interpretation under different causal models. In some cases, causal models cannot even be distinguished just from the data, and require further assumptions.</p>
+
+<p>A nice demonstrations of the points above is with Simpson’s paradox, which is a generic name to situations where trends in sub-populations are reversed in the overall populations.
+Using the example from Dr. Paul Hunermund’s Causal data science <a href="https://www.dropbox.com/s/zwbfpj17trdx3t6/Causal%20Data%20Science%20with%20DAGs%20-%20Section%201.pdf">course</a>, the data consists of salaries of 100 men and 100 women in management and non-management roles summarized in the table below:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th style="text-align: center">Female</th>
+      <th style="text-align: center">Male</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Non-Management</td>
+      <td style="text-align: center">$3,163.30 (87)</td>
+      <td style="text-align: center">$3,015.18 (59)</td>
+    </tr>
+    <tr>
+      <td>Management</td>
+      <td style="text-align: center">$5,592.44 (13)</td>
+      <td style="text-align: center">$5,319.82 (41)</td>
+    </tr>
+    <tr>
+      <td>Average</td>
+      <td style="text-align: center">$3,479.09</td>
+      <td style="text-align: center">$3,960.08</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>We see from the table that both within management roles and within non-management roles, females have a higher salary than males, however overall on average females have a lower salary than males (lower by ~$481).
+The apparent paradox is easily resolved mathematically by the fact that if $a/b &gt; c/d$ and $e/f &gt; g/h$ it doesn’t follow that $(a+e)/(b+f) &gt; (c+g)/(d+h)$.
+However beyond the algebra there is a real and unequivocal question, are females underpaid compared to men or not?</p>
+
+<p>To answer this question, we need to have a causal model behind the data, which entails assuming something beyond the raw data.</p>
+
+<p><img src="/assets/causality/diagram_1.png" alt="diag_1" /></p>
+
+<p>The arrows indicate a causal relation represented by a functional assignment involving the parent random variables and external noise which is not represented in the diagram. For example $Salary = f(Gender, Management, External)$.
+From the arrows, we see that the diagram assumes that gender (G) affects both management (M) and salary (S). Reasonably, management doesn’t affects one’s gender, but management does affect the salary.
+To answer the question we are interested in the influence of gender on salary in the common notation:</p>
+
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>S</mi><mi mathvariant="normal">∣</mi><mi>d</mi><mi>o</mi><mo stretchy="false">(</mo><mi>G</mi><mo>=</mo><mi>F</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>−</mo><mi>p</mi><mo stretchy="false">(</mo><mi>S</mi><mi mathvariant="normal">∣</mi><mi>d</mi><mi>o</mi><mo stretchy="false">(</mo><mi>G</mi><mo>=</mo><mi>M</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p(S|do(G=F)) - p(S|do(G=M))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord">∣</span><span class="mord mathdefault">d</span><span class="mord mathdefault">o</span><span class="mopen">(</span><span class="mord mathdefault">G</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord">∣</span><span class="mord mathdefault">d</span><span class="mord mathdefault">o</span><span class="mopen">(</span><span class="mord mathdefault">G</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span></span>
+
+<p>Here, the $do$ notation means, changing the corresponding random variable for the entire population i.e. intervening.Diagrammatically, intervening implies removing any arrows pointing to that variable as we are setting its value independent of any external influence.
+The question then is how can we obtain the result of the intervention having only observational data.
+In this first diagram, there are no such arrows, and therefore intervening will not change anything in the diagram and in the probability distribution it generates.
+The end result (which can be reduced from the more general case) is therefore:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>$$p(S</td>
+      <td>do(G=F)) - p(S</td>
+      <td>do(G=M)) = p(S</td>
+      <td>G=F) - p(S</td>
+      <td>G=M)$$,</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>which corresponds to:</p>
+
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><mo separator="true">,</mo><mn>479.09</mn><mo>−</mo><mn>3</mn><mo separator="true">,</mo><mn>960.08</mn><mo>=</mo><mo>−</mo><mn>481</mn></mrow><annotation encoding="application/x-tex">3,479.09 - 3,960.08 = -481</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">4</span><span class="mord">7</span><span class="mord">9</span><span class="mord">.</span><span class="mord">0</span><span class="mord">9</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">9</span><span class="mord">6</span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">8</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord">4</span><span class="mord">8</span><span class="mord">1</span></span></span></span></span>
+
+<p>i.e. the pay gap is indeed in favor of males.</p>
+
+<p>The interesting part comes when we consider the same raw data, however change gender with lifestyle as in the below table</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th style="text-align: center">Healthy Lifestyle</th>
+      <th style="text-align: center">Unhealthy Lifestyle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Non-Management</td>
+      <td style="text-align: center">$3,163.30 (87)</td>
+      <td style="text-align: center">$3,015.18 (59)</td>
+    </tr>
+    <tr>
+      <td>Management</td>
+      <td style="text-align: center">$5,592.44 (13)</td>
+      <td style="text-align: center">$5,319.82 (41)</td>
+    </tr>
+    <tr>
+      <td>Average</td>
+      <td style="text-align: center">$3,479.09</td>
+      <td style="text-align: center">$3,960.08</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The numbers remained the same (and Simpson’s paradox still remains), however the causal model diagram changed. In this new model the causal arrow goes between management to lifestyle. This is known as a fork structure in which management is a confounder of lifestyle and salary.</p>
+
+<p><img src="/assets/causality/diagram_2.png" alt="diag_2" /></p>
+
+<p>The question we want to answer remains the same apart from changing gender with lifestyle (L). Given the data, does healthy lifestyle lead to higher salary?
+In this case, due to the different causal model, simply conditioning on lifestyle (i.e. taking average salary by lifestyle) will give the wrong answer (comparing with the gender pay gap) that unhealthy lifestyle result in higher salary.</p>
+
+<p>The causal effect we want to calculate is:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>$$p(S</td>
+      <td>do(L=Healthy)) - p(S</td>
+      <td>do(L=Unhealthy))$$.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>In this case as the lifestyle random variable has a parent (management), setting its value will remove the arrow resulting in the new diagram below and a new joint distribution $p_m(L, M, S)$.</p>
+
+<p><img src="/assets/causality/diagram_3.png" alt="diag_3" /></p>
+
+<p>The surprising fact is that we can answer the intervention question in terms of the observations. Following Judea Pearl’s Causal Inference in Statistics: A primer,
+the trick is to marginalize over the parents:</p>
+
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>S</mi><mo>=</mo><mi>s</mi><mi mathvariant="normal">∣</mi><mi>d</mi><mi>o</mi><mo stretchy="false">(</mo><mi>L</mi><mo>=</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><msub><mi>p</mi><mi>m</mi></msub><mo stretchy="false">(</mo><mi>S</mi><mo>=</mo><mi>s</mi><mi mathvariant="normal">∣</mi><mi>L</mi><mo>=</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mo>∑</mo><mi>z</mi></msub><msub><mi>p</mi><mi>m</mi></msub><mo stretchy="false">(</mo><mi>S</mi><mo>=</mo><mi>s</mi><mi mathvariant="normal">∣</mi><mi>L</mi><mo>=</mo><mi>x</mi><mo separator="true">,</mo><mi>M</mi><mo>=</mo><mi>z</mi><mo stretchy="false">)</mo><msub><mi>p</mi><mi>m</mi></msub><mo stretchy="false">(</mo><mi>M</mi><mo>=</mo><mi>z</mi><mi mathvariant="normal">∣</mi><mi>L</mi><mo>=</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p(S=s|do(L=x)) = p_m(S=s|L=x) = \sum_z p_m(S=s|L=x, M=z)p_m(M=z|L=x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mord">∣</span><span class="mord mathdefault">d</span><span class="mord mathdefault">o</span><span class="mopen">(</span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mord">∣</span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.0497100000000001em;vertical-align:-0.29971000000000003em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.0016819999999999613em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.04398em;">z</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mord">∣</span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mord"><span class="mord mathdefault">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mord">∣</span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span>.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Since there is no arrow between management (it is said that $L$ and $M$ are d-separated because there is no-unblocked path between them) and lifestyle we have: $p_m(M=z</td>
+      <td>L=x) = p_m(M=z) = p(M=z)$, where the last equality comes from the fact that we didn’t intervene on $M$.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Second, since the intervention doesn’t change the functional relationship between $S$ and $M, L$ we also have: $p_m(S=s</td>
+      <td>L=x, M=z) = p(S=s</td>
+      <td>L=x, M=z)$.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Finally we can write:</p>
+
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>S</mi><mo>=</mo><mi>s</mi><mi mathvariant="normal">∣</mi><mi>d</mi><mi>o</mi><mo stretchy="false">(</mo><mi>L</mi><mo>=</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><msub><mo>∑</mo><mi>z</mi></msub><mi>p</mi><mo stretchy="false">(</mo><mi>S</mi><mo>=</mo><mi>s</mi><mi mathvariant="normal">∣</mi><mi>L</mi><mo>=</mo><mi>x</mi><mo separator="true">,</mo><mi>M</mi><mo>=</mo><mi>z</mi><mo stretchy="false">)</mo><mi>p</mi><mo stretchy="false">(</mo><mi>M</mi><mo>=</mo><mi>z</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p(S=s|do(L=x)) = \sum_z p(S=s|L=x, M=z)p(M=z)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mord">∣</span><span class="mord mathdefault">d</span><span class="mord mathdefault">o</span><span class="mopen">(</span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.0497100000000001em;vertical-align:-0.29971000000000003em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.0016819999999999613em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.04398em;">z</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mord">∣</span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span></span>.</p>
+
+<p>More generally, this is a special case of the Causal Effect Rule, which says that the causal effect of X on Y is given by:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>$$P(Y=y</td>
+      <td>do(X=x)) = \sum_z P(Y=y</td>
+      <td>X=x, PA=z)P(PA=z)$$,</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>where $PA$ are the set of parents of $X$ in the causal graph.</p>
+
+<p>Back to the example, we calculate the expected value of the salary under the probability distributions resulting from the two interventions (a similar expression obtained by replacing $H$ with $U$):</p>
+
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>S</mi><mo>=</mo><mi>s</mi><mi mathvariant="normal">∣</mi><mi>d</mi><mi>o</mi><mo stretchy="false">(</mo><mi>L</mi><mo>=</mo><mi>H</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mi>p</mi><mo stretchy="false">(</mo><mi>S</mi><mo>=</mo><mi>s</mi><mi mathvariant="normal">∣</mi><mi>L</mi><mo>=</mo><mi>H</mi><mo separator="true">,</mo><mi>M</mi><mo>=</mo><mi>M</mi><mo stretchy="false">)</mo><mi>p</mi><mo stretchy="false">(</mo><mi>M</mi><mo>=</mo><mi>M</mi><mo stretchy="false">)</mo><mspace linebreak="newline"></mspace><mo>+</mo><mi>p</mi><mo stretchy="false">(</mo><mi>S</mi><mo>=</mo><mi>s</mi><mi mathvariant="normal">∣</mi><mi>L</mi><mo>=</mo><mi>H</mi><mo separator="true">,</mo><mi>M</mi><mo>=</mo><mi>N</mi><mi>o</mi><mi>n</mi><mo>−</mo><mi>M</mi><mo stretchy="false">)</mo><mi>p</mi><mo stretchy="false">(</mo><mi>M</mi><mo>=</mo><mi>N</mi><mi>o</mi><mi>n</mi><mo>−</mo><mi>M</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p(S=s|do(L=H)) = 
+p(S=s|L=H, M=M)p(M=M) \\
++ p(S=s|L=H, M=Non-M)p(M=Non-M)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mord">∣</span><span class="mord mathdefault">d</span><span class="mord mathdefault">o</span><span class="mopen">(</span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mord">∣</span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mclose">)</span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mord">∣</span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault">o</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mclose">)</span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault">o</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mclose">)</span></span></span></span></span>
+
+<p>We get using the values in the table for the average causal effect (ACE):</p>
+
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mi>C</mi><mi>E</mi><mo stretchy="false">(</mo><mi>L</mi><mo>=</mo><mi>H</mi><mo stretchy="false">)</mo><mo>=</mo><mn>5</mn><mo separator="true">,</mo><mn>592.44</mn><mo>∗</mo><mfrac><mrow><mn>13</mn><mo>+</mo><mn>41</mn></mrow><mn>200</mn></mfrac><mo>+</mo><mn>3</mn><mo separator="true">,</mo><mn>163.30</mn><mo>∗</mo><mfrac><mrow><mn>87</mn><mo>+</mo><mn>59</mn></mrow><mn>200</mn></mfrac><mo>=</mo><mn>3</mn><mo separator="true">,</mo><mn>819.17</mn><mo separator="true">,</mo></mrow><annotation encoding="application/x-tex">ACE(L=H) = 5,592.44*\frac{13+41}{200} + 3,163.30*\frac{87+59}{200} = 3,819.17,</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">A</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mopen">(</span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">5</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">5</span><span class="mord">9</span><span class="mord">2</span><span class="mord">.</span><span class="mord">4</span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mord">0</span><span class="mord">0</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">4</span><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mord">6</span><span class="mord">3</span><span class="mord">.</span><span class="mord">3</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mord">0</span><span class="mord">0</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">8</span><span class="mord">7</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">5</span><span class="mord">9</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">8</span><span class="mord">1</span><span class="mord">9</span><span class="mord">.</span><span class="mord">1</span><span class="mord">7</span><span class="mpunct">,</span></span></span></span></span>
+
+<p>and</p>
+
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mi>C</mi><mi>E</mi><mo stretchy="false">(</mo><mi>L</mi><mo>=</mo><mi>U</mi><mo stretchy="false">)</mo><mo>=</mo><mn>5</mn><mo separator="true">,</mo><mn>319.82</mn><mo>∗</mo><mfrac><mrow><mn>13</mn><mo>+</mo><mn>41</mn></mrow><mn>200</mn></mfrac><mo>+</mo><mn>3</mn><mo separator="true">,</mo><mn>015.18</mn><mo>∗</mo><mfrac><mrow><mn>87</mn><mo>+</mo><mn>59</mn></mrow><mn>200</mn></mfrac><mo>=</mo><mn>3</mn><mo separator="true">,</mo><mn>637.43</mn></mrow><annotation encoding="application/x-tex">ACE(L=U) = 5,319.82*\frac{13+41}{200} + 3,015.18*\frac{87+59}{200} = 3,637.43</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">A</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mopen">(</span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">U</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">5</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">3</span><span class="mord">1</span><span class="mord">9</span><span class="mord">.</span><span class="mord">8</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.190108em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">0</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">3</span><span class="mbin mtight">+</span><span class="mord mtight">4</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">0</span><span class="mord">1</span><span class="mord">5</span><span class="mord">.</span><span class="mord">1</span><span class="mord">8</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.190108em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">0</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">8</span><span class="mord mtight">7</span><span class="mbin mtight">+</span><span class="mord mtight">5</span><span class="mord mtight">9</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">6</span><span class="mord">3</span><span class="mord">7</span><span class="mord">.</span><span class="mord">4</span><span class="mord">3</span></span></span></span>.</p>
+
+<p>The difference is: $ACE(L=H) - ACE(L=U)=181.47$, which is positive in favour of the healthy lifestyle.</p>
+
+<p>In conclusion, the same raw data with different causal models leads to opposite actionable results.</p>
+
+    </div><a class="u-url" href="/2020/11/01/Causality.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>My personal website and blog. Life, Science, Programming and Data Science.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/markd87" title="markd87"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/mmasaniad" title="mmasaniad"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
