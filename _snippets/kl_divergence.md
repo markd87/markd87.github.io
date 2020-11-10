@@ -17,4 +17,4 @@ $D_{KL}(P\parallel Q) \ge 0$, with equality if and only if $P(x)=Q(x)$.
 
 From the definition, the distance is the expectation value of the difference of logs of the two distributions.
 
-Another preferable property is the zero-avoiding, when comparing a distribution $Q(x)$ to $P(x)$, if $Q(x)$ has zero value for $x$ where $P(x)$ is non-zero, the KL divergence becomes infinite.
+KL is commonly used in bayesian inference where a distribution $Q(x)$ is trying to approximate the true distribution $P(x)$ using $D_{KL}(Q||P)$ as the distance measure (note the order), in this case when $Q(x)>0$, the difference between the two distances should be minimal, in particular $P(x)>0$, and when $Q(x)=0$ the KL distance is zero anyway because the weight is zero. This is also known as zero-forcing, as it results in areas with $Q(x)=0$ even if $P(x)>0$.
