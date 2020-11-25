@@ -41,3 +41,6 @@ My [PhD Thesis](../assets/PhD_Thesis_final_MARK_DANOVICH.pdf) titled "Optoelectr
 Following my PhD and academic life,
 I decided to pursue a career in data science, and started working as a consultant at 
 Amey Strategic Consulting working on data science projects related to infrastructure in the UK.
+<br>
+<br>
+On 16/11/2020 I started working at [causaLens](https://www.causalens.com) as a data scientist, working on applying causal machine learning to various problems.
