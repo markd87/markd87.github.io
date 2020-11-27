@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Laplace's Rule of Succession"
-date: 2020-11-09 22:57 +0000
+date: 2020-11-09
 ---
 
 Given a repeated set of $n$ independent experiments $X_i$ with $s$ sucesses ($X_i=1$), what is the probabibility of the $n+1$ experiment being a success:

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "KL divergence"
-date: 2020-11-09 23:28 +0000
+date: 2020-11-09
 ---
 
 Kullback–Leibler (KL) divergence is a "distance" measure between two probability distributions $P(x)$ and $Q(x)$ defined by:

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Littlewood's Law of Miracles"
-date: 2020-11-14 21:30 +0000
+date: 2020-11-14
 ---
 
 A miracle event (one-in-a-million) happens to a person roughly once every month.

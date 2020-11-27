@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Allen's theory of the Industrial revolution"
-date: 2020-11-26 21:47 +0000
+date: 2020-11-26
 ---
 
 It is not obvious why did the industrial revolution happened when and where it did (19th century England).
