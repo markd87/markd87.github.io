@@ -351,4 +351,4 @@ ax.set_title(f'Total path length: {path_length:,.0f} km', fontsize=18)
 
 ![capitals_path](https://raw.githubusercontent.com/markd87/Ants/master/images/capitals_path.png)
 
-The ant optimization algorithm can be extended to other variations of the TSP, e.g. capacity constrained vehicle routing, where the vehicles have a limited capacity of goods they need to deliver to the cities. The only change to the Ant optimization algorithm would be to limit the possible transition nodes an ant can choose and keep track of the capacity each ant carries.
+The ant optimization algorithm can be extended to other variations of the TSP, e.g. capacity constrained vehicle routing, where the vehicles have a limited capacity of goods they need to deliver to the cities. The only change to the ant optimization algorithm would be to limit the possible transition nodes an ant can choose and keep track of the capacity each ant carries.

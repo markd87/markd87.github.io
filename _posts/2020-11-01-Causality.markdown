@@ -144,4 +144,4 @@ $$
 
 which is positive in favour of the healthy lifestyle.
 
-In conclusion, the same raw data with different causal models leads to opposite actionable results.
+In conclusion, the same raw observational data with different causal models leads to opposite actionable results.
