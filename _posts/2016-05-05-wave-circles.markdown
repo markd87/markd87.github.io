@@ -16,17 +16,14 @@ on the perimeter which is rotating with a constant angular velocity in all the c
 circle, the black dot is slightly shifted in its path around the circle. So how does this result in a propagating wave effect?
 A longitudinal plane wave in 2D can be written in the complex representation:
 
-\$\$
+$$
 A(x,y,t)=A_0e^{i(\omega t -\vec{k}\cdot\vec{r})}
-
-$$
-where $$ A_0 $$ is a complex amplitude (real amplitude and phase), $$ \vec{k} $$ is the wave vector, and $$ \vec{r} $$ is position in 2D.
-This describes a plane wave propagating in the direction $$ \vec{k} $$.
-At a given position the wave given by $$ e^{i(\omega t+\phi)} $$ is nothing more than a rotation in the complex plane, composed
-of harmonic motion $$ cos(\omega t+\phi) , sin(\omega t +\phi) $$ along the $$ x $$ and $$ y $$ axes. The position dependence given by
 $$
 
-is given by the wave vector components.
+where $A_0$ is a complex amplitude (real amplitude and phase), $\vec{k}$ is the wave vector, and $\vec{r}$ is position in 2D.
+This describes a plane wave propagating in the direction $\vec{k}$.
+At a given position the wave given by $e^{i(\omega t+\phi)}$ is nothing more than a rotation in the complex plane, composed
+of harmonic motion $cos(\omega t+\phi) , sin(\omega t +\phi)$ along the $x$ and $y$ axes. The position dependence is given by the wave vector components.
 
 With this in mind, I managed to generate such an animation in Mathematica using the code below:
 
@@ -71,8 +68,7 @@ Below I show a few examples:
 | ![c1](/assets/cw2.gif) | ![c2](/assets/cw3.gif) | ![c4](/assets/cw4.gif) |
 | ![c1p](/assets/cw2p.gif) | ![c2p](/assets/cw3p.gif) | ![c4p](/assets/cw4p.gif) |
 
-We see that the wave vector corresponds indeed to the direction of propagation and wavelength ($$ \lambda=2\pi/k $$), and the
-wavelength is large enough the motion of the black dots looks more in phase as the wavelength is greater than the size of
+We see that the wave vector corresponds indeed to the direction of propagation. If the wavelength ($\lambda=2\pi/k$) is large enough the motion of the black dots looks more in phase, as the wavelength is greater than the size of
 the sample shown.
 
 Finally, it is also nice to see this wave pattern by showing only the black dots without the circles, then it's harder to see
