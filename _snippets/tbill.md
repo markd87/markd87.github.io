@@ -26,7 +26,7 @@ Typically the shorter term bonds have lower coupon rates because the risk of low
 
 An important indicator chart and corresponding indicator is the yield curve, which shows the yields for different bond maturities. It has important implications on the future expectations of investors on the economy.  The most common derived indicators from the yield curve are obtained by taking the difference of the long term and short term yields, typically the 10-year and 1-year or 3-months yields, which are known as the 10-year 3-month yield spread, or just the yield spread.
 
-<img src="/Users/markd/projects/markd87.github.io/assets/yield_curve.png" alt="yield_curve" style="zoom:67%;" />
+<img src="/assets/yield_curve.png" alt="yield_curve" style="zoom:67%;" />
 
 https://www.gurufocus.com/yield_curve.php
 
@@ -34,7 +34,7 @@ A normal yield curve will have higher yields for higher maturities because of th
 
 The most interseting case occurs when the yield curve inverts, i.e the spread becomes negative. This occurs when there is high demand for the long term bonds due to pessimistic views on the future economy, in particular rising short-term interest rates and slowing down of the economy, with expectations that eventually interest rates will fall, leading to higher yields for short term maturities compared to long term and inverting the yield curve. The inverted yield curve, or negative spread has historically been an accurate predictor of recession in the year following the inversion.
 
-![yield_spread](../assets/yield_spread.png)
+![yield_spread](/assets/yield_spread.png)
 
 Source: https://fred.stlouisfed.org/series/T10Y3M
 
