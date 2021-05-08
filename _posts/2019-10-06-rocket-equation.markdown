@@ -27,7 +27,7 @@ $$
   P_{total} = P_{rocket} + P_{propellant}
 $$
 
-The rocket emits mass at a rate \mu = \frac{dm}{dt}$ and a speed $u$ relative to the rocket.
+The rocket emits mass at a rate $\mu = \frac{dm}{dt}$ and a speed $u$ relative to the rocket.
 
 The rate of change of momentum is given by the force acting on the system, hence when no external force is acting, the total momentum is conserved.
 

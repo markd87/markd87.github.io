@@ -39,48 +39,47 @@ Forward propagation means propagating the inputs through the network until we re
 
 To demonstrate the feed-forward network, we consider a network with one hidden layer (the smallest possible deep neural network). We also use vectorized form for the equations in order to simplify notation and allow for efficient implementation.
 
-The input layer is column vector of size $$n_{input}$$,
-next we have a hidden layer with $$n_{h}$$ nodes. The hidden layer is connected to the inputs with a weight matrix $$W_{h}$$ of size $$n_{h}\times n_{input}$$, such that $$W^{h}_{ij}$$ is the weight connecting input node $$i$$ to hidden note $$j$$. Additionally we have a bias vector $${\bf b}_{h}$$ of size $$n_{h}$$ for the hidden layer.
-Finally, we have an output layer with $$n_{output}$$ nodes, which can denote either different classes in a supervised classification problem, or real values in a regression type problem. The output layer is similarly connected to the hidden layer with a weight matrix $$W_{o}$$ of size $$n_{o}\times n_{h}$$, and a bias vector $${\bf b}_{o}$$ for the output nodes of size.
+The input layer is column vector of size $n_{input}$,
+next we have a hidden layer with $n_{h}$ nodes. The hidden layer is connected to the inputs with a weight matrix $W_{h}$ of size $n_{h}\times n_{input}$, such that $W^{h}_{ij}$ is the weight connecting input node $i$ to hidden note $j$. Additionally we have a bias vector ${\bf b}_{h}$ of size $n_{h}$ for the hidden layer.
+Finally, we have an output layer with $n_{output}$ nodes, which can denote either different classes in a supervised classification problem, or real values in a regression type problem. The output layer is similarly connected to the hidden layer with a weight matrix $W_{o}$ of size $n_{o}\times n_{h}$, and a bias vector ${\bf b}_{o}$ for the output nodes of size.
 
-\$$\begin{eqnarray}
-    &z_{h}=W_{h}\cdot X_{input}+b_{h}, \quad (n_{h})
-    \\
-    &a_{h}=f(z_{h}), 
-    \\
-    &z_{o} = W_{o}\cdot a_{h}+b_{o}, \quad (n_{o})
-    \\
-    &a_{o} = f(z_{o}), \quad (n_{o}).
-\end{eqnarray}$$
+$$
+z_{h}=W_{h}\cdot X_{input}+b_{h}, \quad (n_{h}) \\
+a_{h}=f(z_{h}), 
+\\
+z_{o} = W_{o}\cdot a_{h}+b_{o}, \quad (n_{o})
+\\
+a_{o} = f(z_{o}), \quad (n_{o}).
+$$
 
 In parenthesis I give the output dimensions in each step.
 
 ## Backpropagation
 
-In order to know how a given weight influences the output, which is given by the gradient of the output with respect to a given weight, one therefore needs to go backwards from the output, and chain together the derivatives of the intermediate outputs from each layer. Also known as the chain rule. We start with a loss function $$L(W,b)$$ which is a function of the weights and biases. The gradient descent minimization process updates the parameters at each learning step according to,
+In order to know how a given weight influences the output, which is given by the gradient of the output with respect to a given weight, one therefore needs to go backwards from the output, and chain together the derivatives of the intermediate outputs from each layer. Also known as the chain rule. We start with a loss function $L(W,b)$ which is a function of the weights and biases. The gradient descent minimization process updates the parameters at each learning step according to,
 
-\$$\begin{eqnarray}
-    &W:= W -\eta \nabla_{W}L(W,b)
-    \\
-    &b:= b - \eta \nabla_{b}L(W,b)
-\end{eqnarray}$$
+$$
+W:= W -\eta \nabla_{W}L(W,b)
+\\
+b:= b - \eta \nabla_{b}L(W,b),
+$$
 
-where $$\eta$$ is the learning rate.
+where $\eta$ is the learning rate.
 To obtain the gradients we employ the chain rule,
 
-\$$\begin{eqnarray}
-      &\frac{\partial L}{\partial W^{o}_{ij}} = \frac{\partial L}{\partial a^{o}_i} \frac{\partial a^{o}_i}{\partial z^{o}_i}\frac{\partial z^{o}_i}{\partial W^{o}_{ij}} = \nabla_{a_{o}} L \times f'(z_{o}) \cdot a_{h}^T,
+$$
+      \frac{\partial L}{\partial W^{o}_{ij}} = \frac{\partial L}{\partial a^{o}_i} \frac{\partial a^{o}_i}{\partial z^{o}_i}\frac{\partial z^{o}_i}{\partial W^{o}_{ij}} = \nabla_{a_{o}} L \times f'(z_{o}) \cdot a_{h}^T,
       \\
-      &\frac{\partial L}{\partial b_{o}}=\nabla_{a_{o}} L \times f'(z_{o}) \cdot a_{h}^T,
+      \frac{\partial L}{\partial b_{o}}=\nabla_{a_{o}} L \times f'(z_{o}) \cdot a_{h}^T,
       \\
-      &\frac{\partial L}{\partial W^{h}_{ij}} = \frac{\partial L}{\partial a^{o}_k} \frac{\partial a^{o}_k}{\partial z^{o}_k}\frac{\partial z^{o}_k}{\partial a_i^{h}}\frac{\partial a_i^{h}}{\partial z_i^{h}}\frac{\partial z_i^{h}}{\partial W_{ij}^{h}}=
+      \frac{\partial L}{\partial W^{h}_{ij}} = \frac{\partial L}{\partial a^{o}_k} \frac{\partial a^{o}_k}{\partial z^{o}_k}\frac{\partial z^{o}_k}{\partial a_i^{h}}\frac{\partial a_i^{h}}{\partial z_i^{h}}\frac{\partial z_i^{h}}{\partial W_{ij}^{h}}=
       (\nabla_{a_{o}} L\times f'(z_{o}))\cdot W^T_{o} f'(z_{h})\cdot
       x^T,
       \\
-      &\frac{\partial L}{\partial b_{h}}=(\nabla_{a_{o}} L\times f'(z_{o}))\cdot W^T_{o} f'(z_{h}).
-\end{eqnarray}$$
+      \frac{\partial L}{\partial b_{h}}=(\nabla_{a_{o}} L\times f'(z_{o}))\cdot W^T_{o} f'(z_{h}).
+$$
 
-Using a single data point for updating the weights is known as stochastic gradient descent, due to the noisier but faster nature of the updates, alternatively there is batch or mini-batch gradient descent, where the input contains several data points forming an input matrix of size $$n_{input}\times n_{data}$$, which is closer to the true gradient of the loss but is more expensive computationally.
+Using a single data point for updating the weights is known as stochastic gradient descent, due to the noisier but faster nature of the updates, alternatively there is batch or mini-batch gradient descent, where the input contains several data points forming an input matrix of size $n_{input}\times n_{data}$, which is closer to the true gradient of the loss but is more expensive computationally.
 (a stack exchange <a href='https://stats.stackexchange.com/questions/49528/batch-gradient-descent-versus-stochastic-gradient-descent' target="_blank">answer</a> on pros and cons of the two limits.)
 
 A few common non-linear activation functions are the sigmoid, tanh, and relu. Note from the backpropagation equations that the learning depends on the derivatives of the activation functions. Below I show the activations functions and their derivatives.
@@ -89,38 +88,39 @@ A few common non-linear activation functions are the sigmoid, tanh, and relu. No
 
 Two common loss functions are the mean square error and the cross entropy given for a single sample by,
 
-\$$
+$$
       L_2=\frac{1}{2} \sum_j (y_j- a^o_j)^2,
       \\
       L_c=-\sum_j^{n_o}[y_j \log(a^o_j)+(1-y_j)\log(1-a_j^o)],
 $$
 
-where $$y_j$$ denotes the true value for node $$j$$, and $$a_o$$ the network's output. 
+where $y_j$ denotes the true value for node $j$, and $a_o$ the network's output. 
 
 The backpropagation requires the gradients of the cost function with respect to the weights and biases. In particular we need the derivative with respect to the output,
 
-\$$
+$$
       \frac{\partial L_2}{\partial a^o_j}\frac{\partial a_j^o}{\partial z^o_j} = (y_j-a_j^o)f'(z^o_j),
       \\
       \frac{\partial L_c}{\partial a^o_j}\frac{\partial a^o_j}{\partial z^o_j} = \frac{y_j-a^o_j}{a^o_j(1-a^o_j)}f'(z^o_j)=(a^o_j-y_j),
 $$
 
-where in the second row we assumed a sigmoid activation in the output layer, satisfying (see below) $$f'(z^o_j) = a^o_j(1-a^o_j)$$. Note, that in the second case, the gradient depends only the error as opposed to the derivative of the activation function in the first case. This makes the learning faster and prevents neurons from getting saturated and stop learning.
+where in the second row we assumed a sigmoid activation in the output layer, satisfying (see below) $f'(z^o_j) = a^o_j(1-a^o_j)$. 
+Note, that in the second case, the gradient depends only the error as opposed to the derivative of the activation function in the first case. This makes the learning faster and prevents neurons from getting saturated and stop learning.
 Additionally, when considering multi-class classification problems the output layer activation is replaced by a soft-max layer
 
-\$$
+$$
     \frac{e^{z_{out}}}{\sum_{c} {e^{z_c}}},
 $$
 
 which converts the outputs into a probability distribution. In that case the cross entropy cost is given by 
 
-\$$
+$$
     L_c = -\sum\limits_j^{classes} y_j\log(a^o_j),
 $$
 
 and the gradients are given by a similar form,
 
-\$$
+$$
     \frac{\partial L_c}{\partial a^o_j}\frac{\partial a^o_j}{z^o_i}=a^o_i-y_i.
 $$
 
@@ -310,16 +310,16 @@ the classification of handwritten digits.
 Below are some examples from the MNIST dataset,
 <img src='/assets/digits.png' width='40%'>
 
-A completely random guess indicating no learning has been done would have an average accurcy of $$10%$$. Therefore to show that learning has been achieved on previously unseen data, requires a significantly higher accuracy.
+A completely random guess indicating no learning has been done would have an average accuracy of $10%$. Therefore to show that learning has been achieved on previously unseen data, requires a significantly higher accuracy.
 The ipython notebook with the code can be found <a href='https://github.com/markd87/markd87.github.io/blob/old_site/articles/digits.ipynb'>here</a>.
 
 The neural network class with the soft max layer and the cross entropy cost function is given below. Additionally to control overfitting we include a regularization term, which aims at keeping the weights values small.
 
-\$$
+$$
 L_2 = \frac{\mu}{2n}\sum_W W^2 
 $$
 
-such that the modification to the gradient of the weights is simply $$\frac{1}{n}\mu W$$.
+such that the modification to the gradient of the weights is simply $\frac{1}{n}\mu W$.
 
 ```
 class neural_network:
@@ -449,8 +449,8 @@ class neural_network:
         pass
 ```
 
-I create an instance of the neural network class, with $784$ input nodes representing the $$8\times 28$$ pixels in the grayscale image of a digit. 100 hidden layer nodes, and 10 output nodes for the 10 digits. I use ReLU activation, 0.1 learning rate and 0.002 regularization parameter.
-I split the traininig set consisting of 20000 samples into 18000 training samples and 2000 validation samples, which allow to tune the hyperparameters such as the learning rate, regularization etc.
+I create an instance of the neural network class, with $784$ input nodes representing the $8\times 28$ pixels in the grayscale image of a digit. 100 hidden layer nodes, and 10 output nodes for the 10 digits. I use ReLU activation, 0.1 learning rate and 0.002 regularization parameter.
+I split the training set consisting of 20000 samples into 18000 training samples and 2000 validation samples, which allow to tune the hyperparameters such as the learning rate, regularization etc.
 The model is then tested on a test set with 10000 samples.
 I then train the network for 200 epochs and minibatch of size 10.
 

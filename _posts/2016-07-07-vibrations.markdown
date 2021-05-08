@@ -66,14 +66,8 @@ x_1=-x_2=A_2 sin(\sqrt{3}\omega_0 t),
 $$ 
 
 implying that the masses move with the higher frequency but in opposite directions.
-<!-- Below are the two fundamental modes, in which both masses move with the same frequency and constant relative phase.
 
-<center>
-<img src='http://s12.postimg.org/gkc13wx2l/mode1.gif'/>
-<img src='http://s2.postimg.org/ocl54uq49/mode2.gif'/>
-</center> -->
-
-We can continue to 3, 4, etc. masses attached by springs and eventually we will reach the limit of continuum where the number of masses (atoms) is essentially $N\rightarrow \infty$ or %the spacings become $\Delta x\rightarrow 0$.
+We can continue to 3, 4, etc. masses attached by springs and eventually we will reach the limit of continuum where the number of masses (atoms) is essentially $N\rightarrow \infty$ or the spacings become $\Delta x\rightarrow 0$.
 
 The underlying equation of motion describing a vibrating continuous system is the wave equation:
 
@@ -243,14 +237,11 @@ $$
 
 We recall now the boundary condition $u(r=1)=0$, which requires $J_m(\lambda)=0$, therefore we see that the boundary condition forces $\lambda$ to be discrete with allowed values corresponding to the zeros of the Bessel function of order m. We can therefore write $\lambda=\lambda_{mn}$ where $m=0,1,..$ indicating the order of the Bessel function, and $n=1,2,..$ indicating the zero of $J_m(r)$.
 
-<!-- Below I show the first 5 Bessel functions of the first kind (from purple to red) and their various zeros.
-
-<img class="aligncenter" alt="First four Bessel functions of the first kind" src="http://s30.postimg.org/99lkd4h2p/Bessel.png" /> -->
-
 Using the the solutions and the discretization imposed by the boundary conditions, we get the most general solution for the wave equation:
 
 $$
-u(r,\theta,t)=\sum*{m=0}^{\infty}\sum*{n=1}^{\infty}(C*{mn} \cos (m\theta)+D*{mn}\sin(m\theta))J*m(\lambda*{mn} r)(A*{mn} \cos (\lambda*{mn}t)+B*{mn}\sin(\lambda*{mn}t))
+u(r,\theta,t)=\sum_{m=0}^{\infty}\sum_{n=1}^{\infty}(C_{mn} \cos (m\theta)+D_{mn}\sin(m\theta))
+J_m(\lambda_{mn} r)(A_{mn} \cos (\lambda_*_{mn}t)+B_{mn}\sin(\lambda_{mn}t))
 $$
 
 The constants A,B,C,D are not always all necessary (depending on the initial conditions), in particular when the initial conditions have no dependence on $\theta$ the solutions will not have a dependence on $\theta$ and we must have only $m=0$.
@@ -258,7 +249,7 @@ The importance of these functions in the series is in their orthogonality relati
 
 In the table below I show 15 of the normal modes for the circular vibrating drum, which are one of the main reasons I decided to write this summary in the first place.
 
-<table class='aligncenter' id='drums'>
+<table class='aligncenter' id='drums' textalign='center'>
 <tr>
 <td>$m=0,n=1$ <br> <img src="/assets/d1.gif" width='100%'/></td>
 <td>$m=0,n=2$ <br><img src="/assets/d2.gif" width='100%'/></td>

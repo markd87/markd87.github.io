@@ -64,7 +64,7 @@ as well as the direction of propagation.
 Below I show a few examples:
 
 |--------------------------|--------------------------------|--------------------------|
-| $$ k_x=2\pi/20, k_y=0 $$ | $$ k_x=2\pi/20, k_y=2\pi/20 $$ | $$ k_x=k_y=2\pi/50 $$ |
+| $k_x=2\pi/20, k_y=0$ | $k_x=2\pi/20, k_y=2\pi/20$ | $k_x=k_y=2\pi/50$ |
 | ![c1](/assets/cw2.gif) | ![c2](/assets/cw3.gif) | ![c4](/assets/cw4.gif) |
 | ![c1p](/assets/cw2p.gif) | ![c2p](/assets/cw3p.gif) | ![c4p](/assets/cw4p.gif) |
 

@@ -74,9 +74,9 @@ def plot_decision_boundary(model,X,y):
 The first algorithm is logistic regression, which despite the name is a classification algorithm and not a regression algorithm.
 Logistic regression is a linear classifier which uses the sigmoid function with trained weights and bias to assign a probability for a given data point.
 
-\$$\begin{equation}
+$$
 \sigma(x; W,b)=\frac{1}{1+e^{-(W x+b)}}
-\end{equation}$$
+$$
 
 <center><img src='/assets/sigmoid.png' width='350px'/></center>
 
