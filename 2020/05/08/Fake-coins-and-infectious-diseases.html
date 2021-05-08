@@ -203,14 +203,14 @@ to discard them, and remain with less coins to weigh.</p>
 <p><strong>What is the advantage of pooling?</strong></p>
 <p>The probability of any coin being fake is $r=0.01$ (the prevalence of fakes in the available coins).
 Therefore, the probability of a pool of $s_1$ coins having at least one fake coin is:</p>
-\begin{equation}
+$$
 p_1 = 1 - (1-r)^{s_1}.
-\end{equation}<p>This is the complementary probability of all the coins being real, $(1-r)^{s_1}$.</p>
+$$<p>This is the complementary probability of all the coins being real, $(1-r)^{s_1}$.</p>
 <p>If we divide the $N=1000$ coins into $N/s_1$ pools and weigh each pool, the expected number of pools that contain at least one fake coin is, $p_1\frac{N}{s_1}$. The power of the pooling technique is that $(1-p_1)\frac{N}{s_1}$ pools, will have all real coins, and therefore can be discarded.
 The coins in the remainig suspicious pools can then be weighed individually. What is the total number of weighings we need to do?</p>
-\begin{equation}
+$$
 T = N\left(\frac{1}{s_1} + p_1\right)
-\end{equation}
+$$
 </div>
 </div>
 </div>
@@ -352,9 +352,9 @@ Number of weighings:  196
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>A natural extension is to continue the pooling, known as nested-pooling, i.e. we divide the pools following the first weighing to new pools, with a different pool size, which can again be determiend by minimizing the expression for the number of test, in this case of 2-pools given by a slightly more complex expression:</p>
-\begin{equation}
+$$
 T = N\left(\frac{1}{s_1} + \frac{p_1}{s_2} + p_1p_2\right)
-\end{equation}<p>where $s_1, s_2$ are the first and second pool sizes, respectively.
+$$<p>where $s_1, s_2$ are the first and second pool sizes, respectively.
 $p_1$ is as before, and $p_2 = 1 - (1-\frac{r}{p_1})^{s_2}$ is the modified probability for the second batch of pools.</p>
 
 </div>
