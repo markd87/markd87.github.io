@@ -11,7 +11,7 @@ that are related to our universe and find their values based on the most recent 
 The cosmological principle states that the universe is both homogeneous and isotropic on "large scales", an assumption that is very well verified in observations such as the CMB being highly homogeneous (1 part in 100,000).
 This assumption significantly reduces the allowed metrics which describe the geometry of the universe, called the FRW metric:
 
-$$
+$$ 
 ds^2=-c^2dt^2+a^2(t)[\frac{dr^2}{1-kr^2}+r^2(d\theta^2+\sin^2\theta d\phi^2)]
 $$
 
@@ -37,7 +37,7 @@ $\rho_c\equiv \frac{8\pi G\rho}{3H^2}$ which is called the critical density, sin
 And $\Omega_x\equiv\frac{\rho_x}{\rho_c}=\frac{8\pi G\rho}{3H^2}$ which measure the fraction of the energy density in a given component $x$ relative to the critical density.
 The density appearing in the equation can be separated to energy density due to radiation and due to matter $\rho=\rho_r+\rho_m$.
 The different components making up the energy density of the universe evolve differently with the evolution of the universe.
-Their evolution is determined from the conservation equation for the stress-energy tensor for each component $T^{\mu}_{\nu;\mu}$, where $T^{\mu}_{\nu}=diag(\rho,-P,-P,-P)$.
+Their evolution is determined from the conservation equation for the stress-energy tensor for each component $$T^{\mu}_{\nu;\mu}$$, where $T^{\mu}_{\nu}=diag(\rho,-P,-P,-P)$.
 Plugging this into the energy conservation equation, we get for the evolution of the energy density:
 
 $$
@@ -55,10 +55,11 @@ $$
 \frac{H^2}{H_0^2}=\Omega_{r}a^{-4}+\Omega_ma^{-3}+\Omega_ka^{-2}+\Omega_{\Lambda}
 $$
 
-We see that since we define the quantities relative to the current values we have by plugging $ a=1$: $\Omega_k+\Omega=1$, where $\Omega$ is the sum of all other components other than the curvature component.
+We see that since we define the quantities relative to the current values we have by 
+plugging $a=1: \Omega_k+\Omega=1$, where $\Omega$ is the sum of all other components other than the curvature component.
 
-The age of the universe is the time span in which the universe evolved from $ a = 0 $ to $ a = 1 $, therefor from the equation we can write using the
-definition of $ H $:
+The age of the universe is the time span in which the universe evolved from $a = 0$ to $a = 1$, therefor from the equation we can write using the
+definition of $H$:
 
 $$
 t_0 = \frac{1}{H_0} \int_0^1 \frac{da}{a(\Omega_{r}a^{-4}+\Omega_m a^{-3}+\Omega_k a^{-2}+\Omega_{\Lambda})^{1/2}}
@@ -83,15 +84,15 @@ $$
 (With the last digit having some error associated with the measurement errors in the parameters).
 
 Next we estimate the size of the observable universe. Where observable means that light had enough time to reach our detectors.
-Since the universe is constantly expanding, the naive answer $ R=ct_0 $ is incorrect.
-The correct answer considers the path of photon in the FRW metric. Since for a photon we have $ ds^2=0 $, and taking a radial trajectory in a flat
-space $ (k=0) $ we get from (1):
+Since the universe is constantly expanding, the naive answer $R=ct_0$ is incorrect.
+The correct answer considers the path of photon in the FRW metric. Since for a photon we have $ ds^2=0$, and taking a radial trajectory in a flat
+space $(k=0)$ we get from (1):
 
 $$
 R=\int \frac{cdt}{a}
 $$
 
-Rewriting this in terms of a and $ H=\frac{\dot a}{a} $, which I have expressions for in terms of known quantities.
+Rewriting this in terms of a and $H=\frac{\dot a}{a}$, which I have expressions for in terms of known quantities.
 we make the change 
 
 $$ 
