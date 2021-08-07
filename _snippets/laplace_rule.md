@@ -4,7 +4,7 @@ title: "Laplace's Rule of Succession"
 date: 2020-11-09
 ---
 
-Given a repeated set of $n$ independent experiments $X_i$ with $s$ sucesses ($X_i=1$), what is the probabibility of the $n+1$ experiment being a success:
+Given a repeated set of $n$ independent experiments $X_i$ with $s$ successes ($X_i=1$), what is the probability of the $n+1$ experiment being a success:
 
 $$
 P(X_{n+1}=1|\sum_{i=1}^{n} {X_i}=s) = \frac{s+1}{n+2}
