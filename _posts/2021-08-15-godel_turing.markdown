@@ -5,7 +5,7 @@ date: 2021-08-15 16:43:00 +0000
 tags: computation math philosophy
 ---
 
-I've recently read Scott Aaronson book "Quantum computing since Democritus", which covers in a very unique way computational complexity and quantum computing. One of my favorite parts was the connection drawn between Gödel's incompleteness theorem and Turing's Halting Problem. Two seminal theorems in logic and computer science. I wanted to reproduce the arguments here.
+I've recently read Scott Aaronson's book "Quantum computing since Democritus", which covers in a very unique way computational complexity and quantum computing. One of my favorite parts was the connection drawn between Gödel's incompleteness theorem and Turing's Halting Problem. Two seminal theorems in logic and computer science. I wanted to reproduce the arguments here.
 
 ## Turing's Halting Problem (THP)
 
