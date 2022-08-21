@@ -223,3 +223,52 @@ Outputs:
 ![amzn1](/assets/stocks/bollinger_AMZN.png)
 ![amzn2](/assets/stocks/RSI_AMZN.png)
 ![amzn3](/assets/stocks/MACD_AMZN.png)
+
+## Portfolio optimization
+
+The main question of investing is how to allocate an existing budget across a number of assets (equity, commodities, bonds).
+Given a set of allocated weights $w_i$: $R_p = \sum_i w_i R_i$, where $R_i$ is the return of asset $i$.
+
+The expected return of the portfolio is then given by:
+$$E(R_p) = \sum_{i} w_i E(R_i).$$
+
+The main realization of Markovitz the father of modern portfolio theory was that the risk in a given portfolio is given by the variance of the portfolio's returns, which in turn is captured by covariance matrix of the assets' returns, which includes both the variance of the individual assets and their correlations, which is the main insight leading the wisdom that a good portfolio meaning having the best return for a given level of risk needs to be diversified in such away that the assets are not correlated to each other.
+
+To see how the covariance comes out, I derive the variance of the portfolio's return:
+
+$$
+V(R_p) = E(R_p^2) - E^2(R_p) = \\
+E(\sum_{i,j}w_iw_jR_iR_j) - \sum_{i,j}E(R_i)E(R_j) = \\
+\sum_{i,j}(w_iw_j)\left[E(R_iR_j) - E(R_i)E(R_j)\right]
+$$
+
+The term in the square brackets is by definition the covariance of assets $i$ and $j$, the variance of the portfolio returns is therefore given by:
+
+$$
+\begin{equation}
+V(R_p) = {\bf w}^T \Sigma {\bf w},
+\end{equation}
+$$
+
+where $\Sigma$ is the covariance matrix of the assets' returns.
+
+One of the popular portfolio selection or optimization techniques is the Risk Parity portfolio where the idea is to allocate weights to achieve equal risk contribution from each asset to the overall portfolio risk or volatility. This has been found to overcome issues with the mean-variance and minimum variance approaches which tend to concentrate most of the weight on few assets.
+
+The portfolio volatity from (1) can be written as teh sum of the risk contributions of each asset using Euler's [Homogenous Function Theorem](https://mathworld.wolfram.com/EulersHomogeneousFunctionTheorem.html) and the fact that $V(w)$ is homogeneous of order 1 in $w$,
+
+$$
+V(w) = \sum_i w_i\frac{\partial V({\bf w})}{\partial w_i} = \sum_i w_i \frac{ \Sigma {\bf w}}{V(w)} = \sum_i v_i
+$$
+
+Where $v_i$, the term inside the sum is the contribution of asset $i$ to the overall volatility.
+In general if we want each asset to contribute $b_i$ to the total portfolio risk, with $\sum b_i = 1$, e get the condition for the risk parity portfolio $v_i(w) = b_iV(w)$, for equal risk contribution $b_i = \frac{1}{N}$.
+
+$$
+w_i (\Sigma {\bf w})_i  = ({\bf w}^T \Sigma {\bf w}) b_i.
+$$
+
+The optimization problem can then be forumlated as minimizing the sum of squared errors between the desired risk contribution and the actual:
+
+$$
+J({\bf w}) = \sum_i \left[w_i (\Sigma {\bf w})_i  - ({\bf w}^T \Sigma {\bf w})b_i \right]^2.
+$$
