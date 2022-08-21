@@ -238,16 +238,16 @@ To see how the covariance comes out, I derive the variance of the portfolio's re
 
 $$
 V(R_p) = E(R_p^2) - E^2(R_p) = \\
-E(\sum_{i,j}w_iw_jR_iR_j) - \sum_{i,j}E(R_i)E(R_j) = \\
+E\left[\sum_{i,j}w_iw_jR_iR_j\right] - \sum_{i,j}E(R_i)E(R_j) = \\
 \sum_{i,j}(w_iw_j)\left[E(R_iR_j) - E(R_i)E(R_j)\right]
 $$
 
 The term in the square brackets is by definition the covariance of assets $i$ and $j$, the variance of the portfolio returns is therefore given by:
 
 $$
-\begin{equation}
+\begin{align}
 V(R_p) = {\bf w}^T \Sigma {\bf w},
-\end{equation}
+\end{align}
 $$
 
 where $\Sigma$ is the covariance matrix of the assets' returns.
@@ -270,5 +270,9 @@ $$
 The optimization problem can then be forumlated as minimizing the sum of squared errors between the desired risk contribution and the actual:
 
 $$
-J({\bf w}) = \sum_i \left[w_i (\Sigma {\bf w})_i  - ({\bf w}^T \Sigma {\bf w})b_i \right]^2.
+J({\bf w}) = \sum_i \left[w_i (\Sigma {\bf w})_i  - ({\bf w}^T \Sigma {\bf w})b_i \right]^2,
+$$
+
+$$
+w = \argmin_w J({\bf w}) \quad \mid \quad w_i \ge 0
 $$
