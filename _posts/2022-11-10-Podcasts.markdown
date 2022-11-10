@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Gödel & Turing"
+title: "Podcasts transcriptions"
 date: 2021-11-10 21:20:00 +0000
 ---
 
