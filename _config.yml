@@ -70,7 +70,7 @@ collections:
     output: true
     permalink: /snippets/:path/
 
-remote_theme: jekyll/minima
+remote_theme: jekyll/minima@6513ea8b9c1c4909b6aa79926d52a1f7d865c5e7
 
 titles_from_headings:
   enabled: true
