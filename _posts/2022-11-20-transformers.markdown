@@ -1,11 +1,9 @@
 ---
 layout: post
 title: "Transformers"
-date: 2021-11-20 17:14:00 +0000
+date: 2022-11-20 17:14:00 +0000
 tags: deeplearning
 ---
-
-## Introduction
 
 Since the seminal [paper](https://arxiv.org/abs/1706.03762) on transformers "Attention is All You Need", transformers have revolutionized deep learning and have become the most popular architecture, applied to a variety of different problems and modalities. In text for tasks such as: text generation (e.g. GPT-3), translation (BERT), classification, in vision with image classification (ViT), object detection and text-to-image generation as well as audio with transcription (Whisper).
 

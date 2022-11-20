@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Podcasts transcriptions"
-date: 2021-11-10 21:20:00 +0000
+date: 2022-11-10 21:20:00 +0000
 ---
 
 Podcasts transcriptions using text-to-speech model (Whisper): [Podcasts](https://markd87.github.io/podcasts/), [source](https://github.com/markd87/podcasts)
