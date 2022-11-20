@@ -62,7 +62,8 @@ The authors then extend the idea of the attention single attention mechanism to 
 The Multi-Head Attention diagram from "Attention is all you need" paper
 
 The motivation here is that whereas a single attention allows each element to attend with varying weights to any other element, it is still limited to only a single context for each element, but it may be the case the there might be other useful contexts to learn for each element, and this is achieved by having multiple heads $h$.
-The input to the model is typically a sequence of elements (tokens in the case of text), each with an embedding of dimension $d_{model}$, to bring the elements to the space of queries, keys and values we use the projection matrices $W^Q_{1..h},\ W^K_{1..h},\ W^V_{1..h}$, i.e. one triplet of q,k,v matrices per head.
+The input to the model is typically a sequence of elements (tokens in the case of text), each with an embedding of dimension $d_{model}$, to bring the elements to the space of queries, keys and values we use the projection matrices $W^Q_{1..h},\ W^K_{1..h},\ W^V_{1..h}$,
+i.e. one triplet of q,k,v matrices per head.
 The dimensions of these projection matrices are given by $d_{model}\times d_k$ with $d_k,d_v = d_{model}/h$, such that after the attention outputs from each head are concatenated, we get a vector of size $T\times d_{model}$, which is finally projected one more time with $W^O \in {\mathbb R}^{d_{model} \times d_{model}}$.
 
 In a more compact notation these steps can be written as in the paper:
@@ -70,13 +71,6 @@ In a more compact notation these steps can be written as in the paper:
 
 $$
 
-{\rm MultiHead}(Q, K, V) = {\rm Concat}(head_1, ..., head_h)W^O
+{\rm MultiHead}(Q, K, V) = {\rm Concat}(head_1, ..., head_h)W^O; \\ head_i = {\rm Attention}(QW^Q_i, KW^K_i, VW^V_i).
 
-$$
-with
-$$
-
-head_i = {\rm Attention}(QW^Q_i, KW^K_i, VW^V_i).
-
-$$
 $$
