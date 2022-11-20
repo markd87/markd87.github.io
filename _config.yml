@@ -70,6 +70,8 @@ collections:
     output: true
     permalink: /snippets/:path/
 
+remote_theme: jekyll/minima
+
 titles_from_headings:
   enabled: true
   strip_title: true
