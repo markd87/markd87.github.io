@@ -225,7 +225,7 @@ plt.yticks(fontsize=14);
 plt.title("Simulated pooling & weighings", fontsize=16);
 ```
 
-![image](/assets/simulated_pooling.jpg)
+![image](/assets/simulated_pooling.png)
 
 What about 2-pools? The above optimization method gives:
 
