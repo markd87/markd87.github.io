@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Fakse coins and infectious diseases"
+title: "Fake coins and infectious diseases"
 date: 2020-05-08 23:28:00 +0000
-tags: coding, statistics
+tags: coding statistics
 ---
 
 > How to speed up detection and testing using pooling
