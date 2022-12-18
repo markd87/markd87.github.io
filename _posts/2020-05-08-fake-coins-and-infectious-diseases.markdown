@@ -253,4 +253,3 @@ for an infectious disease. The crucial difference is the "weighing" method, whic
 
 My friend Yossi Eliaz ([@YossiEliaz](https://twitter.com/yossieliaz)) and I have explored this in a [paper](https://www.medrxiv.org/content/10.1101/2020.04.25.20079343v2) we published in medRxiv
 recently, demonstrating the great benefits of the pooling technique for testing for SARS-CoV-2 in a population with an estimated prevalance obtained from a SIRD model fit to reported infections and deaths.
-Alongside the paper we've also made a streamlit [app](https://poolkeh.herokuapp.com/) allowing to find the optimal pooling strategy for different countries.
