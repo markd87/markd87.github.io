@@ -7,7 +7,7 @@ tags: coding, statistics
 
 > How to speed up detection and testing using pooling
 
-![image](../assets/coins.jpg)
+![image](/assets/coins.jpg)
 
 ## Fake coins
 
@@ -51,7 +51,6 @@ We see that the number of weighings or tests as a fraction of $N$ is independent
 To get the optimal pool size, which will give the least amount of weighings, we need to minimize the expression for the number of tests $T$, by varying $s_1$.
 
 ```python
-
 import numpy as np
 import pandas as pd
 import matplotlib
@@ -133,7 +132,7 @@ Number of weighings:  196
 
 A significant improvement over the original $1000$ weighings.
 
-A natural extension is to continue the pooling, known as nested-pooling, i.e. we divide the pools following the first weighing to new pools, with a different pool size, which can again be determiend by minimizing the expression for the number of test, in this case of 2-pools given by a slightly more complex expression:
+A natural extension is to continue the pooling, known as nested-pooling, i.e. we divide the pools following the first weighing to new pools, with a different pool size, which can again be determined by minimizing the expression for the number of test, in this case of 2-pools given by a slightly more complex expression:
 
 $$
 T = N\left(\frac{1}{s_1} + \frac{p_1}{s_2} + p_1p_2\right)
@@ -226,7 +225,7 @@ plt.yticks(fontsize=14);
 plt.title("Simulated pooling & weighings", fontsize=16);
 ```
 
-![image](../assets/simulated_pooling.jpg)
+![image](/assets/simulated_pooling.jpg)
 
 What about 2-pools? The above optimization method gives:
 
