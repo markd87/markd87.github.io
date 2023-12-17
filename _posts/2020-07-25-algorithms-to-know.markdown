@@ -1,6 +1,7 @@
 ---
+layout: post
 title: "Algorithms to know"
-date: 2020-07-25 12:12:12 +0100
+date: 2020-07-25 12:12
 tags: math code
 ---
 
