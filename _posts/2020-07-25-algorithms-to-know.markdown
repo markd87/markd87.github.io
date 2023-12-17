@@ -5,7 +5,9 @@ date: 2020-07-25 12:12
 tags: math code
 ---
 
-# QuickSort
+# Algorithms to know
+
+## QuickSort
 
 **Purpose**: Sort array
 
@@ -52,7 +54,7 @@ print(f"Input array: {array}")
 print(f"Sorted array: {quicksort(array)}")
 ```
 
-# Binary Search
+## Binary Search
 
 **Purpose**: Find element in a sorted array.
 
@@ -106,7 +108,7 @@ print(f"Number to find: {number}")
 print(f"Index found: {binarysearch(array, number)}")
 ```
 
-# Graph Search
+## Graph Search
 
 **Purpose**:
 Breadth-First (BF) search is used to find if a path to a node exists in a graph
@@ -191,7 +193,7 @@ path: ['Mark', 'Bob', 'John']
 path to Sven not found
 ```
 
-# Dijkstra Algorithm
+## Dijkstra Algorithm
 
 **Purpose**: Finds shortest path (weight-wise) to a node in a graph.
 
@@ -292,7 +294,7 @@ Shortest weighted-path from A to D: ['A', 'B', 'C', 'D'], with total distance: 5
 Shortest weighted-path from A to C: ['A', 'B', 'C'], with total distance: 3
 ```
 
-# Uniform d-sphere sampling
+## Uniform d-sphere sampling
 
 **Purpose**: Sample points from a d-sphere uniformly without rejection
 
@@ -330,7 +332,7 @@ plt.axis("equal");
 plt.axis("off");
 ```
 
-# Finite Distribution sampling
+## Finite Distribution sampling
 
 **Purpose**: Sample a distribution with a finite number of states $k\in\{1,..,K\}$ without rejection
 
