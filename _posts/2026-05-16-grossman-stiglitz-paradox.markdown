@@ -18,10 +18,10 @@ More formally, let the fraction of informed traders be $\lambda$, and $G(\lambda
 
 As $\lambda$ increases, prices become more informative, the benefit of being informed reduced $G(\lambda)$ decreases, and vice versa, therefore there is a $\lambda^{\*}$, where equilibrium occurs, and the marginal trader is indifferent between being informed and not informed: $G(\lambda^{\*}) = C$.
 
-So where does $\alpha$ comes from? a given trader can still have lower costs, better data, better skills and models, better risk tolerance, balance sheet, liquidity, better infrastructure and execution, such that the net alpha for trader $i$, $G(\lambda^{\*}) - C_i >0$ is positive.
+So where does $\alpha$ comes from? a given trader can still have lower costs, better data, better skills and models, better risk tolerance, balance sheet, liquidity, better infrastructure and execution, such that the net alpha for trader $i$, $G(\lambda^{\*}) - C_i > 0$ is positive.
 
-How does AI change things? AI lowers the cost of accessing public data, research and analysis, so more traders become informed, and prices become more informative, which competing away the old information edge. AI creates a new equilibrium: $G(\lambda^{\*}_{AI}) = C_{AI}$. 
-Alpha, or compensation just shifts to whatever is still scarce or hard, which not everyone can do even with AI, i.e. as before, better skills, private data, execution, better judgement, risk tolerance, etc.
+How does AI change things? AI lowers the cost of accessing public data, research and analysis, so more traders become informed, and prices become more informative, which competing away the old information edge. AI creates a new equilibrium: $G(\lambda_{AI}^{\*}) = C_{{\rm AI}}$. 
+The alpha shifts to whatever is still scarce or hard, which not everyone can do even with AI, i.e. as before, better skills, private data, execution, better judgement, risk tolerance, etc.
 
 Original paper: <a href='https://www.aeaweb.org/aer/top20/70.3.393-408.pdf'>https://www.aeaweb.org/aer/top20/70.3.393-408.pdf</a>
 
