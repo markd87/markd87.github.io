@@ -21,3 +21,5 @@ So where does $\alpha$ comes from? a given trader can still have lower costs, be
 How does AI change things? AI lowers the cost of accessing public data, research and analysis, so more traders become informed, and prices become more informative, which competing away the old information edge. AI creates a new equilibrium: $G(\lambda^*_{AI}) = C_{AI}$. 
 Alpha, or compensation just shifts to whatever is still scarce or hard, which not everyone can do even with AI, i.e. as before, better skills, private data, execution, better judgement, risk tolerance, etc.
 
+Original paper: <a href='https://www.aeaweb.org/aer/top20/70.3.393-408.pdf'>https://www.aeaweb.org/aer/top20/70.3.393-408.pdf</a>
+
