@@ -6,11 +6,13 @@ tags: "finance"
 ---
 
 Are markets efficient? i.e. do prices reflect all available information?
-If prices already reflected all information, there would be no incentive to pay for research, data, or analysis: investors could simply look at the price and infer the information for free.
+The Grossman–Stiglitz paradox is that prices can only become informative if some investors first pay to acquire information and then trade on it. Their trading is what embeds information into prices.
 
-But if nobody has an incentive to become informed, then nobody collects or trades on that information. And if nobody trades on information, how can prices fully reflect it?
+But if prices already reflected all information perfectly, uninformed investors could simply look at the price and infer that information for free. Then nobody would have an incentive to pay for research, data, or analysis.
 
-That's the paradox, and its solution is that markets cannot be perfectly efficient, there is therefore an equilibrium of partial efficiency, such that the cost of being informed is roughly compensated by the excess trading profit.
+If nobody becomes informed, nobody trades on information. And if nobody trades on information, prices cannot fully reflect it.
+
+Therefore, markets cannot be perfectly efficient when information is costly. The equilibrium is one of partial efficiency: prices are informative enough that informed traders earn no excess profit after costs, but not so informative that becoming informed has no value.
 
 More formally, let the fraction of informed traders be $\lambda$, and $G(\lambda)$, be the gross benefit of being informed over uniformed, and $C$ is the cost of being informed, which includes data, research, analysis, infrastructure, time, etc.
 
