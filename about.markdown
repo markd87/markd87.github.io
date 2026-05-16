@@ -35,7 +35,7 @@ At the NGI I had the great privilege to work alongside the two Nobel laureates P
 and Prof. Andrei Geim, as well as other visiting theoreticians and experimentalists.
 
 On 14/03/2018 I successfully defended my PhD thesis. 
-My [PhD Thesis](../assets/PhD_Thesis_final_MARK_DANOVICH.pdf) titled "Optoelectronics of Two Dimensional Transision Metal Dichalcogenides" .
+My [PhD Thesis](../assets/PhD_Thesis_final_MARK_DANOVICH.pdf) titled "Optoelectronics of Two Dimensional Transition Metal Dichalcogenides" .
 <br>
 <br>
 Following my PhD and academic life,
@@ -44,3 +44,6 @@ Amey Strategic Consulting working on data science projects related to infrastruc
 <br>
 <br>
 On 16/11/2020 I started working at [causaLens](https://www.causalens.com) as a data scientist, working on applying causal machine learning to various problems.
+<br>
+<br>
+on 02/09/2024 I started working at Taula Capital, a macro hedge fund, as a quant researcher.
