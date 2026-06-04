@@ -51,7 +51,7 @@ $ E (\log(1 + fR)) \approx E(fR - \frac{1}{2}f^2R^2) = f\mu - \frac{1}{2}f^2 \si
 
 The maximal expected growth is then: 
 
-$ f^* = \frac{\mu}{\sigma^2}.
+$ f^* = \frac{\mu}{\sigma^2} $.
 
 This is basically the Sharpe ratio divided by $\sigma$.
 
